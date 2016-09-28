@@ -1,8 +1,6 @@
 title: Long Haul
 description: Long Form Jekyll theme built with SASS / COMPASS / SUSY
 
-url: https://alberto56.github.io/
-baseurl: "dcycleblog"
 paginate_path: "blog/page:num/"
 permalink: blog/:title/
 
