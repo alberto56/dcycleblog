@@ -20,8 +20,8 @@ title: Contact Dcycle
     <label for="name">Name</label>    
     <input type="hidden" name="_next" value="http://blog.dcycle.com/thanks">
     <input type="text" id="name" name="name" class="full-width"><br>
-    TEST2<input type="email" name="_replyto">
-    TEST3<input type="submit" value="Send">
+    TEST3<input type="email" name="_replyto">
+    TEST4<input type="submit" value="Send">
   </form>
   <form action="http://formspree.io/albert@dcycle.com" method="POST">
     <label for="name">Name</label>    
