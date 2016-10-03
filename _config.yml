@@ -1,7 +1,7 @@
 title: Dcycle Blog
 description: Drupal automated tests, continuous integration
 
-url: http://www.dcycleproject.org
+url: http://blog.dcycle.com
 baseurl: ""
 paginate_path: "blog/page:num/"
 permalink: blog/:title/
