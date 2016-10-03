@@ -16,6 +16,12 @@ title: Contact Dcycle
       <li><a href="https://twitter.com/alberto56">Follow me on Twitter.</a></li>
     </ul>
   </div>
+  <form action="https://formspree.io/your@email.com"
+      method="POST">
+    <input type="text" name="name">
+    <input type="email" name="_replyto">
+    <input type="submit" value="Send">
+</form>
   <form action="http://formspree.io/albert@dcycle.com" method="POST">
     <label for="name">Name</label>    
     <input type="text" id="name" name="name" class="full-width"><br>
