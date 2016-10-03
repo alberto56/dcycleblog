@@ -1,8 +1,8 @@
 title: Dcycle Blog
 description: Drupal automated tests, continuous integration
 
-url: https://alberto56.github.io
-baseurl: "/dcycleblog"
+url: http://www.dcycleproject.org
+baseurl: ""
 paginate_path: "blog/page:num/"
 permalink: blog/:title/
 
