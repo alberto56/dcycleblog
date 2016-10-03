@@ -1,28 +1,29 @@
-title: Long Haul
-description: Long Form Jekyll theme built with SASS / COMPASS / SUSY
+title: Dcycle Blog
+description: Drupal automated tests, continuous integration
 
-url: http://brianmaierjr.github.com/long-haul
-baseurl: ""
+url: https://alberto56.github.io
+baseurl: "/dcycleblog"
 paginate_path: "blog/page:num/"
 permalink: blog/:title/
 
 markdown: kramdown
 highlighter: rouge
-gems: [jekyll-paginate]
-paginate: 5
+gems: [jekyll-paginate, jekyll-redirect-from]
+paginate: 10
 
 navigation:
- - title: Home
-   url: /index.html
+ - title: Blog
+   url: /
+ - title: Manifesto
+   url: /manifesto
  - title: About
    url: /about
  - title: Contact
    url: /contact
 
 social:
-   github: brianmaierjr
-   twitter: brianmaierjr
-   facebook: brianmaierjr
-   email: brimaidesigns@gmail.com
+   github: alberto56
+   twitter: alberto56
+   email: albert@dcycle.com
 
-google_analytics: "UA-58263416-1"
+google_analytics: "UA-25649530-1"

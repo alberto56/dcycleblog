@@ -1,0 +1,24 @@
+h1 a, nav a {
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  color: #d3e1fa !important;
+  opacity: 0.9;
+}
+
+nav a {
+  font-family: "Open Sans",Helvetica,Arial,sans-serif !important;
+  text-transform: uppercase !important;
+  color: white !important;
+  opacity: 1 !important;
+}
+
+h1.pageTitle {
+  font-size: 1.1em;
+}
+
+pre.highlight {
+  background: black !important;
+}

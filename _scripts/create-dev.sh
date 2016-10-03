@@ -6,7 +6,13 @@ set -e
 # Start by destroying previous development environments.
 ./_scripts/destroy-dev.sh
 
-# Create a new container.
-docker run --name dcycle-jekyll-site-container -d -p 4000 -v "$PWD:/srv/jekyll" jekyll/jekyll:pages
+./_scripts/build.sh
+
+docker run \
+  -dit \
+  --name dcycle-jekyll-apache-container \
+  -p 80 \
+  -v "$PWD/_site":/usr/local/apache2/htdocs/ \
+  httpd:2.4
 
 echo " => Your site is available at $(./_scripts/url.sh)"

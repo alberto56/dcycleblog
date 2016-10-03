@@ -1,3 +1,6 @@
+From https://github.com/brianmaierjr/long-haul
+Adapted for Dcycle Blog
+
 ![preview Long Haul](/preview.jpg)
 
 Long Haul is a minimal jekyll theme built with COMPASS / SASS / SUSY and focuses on long form blog posts. It is meant to be used as a starting point for a jekyll blog/website.
