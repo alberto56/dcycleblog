@@ -33,7 +33,7 @@ The result has been that I now tend to use Drupal for what it's good at, data-he
 
 [My blog](http://dcycleproject.org) has looked like this for quite some time:
 
-<img alt="Very ugly design." src="http://dcycleproject/assets/img/ugh.png" />
+<img alt="Very ugly design." src="http://blog.dcycle.com/assets/img/ugh.png" />
 
 It seemed to be time to refresh it. My goals were:
 
