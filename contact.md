@@ -9,7 +9,7 @@ title: Contact Dcycle
     <p class="intro">This blog is maintained by Albert Albala, Montreal-based Drupal developer specializing in automated tests and continuous integration.</p>
     <ul>
       <li><a href="http://albertalbala.com/en.html">More about me.</a></li>
-      <li><a href="http://dcycle.com">Visit Dcycle.com for Drupal consulting</a></li>
+      <li>Use the contact form if you'd like some freelance consulting.</li>
       <li><a href="https://www.linkedin.com/in/albertalbala">Follow me on Linkedin.</a></li>
       <li><a href="https://www.drupal.org/u/alberto56">My Drupal.org profile.</a></li>
       <li><a href="https://github.com/alberto56">My Github profile.</a></li>

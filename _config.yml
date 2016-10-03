@@ -9,13 +9,15 @@ permalink: blog/:title/
 markdown: kramdown
 highlighter: rouge
 gems: [jekyll-paginate, jekyll-redirect-from]
-paginate: 10
+paginate: 50
 
 navigation:
  - title: Blog
    url: /
  - title: Manifesto
    url: /manifesto
+ - title: Code snippets
+   url: /snippets
  - title: About
    url: /about
  - title: Contact

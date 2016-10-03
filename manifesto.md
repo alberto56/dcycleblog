@@ -1,7 +1,10 @@
 ---
 layout: default
-title: About Long Haul
+title: Dcycle Manifesto
 ---
+
+Dcycle Manifesto
+=====
 
 Dcycle is a building code for Drupal.
 

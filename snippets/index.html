@@ -1,0 +1,25 @@
+---
+layout: default
+title: Snippets
+---
+
+<div class="home" id="home">
+  <h1 class="pageTitle">Code Snippets</h1>
+  <p>The following short code snippets which can be useful for developers. If I needed to look these up more than once, I added them here.</p>
+  <ul class="posts noList">
+    {% for post in site.tags.snippet limit: 50 %}
+      <li>
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <!-- Pagination links -->
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="previous button__outline">Newer Posts</a>
+    {% endif %}
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="next button__outline">Older Posts</a>
+    {% endif %}
+  </div>
+</div>
