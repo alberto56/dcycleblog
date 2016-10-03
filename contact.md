@@ -18,9 +18,9 @@ title: Contact Dcycle
   </div>
   <form action="https://formspree.io/your@email.com"
       method="POST">
-    <input type="text" name="name">
-    <input type="email" name="_replyto">
-    <input type="submit" value="Send">
+    TEST1<input type="text" name="name">
+    TEST2<input type="email" name="_replyto">
+    TEST3<input type="submit" value="Send">
 </form>
   <form action="http://formspree.io/albert@dcycle.com" method="POST">
     <label for="name">Name</label>    
