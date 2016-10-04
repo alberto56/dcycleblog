@@ -113,4 +113,9 @@ Then, in your Jekyll post template, you will add the [Disqus embed code](https:/
         };
     ...
 
+Easy forms with Formspree
+-----
+
+Finally, all forms, such as my own [contact form](http://blog.dcycle.com/contact/), can be built using [Formspree](https://formspree.io).
+
 
