@@ -37,7 +37,7 @@ The result has been that I now tend to use Drupal for what it's good at, data-he
 
 It seemed to be time to refresh it. My goals were:
 
- * Keeping the same paths and path aliases to all posts, for example `blog/96/catching-watchdog-errors-your-simpletests` and `blog/96` and `node/96` should all [redirect to the same page](blog/96/catching-watchdog-errors-your-simpletests);
+ * Keeping the same paths and path aliases to all posts, for example `blog/96/catching-watchdog-errors-your-simpletests` and `blog/96` and `node/96` should all [redirect to the same page](http://blog.dcycle.com/blog/96/catching-watchdog-errors-your-simpletests);
  * Keep comment functionality;
  * Apply an open-source theme with minimal changes;
  * It should be easy for myself to add articles using the [markdown syntax](https://guides.github.com/features/mastering-markdown/);
