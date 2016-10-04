@@ -67,7 +67,7 @@ In a nutshell, Jekyll works by regenerating an entirely new static website every
 Exporting content from Drupal to Jekyll
 -----
 
-Depending on the complexity of your content, this will likely be the longest part of your migration, and will necessitate some trial and error. For the technical details of my own migration, see my blog post [Migrating content from Drupal to Jekyll](http://dcycleproject/blog/2016-09-30/migrating-drupal-jekyll/).
+Depending on the complexity of your content, this will likely be the longest part of your migration, and will necessitate some trial and error. For the technical details of my own migration, see my blog post [Migrating content from Drupal to Jekyll](http://blog.dcycle.com/blog/2016-09-30/migrating-drupal-jekyll/).
 
 What I learned
 -----
