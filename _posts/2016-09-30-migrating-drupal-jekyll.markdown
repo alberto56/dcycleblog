@@ -108,8 +108,8 @@ Then, in your Jekyll post template, you will add the [Disqus embed code](https:/
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function () {
-            this.page.url = "http://mysite.example.com\{{ page.url }}";
-            this.page.identifier = "\{{ page.url }}";
+            this.page.url = "http://mysite.example.com{{% comment %}{% endcomment %}{ page.url }{% comment %}{% endcomment %}}";
+            this.page.identifier = "{{% comment %}{% endcomment %}{ page.url }{% comment %}{% endcomment %}}";
         };
     ...
 
