@@ -19,3 +19,9 @@ Although not foolproof, the following code will tell you what that port is:
 
     PORT="$(docker ps|grep some-container-name|sed \
       's/.*0.0.0.0://g'|sed 's/->.*//g')"
+
+And, if you're using `docker-compose`, you can run, for example:
+
+    PORT=$(docker-compose port web 80)
+
+This will give you something like `0.0.0.0:32790`.
