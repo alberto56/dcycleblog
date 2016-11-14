@@ -14,7 +14,7 @@ Docker-compose [currently does not support `cp`](https://github.com/docker/compo
 
 Here is a workaround:
 
-    docker cp /path/to/my-local-file.sql $(docker-compose ps -q mycontainer):/file-on-container.sql
+    docker cp /path/to/my-local-file.sql "$(docker-compose ps -q mycontainer)":/file-on-container.sql
 
 Now /file-on-container.sql will exist on your running container:
 
