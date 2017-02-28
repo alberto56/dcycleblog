@@ -56,28 +56,29 @@ Here is a simplified example of how the updated code might look:
 
     class Drupal7 extends Framework {
       public function fileSave($drupal_file) {
-        $return = file_save($drupal_file);
-        return $return;
+        return file_save($drupal_file);
       }
     }
 
-Once i have defined fileSave(), I can simply replace every instance of file_save() in my legacy code with Framework::instance()->fileSave().
+Once I have defined fileSave(), I can simply replace every instance of file_save() in my legacy code with Framework::instance()->fileSave().
 
-In theory, I can then identify every Drupal 7 code my module and abstract it away.
+In theory, I can then identify all Drupal 7 code my module and abstract it away.
 
 Automated testing
 -----
 
-In my case I have some Simpletest functional tests to cover the logic of my legacy code. As long as I _surgically_ replace Drupal 7 code such as `file_save()` with "universal" code such `Framework::instance()->fileSave()`, _without doing anything else, without giving in the impulse of "improving" the code_, I can theoretically only test `Framework::instance()->fileSave()` itself on Drupal 7 and Drupal 8, and as long as both versions are the same, my underlying code should work.
+As long as I _surgically_ replace Drupal 7 code such as `file_save()` with "universal" code such `Framework::instance()->fileSave()`, _without doing anything else, without giving in the impulse of "improving" the code_, I can theoretically only test `Framework::instance()->fileSave()` itself on Drupal 7 and Drupal 8, and as long as both versions are the same, my underlying code should work. My approach to automated tests is: if it works and you're not changing it, there is no need to test it.
 
-To set up my testing environment, I have used Docker-compose to set up three containers: Drupal 7, Drupal 8; and MySQL. I then have a script which builds the sites, installs my module on each, then run a `selftest()` function which can test the abstracted function such as `fileSave()` and make sure they work.
+Still, I want to make sure my framework-specific code works as expected. To set up my testing environment, I have used Docker-compose to set up three containers: Drupal 7, Drupal 8; and MySQL. I then have a script which builds the sites, installs my module on each, then run a `selftest()` function which can test the abstracted function such as `fileSave()` and make sure they work.
 
-This can then be run a continuous integration platform such as Circle CI. [Here are the test results for Realisic Dummy Content](https://circleci.com/gh/dcycle/realistic_dummy_content).
+This can then be run a continuous integration platform such as Circle CI and get a cool badge:
+
+[![CircleCI](https://circleci.com/gh/dcycle/realistic_dummy_content.svg?style=svg)](https://circleci.com/gh/dcycle/realistic_dummy_content)
 
 Extending to Backdrop
 -----
 
-Once your module is structured in this way, it is relatively easy to add new related frameworks, and I'm much more comfortable releasing a Drupal 9 update in 2021.
+Once your module is structured in this way, it is relatively easy to add new related frameworks, and I'm much more comfortable releasing a Drupal 9 update in 2021 (or whenever it's ready).
 
 I have included experimental Backdrop code in Realistic Dummy Content to prove the point. [Backdrop](https://backdropcms.org) is a fork of Drupal 7.
 
