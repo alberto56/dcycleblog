@@ -34,9 +34,9 @@ Here is a simplified example of how the updated code might look:
       static function instance() {
         if (!$this->instance) {
           if (defined('VERSION')) {
-            return new Drupal7();
+            $this->instance = new Drupal7();
           }
-          return Drupal8();
+          $this->instance = Drupal8();
         }
         return $this->instance;
       }
@@ -83,12 +83,12 @@ I have included experimental Backdrop code in Realistic Dummy Content to prove t
       static function instance() {
         if (!$this->instance) {
           if (defined('BACKDROP_BOOTSTRAP_SESSION')) {
-            return new Backdrop();
+            $this->instance = new Backdrop();
           }
           if (defined('VERSION')) {
-            return new Drupal7();
+            $this->instance = new Drupal7();
           }
-          return Drupal8();
+          $this->instance = Drupal8();
         }
         return $this->instance;
       }
