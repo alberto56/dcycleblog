@@ -71,7 +71,7 @@ As long as I _surgically_ replace Drupal 7 code such as `file_save()` with "univ
 
 Still, I want to make sure my framework-specific code works as expected. To set up my testing environment, I have used Docker-compose to set up three containers: Drupal 7, Drupal 8; and MySQL. I then have a script which builds the sites, installs my module on each, then run a `selftest()` function which can test the abstracted function such as `fileSave()` and make sure they work.
 
-This can then be run a continuous integration platform such as Circle CI and get a cool badge:
+This can then be [run on a continuous integration platform such as Circle CI](https://circleci.com/gh/dcycle/realistic_dummy_content) which generates a cool badge:
 
 [![CircleCI](https://circleci.com/gh/dcycle/realistic_dummy_content.svg?style=svg)](https://circleci.com/gh/dcycle/realistic_dummy_content)
 
@@ -139,7 +139,7 @@ Drupal 8 uses [PSR-4 autoloading with namespaces](https://www.drupal.org/docs/de
 
 **Hooks** have different signatures in Drupal 7 and 8; in my case I was lucky and the only hook I need for Drupal 7 and 8 is `hook_entity_presave()` which has a similar signature and can be abstracted.
 
-**Deeply-nested associative arrays** are a staple of Drupal 7, so a lot of code expects this type of data. Shoehorning Drupal 8 to output something like Drupal 7's `field_info_fields()`, for example, was a painful experience:
+**Deeply-nested associative arrays** are a staple of Drupal 7, so a lot of legacy code expects this type of data. Shoehorning Drupal 8 to output something like Drupal 7's `field_info_fields()`, for example, was a painful experience:
 
     public function fieldInfoFields() {
       $return = array();
@@ -165,4 +165,4 @@ This approach might remove a lot of the risk associated with complex site upgrad
 A fun proof of concept, or real value?
 -----
 
-I've been toying with this approach for some time, and had a good time (yes, that's my definition of a good time!) implementing it, but it's not for everyone or every project. If your usecase includes preserving legacy functionality without leveraging Drupal 8's modern features, while reducing risk, it can have value though. The jury is still out on whether maintaining a single universal codebase will really be more efficient than maintaining two separate codebases for Realistic Dummy Content, and whether the approach can reduce risk during site upgrades of legacy custom code, which I plan to try on my next upgrade project.
+I've been toying with this approach for some time, and had a good time (yes, that's my definition of a good time!) implementing it, but it's not for everyone or every project. If your usecase includes preserving legacy functionality without leveraging Drupal 8's modern features, while reducing risk, it can have value though. The jury is still out on whether maintaining a single universal branch will really be more efficient than maintaining two separate branches for Realistic Dummy Content, and whether the approach can reduce risk during site upgrades of legacy custom code, which I plan to try on my next upgrade project.
