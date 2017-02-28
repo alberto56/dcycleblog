@@ -36,7 +36,9 @@ Here is a simplified example of how the updated code might look:
           if (defined('VERSION')) {
             $this->instance = new Drupal7();
           }
-          $this->instance = Drupal8();
+          else {
+            $this->instance = new Drupal8();
+          }
         }
         return $this->instance;
       }
@@ -85,10 +87,12 @@ I have included experimental Backdrop code in Realistic Dummy Content to prove t
           if (defined('BACKDROP_BOOTSTRAP_SESSION')) {
             $this->instance = new Backdrop();
           }
-          if (defined('VERSION')) {
+          elseif (defined('VERSION')) {
             $this->instance = new Drupal7();
           }
-          $this->instance = Drupal8();
+          else {
+            $this->instance = new Drupal8();
+          }
         }
         return $this->instance;
       }
