@@ -5,6 +5,7 @@ author: admin
 id: 7b285da4
 tags:
   - planet
+  - blog
 permalink: /blog/7b285da4/same-module-drupal-7-and-8
 redirect_from:
   - /blog/7b285da4/
