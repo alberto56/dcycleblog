@@ -19,9 +19,9 @@ To follow along, create a new virtual machine (VM) with Docker, for example usin
 
 This will not work on localhost, because in order to use Let's Encrypt, you need to demonstrate ownership over your domain(s) to the outside world.
 
-In this tutorial we will serve two different sites, one simple HTML site and one Drupal site, each on their own port, on the same Docker host, using a **reverse proxy**, a container which sits in front of your other containers and directs traffic.
+In this tutorial we will serve two different sites, one simple HTML site and one Drupal site, each using standard ports, on the same Docker host, using a **reverse proxy**, a container which sits in front of your other containers and directs traffic.
 
-Step two: Set up two domains or subdomains you own to point to your server
+Step two: Set up two domains or subdomains you own and point them to your server
 -----
 
 Start by making sure you have two domains which point to your server, in this example we'll use:
@@ -105,4 +105,4 @@ So it might be worth considering to be on the lookout for failed renewals and fo
 Enjoy!
 -----
 
-You can now bask in the knowledge that your cooking blog will be man-in-the-middled.
+You can now bask in the knowledge that your cooking blog will not be man-in-the-middled.
