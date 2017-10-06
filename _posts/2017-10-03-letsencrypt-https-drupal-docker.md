@@ -12,6 +12,8 @@ redirect_from:
 ---
 This article is about serving your Drupal Docker container, and/or any other container, via https with a valid [Let's encrypt](https://letsencrypt.org) SSL certificate.
 
+Edit: if you're having trouble with Docker-Compose, read [this follow-up post](http://blog.dcycle.com/blog/7f3ea9e1/letsencrypt-docker-compose/).
+
 Step one: make sure you have a public VM
 -----
 
