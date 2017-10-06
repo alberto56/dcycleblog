@@ -51,8 +51,3 @@ Now that you know the network id (directory_name_default), you need to add it to
 
     docker network connect directory_name_default nginx-proxy
     docker restart nginx-letsencrypt
-
-
-
-
-Let's take a simple example
