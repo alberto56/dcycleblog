@@ -23,8 +23,10 @@ You might have previously set up projects on that server using the technique des
 
 Here's how to do it:
 
-Step one: launch your Docker-compose project with the appropriate environment variables. A very simple Docker-compose file might look like:
+Step one: launch your Docker-compose project
 -----
+
+Use the appropriate environment variables. A very simple Docker-compose file might look like:
 
     version: '2'
     
