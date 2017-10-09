@@ -104,6 +104,31 @@ It seems to also be possible to force renewals by running:
 
 So it might be worth considering to be on the lookout for failed renewals and force them if necessary.
 
+Edit: domain-specific configurations
+-----
+
+I used this technique to create a Docker registry, and make it accessible securely:
+
+    docker run \
+      --entrypoint htpasswd \
+      registry:2 -Bbn username password > auth/htpasswd
+
+    docker run -d --expose 5000 \
+      -e "VIRTUAL_HOST=mydomain.example.com" \
+      -e "LETSENCRYPT_HOST=mydomain.example.com" \
+      -e "LETSENCRYPT_EMAIL=me@example.com" \
+      -e "REGISTRY_AUTH=htpasswd" \
+      -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
+      -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \ 
+      --restart=always -v "$PWD"/auth:/auth \
+      --name registry registry:2
+
+But when trying to push an image, I was getting "413 Request Entity Too Large". This is an error with the nginx-proxy, not the Docker registry. To fix this, you can set domain-specific configurations, in this example we are allowing a maximum of 600M to be passed but only to the Docker registry at mydomain.example.com:
+
+    docker exec nginx-proxy /bin/bash -c 'cp /etc/nginx/vhost.d/default /etc/nginx/vhost.d/mydomain.example.com'
+    docker exec nginx-proxy /bin/bash -c 'echo "client_max_body_size 600M;" >> /etc/nginx/vhost.d/mydomain.example.com'
+    docker restart nginx-proxy
+
 Enjoy!
 -----
 
