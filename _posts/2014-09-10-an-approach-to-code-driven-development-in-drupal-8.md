@@ -195,6 +195,8 @@ Now let's tell Drupal where our "deploy" config directory is:
  * Find the lines beginning with $config_directories
  * Add `$config_directories['deploy'] = '../deploy';`
 
+Edit: using a config directory name other than 'sync' will [cause an issue Config Split](https://www.drupal.org/node/2916091) at the time of this writing.
+
 We can now perform our first export of our site configuration:
 
     cd drupal_root
