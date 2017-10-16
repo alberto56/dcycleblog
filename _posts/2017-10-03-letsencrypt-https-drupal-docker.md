@@ -74,6 +74,7 @@ Now, following the instructions of the LetsEncrypt companion project, we can set
       -v /usr/share/nginx/html \
       -v /var/run/docker.sock:/tmp/docker.sock:ro \
       --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy \
+      --restart=always \
       jwilder/nginx-proxy
 
 And, finally, start the LetEncrypt companion:
@@ -83,6 +84,7 @@ And, finally, start the LetEncrypt companion:
       -v "$HOME"/certs:/etc/nginx/certs:rw \
       -v /var/run/docker.sock:/var/run/docker.sock:ro \
       --volumes-from nginx-proxy \
+      --restart=always \
       jrcs/letsencrypt-nginx-proxy-companion
 
 Wait a few minutes for `"$HOME"/certs` to be populated with your certificate files, and you should now be able to access your sites:
