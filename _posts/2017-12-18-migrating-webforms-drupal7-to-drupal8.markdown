@@ -50,7 +50,7 @@ I found that the most efficient way of importing the data was to create my own D
 
 I did my best to make that module self-explanatory, so you should be able to follow the steps the [README file](https://github.com/dcycle/webform_d7_to_d8), which I will summarize here:
 
-* Start by giving your Drupal 8 site access to your Drupal 7 database:
+Start by giving your Drupal 8 site access to your Drupal 7 database:
 
     $databases['upgrade']['default'] = array (
       'database' => 'drupal7database',
@@ -63,7 +63,7 @@ I did my best to make that module self-explanatory, so you should be able to fol
       'driver' => 'mysql',
     );
 
-* Run the migration with our without options:
+Run the migration with our without options:
 
     drush ev 'webform_d7_to_d8()'
 
