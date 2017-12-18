@@ -27,7 +27,7 @@ I settled on a my own combination of tools and workflows to perform the migratio
 
 Using version 8.x-5.x of [webform](https://www.drupal.org/project/webform), I started by enabling `webform`, `webform_node` and `webform_ui` on my Drupal 8 site, this gives me an empty webform node type.
 
-I then followed the instructions for a basic migration, which is outside the scope of this article. I have a [project on Github](https://github.com/dcycle/d6_to_d8_migration_example/tree/7)which I use as starting point from my Drpual 6 and 7 to 8 migrations. The blog post [Custom Drupal-to-Drupal Migrations with Migrate Tools, Drupalize.me, April 26, 2016 by William Hetherington](https://drupalize.me/blog/201604/custom-drupal-drupal-migrations-migrate-tools) provides more information on performing a basic migration of data.
+I then followed the instructions for a basic migration, which is outside the scope of this article. I have a [project on Github](https://github.com/dcycle/d6_to_d8_migration_example/tree/7) which I use as starting point from my Drpual 6 and 7 to 8 migrations. The blog post [Custom Drupal-to-Drupal Migrations with Migrate Tools, Drupalize.me, April 26, 2016 by William Hetherington](https://drupalize.me/blog/201604/custom-drupal-drupal-migrations-migrate-tools) provides more information on performing a basic migration of data.
 
 Once you have set up your migration configurations as per those instructions, you should be able to run:
 
@@ -50,7 +50,7 @@ I found that the most efficient way of importing the data was to create my own D
 
 I did my best to make that module self-explanatory, so you should be able to follow the steps the [README file](https://github.com/dcycle/webform_d7_to_d8), which I will summarize here:
 
-Start by giving your Drupal 8 site access to your Drupal 7 database:
+Start by giving your Drupal 8 site access to your Drupal 7 database in `./sites/default/settings.php`:
 
     $databases['upgrade']['default'] = array (
       'database' => 'drupal7database',
@@ -77,16 +77,16 @@ or
 
 ...
 
-More detailed information can be found in the modlue's [README file](https://github.com/dcycle/webform_d7_to_d8).
+More detailed information can be found in the module's [README file](https://github.com/dcycle/webform_d7_to_d8).
 
 Treating webforms as data
 -----
 
-Once you have imported your webforms to Drupal 8, they are treated as configuration, that is, the Webform module assumes that developers, not site builders, will be creating the forms. This may be fine in many cases, however my usecase is that site editors want to create and edit forms directly on the production, and we don't want them to be tracked by the configuration management system.
+Once you have imported your webforms to Drupal 8, they are treated as configuration, that is, the Webform module assumes that developers, not site builders, will be creating the forms. This may be fine in many cases, however my usecase is that site editors want to create and edit forms directly on the production site, and we don't want them to be tracked by the configuration management system.
 
 [Jacob Rockowitz](https://www.drupal.org/u/jrockowitz) [pointed me in the right direction](https://www.drupal.org/project/webform/issues/2931104) for making sure webforms are not treated as configuration. For that purpose I am using [Drush CMI tools](https://github.com/previousnext/drush_cmi_tools) by Previous Next and documented on their blog post, [Introducing Drush CMI tools, 24 Aug. 2016](https://www.previousnext.com.au/blog/introducing-drush-cmi-tools).
 
-Once you install in your `~/.drush` folder and run `drush cc drush`, you can use `druch cexy` and `druch cimy` and  instead of `drush cim` and `drush cex` in your conguration management process. Here is how and why:
+Once you install Drush CMI tools in your `~/.drush` folder and run `drush cc drush`, you can use `druch cexy` and `druch cimy` instead of `drush cim` and `drush cex` in your conguration management process. Here is how and why:
 
 Normally, if you develop your site locally and, say, add a content type or field, or remove a content type of field, you can run `drush cex` to export your newly created configuration. Then, your colleagues can pull your code and run `drush cim` to pull your configuration. `drush cim` can also be used in continuous integration, preproduction, dev, and production environments.
 
