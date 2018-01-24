@@ -15,7 +15,7 @@ Here are a few things I learned about caching for REST resources.
 
 There are probably better ways to accomplish this, but here is what works for me.
 
-Let's say we have a rest resource that looks something like this in `my_module/src/Plugin/rest/resource/MyRestResource.php` and we have enabled it using the [Rest UI](https://www.drupal.org/project/restui) module and given anonymous users permission to view it:
+Let's say we have a REST resource that looks something like this in `.../my_module/src/Plugin/rest/resource/MyRestResource.php` and we have enabled it using the [Rest UI](https://www.drupal.org/project/restui) module and given anonymous users permission to view it:
 
     <?php
 
@@ -74,9 +74,7 @@ When we clear our cache with `drush cr` and reload our page, we'll see something
 
     {"title":"Another title","time":1516804411}
 
-We know this is still cached because the time stays the same no matter how often we load the page. Try it, it's fun!
-
-Even more fun is changing the title of node 1 and reloading our Json page, and seeing the title change _without clearing the cache_:
+Even more fun is changing the title of node 1 and reloading our Json page, and seeing the title and time change _without clearing the cache_:
 
     {"title":"Yet another title","time":1516804481}
 
@@ -145,7 +143,7 @@ This results in a very [ugly error which completely breaks your site (at least a
 
 The problem, it seems, is that Drupal detects that the [URL object](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Url.php/class/Url/8.2.x), like the node we saw earlier, contains its own internal information which tells it when its cache should be invalidated. Converting it to a string prevents the Response from being informed about that information somehow (again, if someone can explain this better than me, please leave a comment), so an exception is thrown.
 
-The ['toString()' function](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Url.php/function/Url%3A%3AtoString/8.4.x) has an optional parameter, "$collect_bubbleable_metadata", which can be used to get not just a string, but also information about its cache should be invalidated. In Drush, this will look like something like:
+The ['toString()' function](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Url.php/function/Url%3A%3AtoString/8.4.x) has an optional parameter, "$collect_bubbleable_metadata", which can be used to get not just a string, but also information about when its cache should be invalidated. In Drush, this will look like something like:
 
     drush ev 'print_r(node_load(1)->toUrl()->toString(TRUE))'
     Drupal\Core\GeneratedUrl Object
@@ -193,10 +191,11 @@ ohthehugemanatee [commented on Drupal.org](https://www.drupal.org/project/drupal
 
 This will now work as expected.
 
-With all the fun we're having, though let's take this a step further, let's say we want to export the feed of frontpage items in our Response:
+With all the fun we're having, though, let's take this a step further, let's say we want to export the feed of frontpage items in our Response:
 
     $url = $node->toUrl()->toString(TRUE);
-    $view = \Drupal\views\Views::getView("frontpage"); $view->setDisplay("feed_1");
+    $view = \Drupal\views\Views::getView("frontpage"); 
+    $view->setDisplay("feed_1");
     $view_render_array = $view->render();
     $rendered_view = render($view_render_array);
 
