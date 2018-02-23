@@ -20,3 +20,5 @@ My wife tried registering several times, getting "verification codes" which neve
 <img src="/assets/img/wft.png" />
 
 How is it that everyone except Microsoft has figured out how to get people to log into their site? The software is frustrating, has made us lose about an hour of our time, makes parents feel like idiots, and is impossible to log into.
+
+<img src="/assets/img/tweet.png" />
