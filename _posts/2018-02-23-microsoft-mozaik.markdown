@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Microsft Mozaik is unusable"
+title:  "Microsoft Mozaik is unusable"
 date:   2018-02-23
 tags:
   - blog
@@ -10,7 +10,7 @@ redirect_from:
   - /blog/2018-02-23/
 ---
 
-My school board, [Marguerite-Bourgeoys](http://www.csmb.qc.ca), sent my wife and myself an email asking us to re-register our kids for the following year using Microsft Mozaik software.
+My school board, [Marguerite-Bourgeoys](http://www.csmb.qc.ca), sent my wife and myself an email asking us to re-register our kids for the following year using Microsoft Mozaik software.
 
 A link is provided to the [Microsoft Mozaik]( https://inscription.espacemozaik.ca) portal.
 
