@@ -22,3 +22,7 @@ My wife tried registering several times, getting "verification codes" which neve
 How is it that everyone except Microsoft has figured out how to get people to log into their site? The software is frustrating, has made us lose about an hour of our time, makes parents feel like idiots, and is impossible to log into.
 
 <img src="/assets/img/tweet.png" />
+
+Edit: after several tries, I managed to log in, but why on earth would Microsoft enforce a password of 16 characters or less?
+
+<img src="/assets/img/stupid-password-requirements.png" />
