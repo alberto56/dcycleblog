@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "HTTPS on Acquia stage environments with LetsEncrypt, semi-automated"
-date:   2018-04-07
+date:   2018-10-05
 tags:
   - blog
   - planet
-id: 2018-04-07
+id: 2018-10-05
 permalink: /blog/2018-10-05/https-acquia-stage/
 redirect_from:
   - /blog/2018-10-05/
