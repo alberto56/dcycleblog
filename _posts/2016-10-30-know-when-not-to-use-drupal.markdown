@@ -56,7 +56,7 @@ I eventually settled on moving this blog away from Drupal toward [Jekyll](http:/
 
  * What is actually publicly available is static HTML, ergo no security updates;
  * Because of its simplicity, testing backups is super easy;
- * My site can be hosted on GitHub using GitHub pages for free (although HTTPS is not supported yet for custom domain names);
+ * My site can be hosted on GitHub using GitHub pages for free (~~although HTTPS is not supported yet for custom domain names~~ Github pages now supports secure HTTPS via Let's encrypt);
  * All content and structure is stored in my git repo, so adding a blog post is as simple as adding a file to my git repo;
  * No PHP, no MySQL, just plain HTML and CSS: my blog now feels lightning fast;
  * Existing free and open-source templates are more plentiful for Jekyll than for Drupal, and if I can't find what I want, it is easier to convert an HTML template to Jekyll than it is to convert it to Drupal (for me anyway).
