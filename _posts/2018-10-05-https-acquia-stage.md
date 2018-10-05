@@ -25,9 +25,9 @@ I found a great blog post which explains how to set up Let's Encrypt on Acquia e
 Running the script 
 -----
 
-When you put the script locally on your computer (I added it to my project code), at, say `scripts/set-up-letsencrypt-acquia-stage.sh`, and run it:
+When you put the script locally on your computer (I added it to my project code), at, say `./scripts/set-up-letsencrypt-acquia-stage.sh`, and run it:
 
 * the first time you run it, it will tell you where to put your environment information (in ./acquia-stage-letsencrypt-environments/environment-my-acquia-project-one.source, ./acquia-stage-letsencrypt-environments/environment-my-acquia-project-two.source, etc.), and what to put in those files.
-* the next time you run it, it will either automate what it can and tell you exactly what you need to do manually.
+* the next time you run it, it will automate what it can and tell you exactly what you need to do manually.
 
 I tried this and it works for creating new certs, and should work for renewals as well!
