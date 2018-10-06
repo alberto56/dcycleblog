@@ -13,7 +13,7 @@ redirect_from:
 
 I recently ran into a series of weird issues on my Acquia production environment which I traced back to some code I deployed which depended on my site being served securely using HTTPS.
 
-Acquia Staging environments don't use HTTPS by default and require you to install SSL certificates using a tedious manual process, which in my opinion is outdated, because competitors such as [Platform.sh](https://docs.platform.sh/configuration/routes/https.html) and [Pantheon](https://pantheon.io/features/managed-https), even [Github pages](https://blog.github.com/2018-05-01-github-pages-custom-domains-https/) support lots of automation around HTTPS using Let's Encrypt.
+Acquia Staging environments don't use HTTPS by default and require you to install SSL certificates using a tedious manual process, which in my opinion is outdated, because competitors such as [Platform.sh](https://docs.platform.sh/configuration/routes/https.html) and [Pantheon](https://pantheon.io/features/managed-https), [Aegir](https://www.drupal.org/project/hosting_https), even [Github pages](https://blog.github.com/2018-05-01-github-pages-custom-domains-https/) support lots of automation around HTTPS using Let's Encrypt.
 
 Anyhow, because staging did not have HTTPS, I could not test some code I deployed, which ended up costing me an evening debugging an outage on a production environment. (Any difference between environments will _eventually_ result in an outage.)
 
