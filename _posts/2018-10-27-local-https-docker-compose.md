@@ -13,7 +13,7 @@ redirect_from:
 
 This article discusses how to use HTTPS for local development if you use Docker and Docker Compose to develop Drupal 7 or Drupal 8 (indeed any other platform as well) projects. We're assuming you already have a technique to deploy your code to production (either a build step, rsync, etc.).
 
-In this article we will use [the Drupal 8 site starterkit](https://github.com/dcycle/starterkit-drupal8site), a Docker Compose-based Drupal application that comes with everything you need to build a Drupal site with a few commands; we'll then discuss how HTTPS works.
+In this article we will use [the Drupal 8 site starterkit](https://github.com/dcycle/starterkit-drupal8site), a Docker Compose-based Drupal application that comes with everything you need to build a Drupal site with a few commands (including local HTTPS); we'll then discuss how HTTPS works.
 
 If you want to follow along, install and launch the latest version of Docker, make sure ports 80 and 443 are not used locally, and run these commands:
 
@@ -26,18 +26,20 @@ The script will prompt you for a domain (for example my-website.local) to access
 
 After a few minutes you will be able to access a Drupal environment on http://my-website.local and https://my-website.local. For https, you will need to explicitly accept the certificate in the browser, because it's self-signed.
 
-Being a security-councious developer, you probably read through  [`./scripts/https-deploy.sh`](https://github.com/dcycle/starterkit-drupal8site/blob/master/scripts/https-deploy.sh) before running it on your computer. If you haven't, you are encouraged to do so now, as we will be explaining how it works in this article.
+**Troubleshooting: if you get a connection error, try using an incongnito (private) window in your browser, or a different browser.**
+
+Being a security-conscious developer, you probably read through  [`./scripts/https-deploy.sh`](https://github.com/dcycle/starterkit-drupal8site/blob/master/scripts/https-deploy.sh) before running it on your computer. If you haven't, you are encouraged to do so now, as we will be explaining how it works in this article.
 
 You cannot use Let's Encrypt locally
 -----
 
-I often see questions related to setting up Let's Encrypt for local development. This is not possible because the idea behind Let's Encrypt is to certify that you own the domain on which you're working; because no one uniquely owns _localhost_, no one can get a certificate for it.
+I often see questions related to setting up Let's Encrypt for local development. This is not possible because the idea behind Let's Encrypt is to certify that you own the domain on which you're working; because no one uniquely owns _localhost_, or _my-project.local_, no one can get a certificate for it.
 
 For local development, the Let's Encrypt folks suggest using [trusted, self-signed certificates instead](https://letsencrypt.org/docs/certificates-for-localhost/), which is what we are doing in our script.
 
-(If you are interested in setting up Let's Encrypt for a publicly-available domain, this article is not for you. You might be interested, instead, in [Letsencrypt HTTPS for Drupal on Docker](https://blog.dcycle.com/blog/170a6078/letsencrypt-drupal-docker/) and [Deploying Letsencrypt with Docker-Compose](http://blog.dcycle.com/blog/7f3ea9e1/letsencrypt-docker-compose/.)
+(If you are interested in setting up Let's Encrypt for a publicly-available domain, this article is not for you. You might be interested, instead, in [Letsencrypt HTTPS for Drupal on Docker](https://blog.dcycle.com/blog/170a6078/letsencrypt-drupal-docker/) and [Deploying Letsencrypt with Docker-Compose](http://blog.dcycle.com/blog/7f3ea9e1/letsencrypt-docker-compose/).)
 
-Make sure your projects works _without_ https first
+Make sure your project works _without_ https first
 -----
 
 So let's look at how the [`./scripts/https-deploy.sh`](https://github.com/dcycle/starterkit-drupal8site/blob/master/scripts/https-deploy.sh) script we used above works.
@@ -93,9 +95,9 @@ Our script stored this information in the `.env` file at the root or your projec
 Launching the Nginx reverse proxy
 -----
 
-To me the terms "proxy" and "reverse proxy" are not intuitive, at least to me. I'll try to demystify them here.
+To me the terms "proxy" and "reverse proxy" are not intuitive. I'll try to demystify them here.
 
-The term "proxy" means something which represents something else, but it is already widely used to denote a web client being hidden from the user. So, a server might deliver content to a proxy which then delivers it to the end user, thereby _hiding the end user from the server_.
+The term "proxy" means something which represents something else; that term is already widely used to denote a web client being hidden from the user. So, a server might deliver content to a proxy which then delivers it to the end user, thereby _hiding the end user from the server_.
 
 In our case we want to do the reverse: the client (you) is not placing a proxy in front of it; rather the _application_ is placing a proxy in front of it, thereby _hiding the project server from the browser_: the browser communicates with Nginx, and Nginx communicates with your project.
 
@@ -112,8 +114,8 @@ We now need to tell our Nginx proxy that when it receives a request for domain s
 
 There are a few steps to this, most handled by our script:
 
-* Your `docker-compose.yml` file [should look something like this](https://github.com/dcycle/starterkit-drupal8site/blob/master/docker-compose.yml): it needs to contain the environment variable `VIRTUAL_HOST=${VIRTUAL_HOST}`. This takes the environment variable from the `./.env` file and makes it available inside the container.
-* Our script assumes that your project contains a `[./scripts/deploy.sh]((https://github.com/dcycle/starterkit-drupal8site/blob/master/scripts/deploy.sh))` file, which deploys our project to a random, non-secure port.
+* Your project's `docker-compose.yml` file [should look something like this](https://github.com/dcycle/starterkit-drupal8site/blob/master/docker-compose.yml): it needs to contain the environment variable `VIRTUAL_HOST=${VIRTUAL_HOST}`. This takes the VIRTUAL_HOST environment variable that our script added to the `./.env` file, and makes it available inside the container.
+* Our script assumes that your project contains a [`./scripts/deploy.sh`]((https://github.com/dcycle/starterkit-drupal8site/blob/master/scripts/deploy.sh)) file, which deploys our project to a random, non-secure port.
 * Our script assumes that only the Nginx Proxy container is published on ports 80 and 443, so if these ports are already used by something else, you'll get an error.
 * Our script appends `VIRTUAL_HOST=starterkit-drupal8.local` to the `./.env` file.
 * Our script attempts to add `127.0.0.1 starterkit-drupal8.local` to our `/etc/hosts` file, which might require a password.
@@ -122,7 +124,9 @@ There are a few steps to this, most handled by our script:
 That's it!
 -----
 
-You should now be able to access your project locally with https://starterkit-drupal8.local (port 443) _and_ http://starterkit-drupal8.local (port 08), and apply this technique to any number of Docker Compose projects.
+You should now be able to access your project locally with https://starterkit-drupal8.local (port 443) _and_ http://starterkit-drupal8.local (port 80), and apply this technique to any number of Docker Compose projects.
+
+**Troubleshooting: if you get a connection error, try using an incongnito (private) window in your browser, or a different browser; also note that you need to explicitly trust the certificate.**
 
 You can copy paste the script to your Docker Compose project at ./scripts/https-deploy.sh _if_:
 
