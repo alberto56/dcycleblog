@@ -306,3 +306,4 @@ The above is just an example, and could probably benefit from better categorizat
 
 This type of setup can be scalable as well: if dozens of freelancers use the same system, as well as clients and partners, using a clear naming scheme, productivity gains could be obtained, freeing us from the opportunity cost and potential errors associated with highly manual accounting a lot of us do now.
 
+Furthermore, because this is all command-line based, it is highly scriptable, and nothing would prevent a decent developer with time on their hands to add a snazzy GUI on top of it.
