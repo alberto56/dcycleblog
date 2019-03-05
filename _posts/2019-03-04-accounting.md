@@ -161,7 +161,7 @@ _"Why is the Income a negative figure? When you look at the balance totals for y
 
 A second invoice is much the same but removes $3,750 from our income and adds the equivalent 5000 CAD to our receivables.
 
-Our fictional Canadian client then paid 5000 CAD in full, which removes 5000 CAD from our receivables and adds the equivalent $3,750 to our bank account (this is not specified, but is calculated from the exchange rate).
+Our fictional Canadian client then paid 5000 CAD in full, which removes 5000 CAD from our receivables and adds the equivalent $3,750 to our bank account (this is not explicitly specified, but is calculated from the exchange rate).
 
 Our U.S. client pays _part_ of their invoice, $2,500, removing $2,500 from our receivables and adding $2,500 to our bank account, leaving $2,500 in our receivables.
 
@@ -192,9 +192,9 @@ Your accounting files are your source of the truth
 
 One thing I love about Ledger-Cli is that it does not attempt to track your data, modify it, or indeed help you in any way. Your files _are_ your data. There is no database! This means that your accounting files _act just like computer code_:
 
-* You can track them in a version control system;
-* You can collaborate on them with a team;
-* You can use continuous integration to confirm they balance at every commit on every branch.
+* You can track them in a version control system, but you don't have to;
+* You can collaborate on them with a team, but you don't have to;
+* You can use continuous integration to confirm they balance at every commit on every branch, but you don't have to.
 
 Collaborating between parties (slaying the dreaded PDF file)
 -----
