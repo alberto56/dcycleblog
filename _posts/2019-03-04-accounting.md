@@ -25,7 +25,7 @@ I started out with a shopping list of requirements for accounting software:
 
 * **Open source**: as a Drupal developer, I am used to working within the context of open source communities, even getting my hands dirty and proposing fixes to functionality which doesn't fit my needs.
 * **Command-line or API-first**: As a developer, I often feel lost in graphical user interfaces. Those are fine as long as they are built on the foundation of a well-documented API or command line tools, but any software with a GUI-first interface is not for me.
-* **Double-entry**: I think of my accounting as a series of sum-zero journal entries with a sum of zero. This, in my experience, is extremely flexible and scalable. The Ledger-Cli software which I will introduce below has [a good introduction to double-entry accounting](https://www.ledger-cli.org/3.0/doc/ledger3.html#Fat_002dfree-Accounting).
+* **Double-entry**: I think of my accounting as a series of sum-zero journal entries. This, in my experience, is extremely flexible and scalable. The Ledger-Cli software which I will introduce below has [a good introduction to double-entry accounting](https://www.ledger-cli.org/3.0/doc/ledger3.html#Fat_002dfree-Accounting).
 * **Unopinionated**: I want my accounting software to make no assumptions about currencies, inventories, accounts, or naming. All I want to do is make a series of sum-zero journal entries to any arbitrary account (CAD bank account, USD prepaid visa, Client X prepaid services, Taxes owed to the government...), define the exchange rate into my home currency, and get an error only if things don't balance out.
 * **Invoicing and reporting automation between parties**: longer-term, I'm looking for a system which scales enough to allow my freelancers and employees to submit invoices, hourly reports and expense accounts in a format which can automate much of the accounting process: if sub-contractor A submits an hourly report for Client X, I want to automatically generate an invoice for Client X with few (if any) manual steps. Similarly, when I get an invoice from sub-contractor A, my accounting software should confirm it's for the correct number of hours.
 
@@ -90,7 +90,7 @@ Here is what this looks like in a balance sheet:
 
     Accounts payable       250
 
-In this example, your bank account contains what you were actually paid for your services minus the portion of your hosting bill you paid (5,000CAD @ $.75 + $2,500 - $250 = $6,250) . Assets ($8,500) should equal liabilities ($250) plus income  ($8,750) minus expenses ($500).
+In this example, your bank account contains what you were actually paid for your services minus the portion of your hosting bill you paid (5,000CAD @ $.75 + $2,500 - $250 = $6,000) . Assets ($8,500) should equal liabilities ($250) plus income  ($8,750) minus expenses ($500).
 
 Getting this to work with Ledger-Cli
 -----
@@ -136,7 +136,7 @@ The above code creates an empty file called `journal.dat`. In that file, use you
         Liabilities:payable   $250
         Assets:bankAccount
 
-Just as is the case with computer code, a `*.dat` file in Ledger-Cli can either pass or fail tests. We mentioned earlier that each journal entry must equal zero, so how does this work here? The system will automatically calculate what it takes to balance the amounts if you leave an entry blank. For example, our entries for invoice 1 and invoice 2 could well be written:
+We mentioned earlier that each journal entry must equal zero, so how does this work here? The system will automatically calculate what it takes to balance the amounts if you leave an entry blank. For example, our entries for invoice 1 and invoice 2 could well be written:
 
     2019/01/01 * Invoice 1
         Assets:receivable     $5,000.00
@@ -153,11 +153,11 @@ First, we issued Invoice 1 which adds $5,000 to a category called Assets and a s
 
 One thing to note here is that you can call your categories whatever you want, and have as many levels of subcategories as you want. "Assets" and "Income" might mean something to us, but for the application, it's just another word. If we want to further fine-tune our "receivable" subcategory, we could have something like `Assets:receivable:client1:invoice2` or whatever we want.
 
-So we were saying that Invoice adds $5,000 to our assets and removes $5,000 from our income. _Wait a minute? Removes incomes?_  This is well explained in the [Ledger-Cli documentation](https://www.ledger-cli.org/3.0/doc/ledger3.html):
+So we were saying that Invoice 1 adds $5,000 to our assets and removes $5,000 from our income. _Wait a minute? Removes incomes?_  This is well explained in the [Ledger-Cli documentation](https://www.ledger-cli.org/3.0/doc/ledger3.html):
 
-> Why is the Income a negative figure? When you look at the balance totals for your ledger, you may be surprised to see that Expenses are a positive figure, and Income is a negative figure. It may take some getting used to, but to properly use a general ledger you must think in terms of how money moves. Rather than Ledger “fixing” the minus signs, let’s understand why they are there.
+_"Why is the Income a negative figure? When you look at the balance totals for your ledger, you may be surprised to see that Expenses are a positive figure, and Income is a negative figure. It may take some getting used to, but to properly use a general ledger you must think in terms of how money moves. Rather than Ledger “fixing” the minus signs, let’s understand why they are there.
 
-> When you earn money, the money has to come from somewhere. Let’s call that somewhere “society”. In order for society to give you an income, you must take money away (withdraw) from society in order to put it into (make a payment to) your bank. When you then spend that money, it leaves your bank account (a withdrawal) and goes back to society (a payment). This is why Income will appear negative—it reflects the money you have drawn from society—and why Expenses will be positive—it is the amount you’ve given back.
+"When you earn money, the money has to come from somewhere. Let’s call that somewhere “society”. In order for society to give you an income, you must take money away (withdraw) from society in order to put it into (make a payment to) your bank. When you then spend that money, it leaves your bank account (a withdrawal) and goes back to society (a payment). This is why Income will appear negative—it reflects the money you have drawn from society—and why Expenses will be positive—it is the amount you’ve given back."_
 
 A second invoice is much the same but removes $3,750 from our income and adds the equivalent 5000 CAD to our receivables.
 
