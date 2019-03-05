@@ -155,9 +155,9 @@ One thing to note here is that you can call your categories whatever you want, a
 
 So we were saying that Invoice 1 adds $5,000 to our assets and removes $5,000 from our income. _Wait a minute? Removes incomes?_  This is well explained in the [Ledger-Cli documentation](https://www.ledger-cli.org/3.0/doc/ledger3.html):
 
-_"Why is the Income a negative figure? When you look at the balance totals for your ledger, you may be surprised to see that Expenses are a positive figure, and Income is a negative figure. It may take some getting used to, but to properly use a general ledger you must think in terms of how money moves. Rather than Ledger “fixing” the minus signs, let’s understand why they are there.
+_"Why is the Income a negative figure? When you look at the balance totals for your ledger, you may be surprised to see that Expenses are a positive figure, and Income is a negative figure. It may take some getting used to, but to properly use a general ledger you must think in terms of how money moves. Rather than Ledger “fixing” the minus signs, let’s understand why they are there._
 
-"When you earn money, the money has to come from somewhere. Let’s call that somewhere “society”. In order for society to give you an income, you must take money away (withdraw) from society in order to put it into (make a payment to) your bank. When you then spend that money, it leaves your bank account (a withdrawal) and goes back to society (a payment). This is why Income will appear negative—it reflects the money you have drawn from society—and why Expenses will be positive—it is the amount you’ve given back."_
+_"When you earn money, the money has to come from somewhere. Let’s call that somewhere “society”. In order for society to give you an income, you must take money away (withdraw) from society in order to put it into (make a payment to) your bank. When you then spend that money, it leaves your bank account (a withdrawal) and goes back to society (a payment). This is why Income will appear negative—it reflects the money you have drawn from society—and why Expenses will be positive—it is the amount you’ve given back."_
 
 A second invoice is much the same but removes $3,750 from our income and adds the equivalent 5000 CAD to our receivables.
 
