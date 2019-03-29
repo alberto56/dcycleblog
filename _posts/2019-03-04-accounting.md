@@ -169,7 +169,7 @@ Our last two journal entries are $500 going from our liabilities to our hosting 
 
 Let's see this in action!
 
-    cd ~/Desktop/ledger-cli-demo && docker run --rm -v $PWD:/data dcycle/ledger -f /data/my-company/journal.dat balance
+    cd ~/Desktop/ledger-cli-demo && docker run --rm -v $PWD:/data dcycle/ledger:1 -f /data/my-company/journal.dat balance
            $8,500.00  Assets
            $6,000.00    bankAccount
            $2,500.00    receivable
@@ -222,7 +222,7 @@ In this file, our freelancer just reported working 8 hours for ticket 1 for Clie
 
 So now we can generate a report for our dedicated freelancer Jane Doe (who works on New Year's Day, no less):
 
-    docker run --rm -v $PWD:/data dcycle/ledger -f /data/jane-doe/journal.dat balance
+    docker run --rm -v $PWD:/data dcycle/ledger:1 -f /data/jane-doe/journal.dat balance
              8 HOURS  Client1:ticket1
             -8 HOURS  jane-doe:hours-due
     --------------------
@@ -248,7 +248,7 @@ When your freelancer invoices you and you pay her, that information can be added
 
 Running this through a report will tell you that you've paid your freelancer $400 for 8 hours of work:
 
-    $ docker run --rm -v $PWD:/data dcycle/ledger -f /data/jane-doe/journal.dat balance
+    $ docker run --rm -v $PWD:/data dcycle/ledger:1 -f /data/jane-doe/journal.dat balance
                  8 HOURS  Client1:ticket1
                    -400$  jane-doe:amount-paid
     --------------------
@@ -277,7 +277,7 @@ When you invoice and get paid by your client (forget not, we are in the realm of
 
 Let's build a report _combining_ your main journal and the one sent to you by your freelancer:
 
-    cd ~/Desktop/ledger-cli-demo && docker run --rm -v $PWD:/data dcycle/ledger -f /data/jane-doe/journal.dat -f /data/my-company/journal.dat balance
+    cd ~/Desktop/ledger-cli-demo && docker run --rm -v $PWD:/data dcycle/ledger:1 -f /data/jane-doe/journal.dat -f /data/my-company/journal.dat balance
                8,700.00$  Assets
                6,200.00$    bankAccount
                2,500.00$    receivable
