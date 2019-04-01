@@ -1,12 +1,11 @@
 ---
 layout: post
-title: Sometimes you really want an infinite redirect: how to create one with mod_rewrite
-author: admin
-id: 2019-04-01
-date: 2019-04-01
+title:  "Sometimes you really want an infinite redirect: how to create one with mod_rewrite"
+date:   2019-04-01
 tags:
   - snippet
-permalink: /blog/2019-04-01/infinite-redirect-mod-rewrite/
+id: 2019-04-01
+permalink: /blog/2019-04-01/simulate-infinite-redirect/
 redirect_from:
   - /blog/2019-04-01/
 ---
