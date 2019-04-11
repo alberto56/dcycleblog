@@ -3,6 +3,8 @@ layout: post
 title:  "Quickbooks usability issues"
 date:   2019-04-10
 id: 2019-04-10
+tags:
+  - blog
 permalink: /blog/2019-04-10/quickbooks/
 redirect_from:
   - /blog/2019-04-10/
@@ -27,9 +29,13 @@ Every time I try to post with exactly one attachment, I get the error:
 
 I removed the attachment and figured I'd post the attachment to an image-sharing site. Then, upon saving a post, I get:
 
+<img src="https://blog.dcycle.com/assets/img/2019-04-10-quickbooks/community-err1.png" />
+
 > There was an error while attempting to post your message. Try again in a few minutes.
 
 I'll let you, the reader, imagine what happened after "a few minutes".
+
+<img src="https://blog.dcycle.com/assets/img/2019-04-10-quickbooks/community-err2.png" />
 
 So here is my question, Quickbooks, is anybody out there?
 -----
@@ -42,16 +48,15 @@ I have a journal entry with three lines:
 * 33390 HTG in account "7900 amortissement equipements"
 * 133560 HTG in account "1600 HTG immobilisations"
 
-See image.
-
 In my chart of accounts page, 
 
 * 1100 HTG petite-caisse shows NEGATIVE 166950 HTG as expected
 * 1600 HTG immobilisations shows 133560 HTG as expected
 * 7900 amortissement equipements DOES NOT show 33390 HTG, it shows nothing at all 
 
-See images.
-
 My balance sheet completely ignores the "7900 amortissement equipements" account as well.
 
 How can I get 33390 HTG to show in my 7900 amortissement equipements account and in my balance sheet?
+
+<img src="https://blog.dcycle.com/assets/img/2019-04-10-quickbooks/screenshot.png" />
+
