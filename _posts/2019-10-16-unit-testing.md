@@ -581,16 +581,16 @@ What we're saying here is that if `tsunamidangerlevel()` returns 1 and `volcanod
 The Drupal testbot
 -----
 
-Drupal has its own Continuous Integration infrastructure, or testbot. It doesn't let you define which Docker containers you want to use, so it's harder to reproduce its results locally; still, you might want to use if you are developing a Drupal module; and indeed you'll have to use if it you are submitting patches to core.
+Drupal has its own Continuous Integration infrastructure, or testbot. It's a bit more involving to reproduce its results locally; still, you might want to use if you are developing a Drupal module; and indeed you'll have to use if it you are submitting patches to core.
 
 In fact, it is possible to tweak our code a bit to allow it to run on the Drupal testbot _and_ CircleCI.
 
 [Here are some changes to our code which allow exactly that](https://github.com/dcycle/unit-test-tutorial/compare/test-t...drupaltestbot). Let's go over the changes required:
 
 * Tests need to be in `./tests/src/Unit`;
-* The @group name should be relatively unique to your project;
-* The tests should have the namespace `Drupal\Tests\auto_entitylabel\Unit` or `Drupal\Tests\auto_entitylabel\Unit\Sub\Folder` (for example `Drupal\Tests\auto_entitylabel\Unit\Plugin\Validation`);
-* The unit tests have access to Drupal code. This is actually quite annoying, for example, we can [no longer just create an anonymous class for FieldItemList](https://github.com/dcycle/unit-test-tutorial/compare/test-t...drupaltestbot#diff-5a0a42c64de5d295f959f87167210018R62-L87) but rather, we need to create a mock object using `disableOriginalConstructor(); this is because, the unit test code being aware of Drupal, it knows that FieldItemList requires parameters to its constructor.
+* The @group name should be unique to your project (you can use your project's machine name);
+* The tests should have the namespace `Drupal\Tests\my_project_machine_name\Unit` or `Drupal\Tests\my_project_machine_name\Unit\Sub\Folder` (for example `Drupal\Tests\my_project_machine_name\Unit\Plugin\Validation`);
+* The unit tests have access to Drupal code. This is actually quite annoying, for example, we can [no longer just create an anonymous class for FieldItemList](https://github.com/dcycle/unit-test-tutorial/compare/test-t...drupaltestbot#diff-5a0a42c64de5d295f959f87167210018R62-L87) but rather, we need to create a mock object using `disableOriginalConstructor()`; this is because, the unit test code being aware of Drupal, it knows that FieldItemList requires parameters to its constructor; and therefore it complains when we don't have any (in the case of an anonymous object).
 
 To make sure this works, I created a project (it has to be a full project, as far as I can tell, can't be a sandbox project, or at least I didn't figure out to do this with a sandbox project) at [Unit Test Tutorial](https://www.drupal.org/project/unit_test_tutorial). I then activated automated testing under the [Automated testing tab](https://www.drupal.org/node/3088433/qa).
 
@@ -601,9 +601,7 @@ The results can be seen on [the Drupal testbot](https://dispatcher.drupalci.org/
     20:32:38 Drupal\Tests\auto_entitylabel\Unit\Plugin\Validation\EntityL   1 passes
     20:32:38 Drupal\Tests\auto_entitylabel\Unit\Form\AutoEntityLabelFormT   1 passes
 
-My main annoyance with using the Drupal testbot is that it's hard to test locally; you need to have access to a Drupal instance with PHPUnit installed as a dev dependency, and a database.
-
-The [Drupal Tester](http://github.com/dcycle/drupal-tester/blob/master/README.md) Docker project can be used to run Drupal-like tests locally, here is how:
+My main annoyance with using the Drupal testbot is that it's hard to test locally; you need to have access to a Drupal instance with PHPUnit installed as a dev dependency, and a database. To remedy this, the [Drupal Tester](http://github.com/dcycle/drupal-tester/blob/master/README.md) Docker project can be used to run Drupal-like tests locally, here is how:
 
     git clone https://github.com/dcycle/drupal-tester.git
     cd drupal-tester/
@@ -611,9 +609,8 @@ The [Drupal Tester](http://github.com/dcycle/drupal-tester/blob/master/README.md
     cd modules
     git clone --branch 8.x-1.x https://git.drupalcode.org/project/unit_test_tutorial.git
     cd ..
-    docker-compose up -d
     ./scripts/test.sh "--verbose --suppress-deprecations unit_test_tutorial"
-    docker-compose down
+    docker-compose down -v
 
 This will give you more or less the same results as the Drupal testbot:
 
@@ -625,7 +622,7 @@ This will give you more or less the same results as the Drupal testbot:
 In conclusion
 -----
 
-Our promise, from the title of this article, is "Start unit testing your PHP code today". Hopefully the tricks herein will allow you to do just that. My advice to you, dear testers, is to **start by using Docker locally**, **then to make sure you have Continuous Integration set up (on Drupal testbot or Circle, or, as in our example, both)**, and **only then start testing**.
+Our promise, from the title of this article, is "Start unit testing your PHP code today". Hopefully the tricks herein will allow you to do just that. My advice to you, dear testers, is to **start by using Docker locally**, **then to make sure you have Continuous Integration set up (on Drupal testbot or CircleCI, or, as in our example, both)**, and **_only then_ start testing**.
 
 Happy coding!
 
