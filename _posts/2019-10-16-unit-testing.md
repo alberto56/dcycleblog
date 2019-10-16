@@ -383,9 +383,11 @@ Recall that in unit testing, **we are only testing single units of code**. In th
 
 In order to test `manageTypedData() **and nothing else**, conceptually, **we need to assume that getTypedData() and manageValidTypedData() are doing their jobs, we will not call them, but replace them with stub methods within a mock object.**
 
-When we test `manageTypedData()` in this way, we need to replace the real `getTypedData()` with a mock method and make it return whatever we want.
+We want to avoid calling getTypedData() and manageValidTypedData() because that would interfere with our testing of manageTypedData() -- we need to _mock_ getTypedData() and manageValidTypedData().
 
-PHPUnit achieves this by making a copy of our `EntityLabelNotNullConstraintValidator` class, where `getTypedData()` and `manageValidTypedData()` are replaced with our own methods or stub methods which return what we want. So in the context of our test, we do not instantiate `EntityLabelNotNullConstraintValidator`, but rather, a mock version of that class in which we replace certain methods. Here is how to instantiate that class:
+When we test `manageTypedData()` in this way, we need to replace the real `getTypedData()` and `manageValidTypedData()` with mock methods and make them return whatever we want.
+
+PHPUnit achieves this by making a copy of our `EntityLabelNotNullConstraintValidator` class, where `getTypedData()` and `manageValidTypedData()` are replaced with our own methods which return what we want. So in the context of our test, we do not instantiate `EntityLabelNotNullConstraintValidator`, but rather, a mock version of that class in which we replace certain methods. Here is how to instantiate that class:
 
     $object = $this->getMockBuilder(EntityLabelNotNullConstraintValidator::class)
       ->setMethods([
@@ -430,7 +432,7 @@ So we want to test a protected method (`getConfig()`), and, in order to test it,
 
 The solution is to use a trick known as class reflection; it's a bit opaque, but it does allow us to access protected properties and methods.
 
-[Take a look at a working version of our test](https://github.com/dcycle/unit-test-tutorial/compare/fail-protected...reflection).
+[Take a look at some changes which result in a working version of our test](https://github.com/dcycle/unit-test-tutorial/compare/fail-protected...reflection).
 
 Copy-pasting is perhaps your best fiend here, because this concept kind of plays with your mind. But basically, a ReflectionClass allows us to retrieve properties and methods _as objects_, then set their visibility using methods of those objects, then set their values or call them using their own methods... As I said, copy-pasting is good, sometimes.
 
@@ -467,7 +469,7 @@ Consider the following scenario: a bunch of your code uses the legacy `drupal_se
 
 Your tests will complain if you try to call, or mock `drupal_set_message()` when unit-testing `a::a()` or `b::b()``, because `drupal_set_message()` is procedural and you can't do much with it (thankfully there is fewer and fewer procedural code in Drupal modules, but you'll still find a lot of it).
 
-So in order to mock `drupal_set_message()`, you might want to something like:
+So in order to make `drupal_set_message()` mockable, you might want to something like:
 
     class a extends some_class {
       protected method drupalSetMessage($x) {
@@ -491,7 +493,7 @@ So in order to mock `drupal_set_message()`, you might want to something like:
       }
     }
 
-Now, however, we're in code duplication territory, which is not cool (well, not much of what we're doing is cool in the traditional sense but anyway...). We can't define a base class which has `drupalSetMessage()` as a method because PHP doesn't (and probably shouldn't) support multiple inheritance. That's where traits come in, it's a technique for code reuse which is exactly adapted to this situation:
+Now, however, we're in code duplication territory, which is not cool (well, not much of what we're doing is cool, not in the traditional sense anyway). We can't define a base class which has `drupalSetMessage()` as a method because PHP doesn't (and probably shouldn't) support multiple inheritance. That's where traits come in, it's a technique for code reuse which is exactly adapted to this situation:
 
     trait commonMethodsTrait {
       protected method drupalSetMessage($x) {
@@ -579,7 +581,7 @@ What we're saying here is that if `tsunamidangerlevel()` returns 1 and `volcanod
 The Drupal testbot
 -----
 
-Drupal has its own Continuous Integration infrastructure, or testbot. It doesn't let you define which Docker containers you want to use, so it's harder to reproduce its results locally; still, you might want to use if you are developing a Drupal module.
+Drupal has its own Continuous Integration infrastructure, or testbot. It doesn't let you define which Docker containers you want to use, so it's harder to reproduce its results locally; still, you might want to use if you are developing a Drupal module; and indeed you'll have to use if it you are submitting patches to core.
 
 In fact, it is possible to tweak our code a bit to allow it to run on the Drupal testbot _and_ CircleCI.
 
