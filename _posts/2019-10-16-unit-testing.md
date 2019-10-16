@@ -10,6 +10,7 @@ permalink: /blog/2019-10-16/unit-testing/
 redirect_from:
   - /blog/2019-10-16/
   - /blog/2019-10-03/
+  - /unit/
 ---
 
 Unit tests are the fastest, most reliable kinds of tests: they confirm that the smallest _units_ of your code, i.e. class methods, work as expected.
