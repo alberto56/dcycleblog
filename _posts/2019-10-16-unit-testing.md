@@ -16,7 +16,7 @@ Unit tests are the fastest, most reliable kinds of tests: they confirm that the 
 
 Unit tests do not require a full environment with a database and external libraries; this makes unit tests extremely fast.
 
-In this article we will look at how to take any PHP code -- a Drupal site or module, or indeed any other PHP codebase unrelated to Drupal -- and start unit testing it _today_.
+In this article we will look at how to take any PHP code -- a Drupal site or module, or indeed any other PHP codebase unrelated to Drupal -- and start unit testing it _today_. We'll start by setting up tests which work for any PHP code, and then we'll see how to run your tests on the Drupal testbot if you so desire.
 
 Before we start testing
 -----
@@ -26,7 +26,7 @@ Unit tests are useless unless they are run on every change (commit) to a codebas
 Docker for all things
 -----
 
-In the context of this article, we'll define DevOps as a way to embed all dependencies within our code, meaning **we want to limit the number of dependencies on our computer or CI server** to run our code. to do this, we will start by installing and starting [Docker Desktop](https://www.docker.com/products/docker-desktop).
+In the context of this article, we'll define DevOps as a way to embed all dependencies within our code, meaning **we want to limit the number of dependencies on our computer or CI server** to run our code. To do this, we will start by installing and starting [Docker Desktop](https://www.docker.com/products/docker-desktop).
 
 Once you've set it up, confirm you have Docker running:
 
@@ -59,9 +59,9 @@ Let's get started!
 Host your code on Github or Bitbucket
 -----
 
-In this article, we will avoid getting ahead of ourselves by learning and using Drupal's unit test classes (which are based on PHPUnit) and testing infrastructure: we want to start by understanding how to unit test _any_ PHP code (Drupal or otherwise).
+We will avoid getting ahead of ourselves by learning and using Drupal's unit test classes (which are based on PHPUnit) and testing infrastructure (we'll do that below): we want to start by understanding how to unit test _any_ PHP code (Drupal or otherwise).
 
-To that end, we will need to host our code (or a mirror thereof) on non-Drupal infrastructure. Github and Bitbucket both integrate with [CircleCI](http://circleci.com), a free, fast, and easy cloud continuous integration (CI) service with no vendor lock-in, which we'll use later on. With understanding of general unit testing principles under your belt, you can later move on to use framework-speicific (including Drupal-specific) testing environments if you deem it necessary (for example if you are a contributor to core or to contrib modules which follow Drupal's testing guidelines).
+To that end, we will need to host our code (or a mirror thereof) on non-Drupal infrastructure. Github and Bitbucket both integrate with [CircleCI](http://circleci.com), a free, fast, and easy cloud continuous integration (CI) service with no vendor lock-in; we'll use CircleCI later on in this article. With understanding of general unit testing principles under your belt, you can later move on to use framework-specific (including Drupal-specific) testing environments if you deem it necessary (for example if you are a contributor to core or to contrib modules which follow Drupal's testing guidelines).
 
 To demonstrate the principles in this article, I have taken a random Drupal 8 module which, at the time of this writing, has no unit tests, [Automatic Entity Label](https://www.drupal.org/project/auto_entitylabel). My selection is completely arbitrary, and I don't use this module myself, and I'm not advocating you use it or not use it.
 
@@ -74,7 +74,7 @@ Start continuous integration
 
 Because, as we mentioned above, automated testing is all but useless without continuous integration (CI) to confirm your tests are passing, the next step is to set up CI. Attaching CircleCI to Github repos is straightforward. I started by adding a test that simply confirms that we can access PHPUnit on our CI environment.
 
-[Here is the changes I made to my code to add continuous integration](https://github.com/dcycle/unit-test-tutorial/compare/original...circle-ci). At this stage, this code only confirms that PHPUnit can be run via Docker, nothing else. You can do the same minor changes to your code. The change to the README.md document is a "Badge" which displays as green if tests pass, and red if they don't, on the project's home page.
+[Here is the changes I made to my code to add continuous integration](https://github.com/dcycle/unit-test-tutorial/compare/original...circle-ci). At this stage, this code only confirms that PHPUnit can be run via Docker, nothing else. If you want to follow along with your own codebase, you can add the same minor changes (in fact you are encouraged to do so). The change to the README.md document is a "Badge" which displays as green if tests pass, and red if they don't, on the project's home page. The rest is straightforward.
 
 Once your code is set up for CI integration, create an account and log on to [CircleCI](http://circleci.com) using your Github account (Bitbucket works also), select your project from your list of projects ("Set Up Project" button), and start building it ("Start Building" button); that's it!
 
@@ -96,7 +96,7 @@ Before we can test anything, PHPUnit needs to know where the tests reside, which
 
 * ./phpunit.xml, at the root of our project, will define where are tests are located, and where our autoloader is located.
 * ./phpunit-autoload.php, at the root of our project, is our autoloader; it tells PHPUnit that, for example, the namespace `Drupal\auto_entitylabel\AutoEntityLabelManager` corresponds to the file `src/AutoEntityLabelManager`.
-* ./phpunit-bootstrap.php, we'll leave empty for now, and look at later on.
+* ./phpunit-bootstrap.php, we'll leave empty for now, and look at it later on.
 * ./tests/AutoEntityLabelManagerTest.php, which will contain a test for the AutoEntityLabelManager class.
 
 ### phpunit.xml
@@ -156,7 +156,7 @@ Let's take AutoEntityLabelManager::auto_entitylabel_entity_label_visible().
       return empty($hidden[$entity_type]);
     }
 
-This is actual code which exists in the Auto Entity Label project; I have never tried this function in a running Drupal instance, I'm not even sure why it's there, _but I can still test it_. I assume that if I call `AutoEntityLabelManager::auto_entitylabel_entity_label_visible('whatever')`, I should get `TRUE` as a response. This is what I will test for:
+This is actual code which exists in the Auto Entity Label project; I have never tried this function in a running Drupal instance, I'm not even sure why it's there, _but I can still test it_. I assume that if I call `AutoEntityLabelManager::auto_entitylabel_entity_label_visible('whatever')`, I should get `TRUE` as a response. This is what I will test for in `./tests/AutoEntityLabelManagerTest.php`:
 
     <?php
 
@@ -194,7 +194,7 @@ Finally we'll need to tweak ./scripts/ci.sh a bit:
     docker run --rm -v "$(pwd)":/app phpunit/phpunit \
       --group myproject
 
-Adding `-v "$(pwd)":/app` shares our code on our host computer or server with a directory called `/app` on the PHPUnit container, so PHPUnit actually has access to our code. `--group myproject` runs all tests in the "myproject" group (recall that in `tests/AutoEntityLabelManagerTest.php`, we have added `@group myproject` to the class comment).
+Adding `-v "$(pwd)":/app` shares our code on our host computer or server with a directory called `/app` on the PHPUnit Docker container, so PHPUnit actually has access to our code. `--group myproject` runs all tests in the "myproject" group (recall that in `tests/AutoEntityLabelManagerTest.php`, we have added `@group myproject` to the class comment).
 
 [Here are the changes we made to our code](https://github.com/dcycle/unit-test-tutorial/compare/circle-ci...first-problem).
 
@@ -211,7 +211,7 @@ With all those changes in place, if you run `./scripts/ci.sh`, you should have t
     PHP Fatal error:  Trait 'Drupal\Core\StringTranslation\StringTranslationTrait' not found in /app/src/AutoEntityLabelManager.php on line 16
     ...
 
-So what's happening here? It turns out `AutoEntityLabelManager` [uses something called `StringTranslationTrait`](https://github.com/dcycle/unit-test-tutorial/blob/circle-ci/src/AutoEntityLabelManager.php#L16). A PHP trait is a code sharing pattern. It's a fascinating topic and super useful if you run your unit tests on a working Drupal installation; but right now we don't need it and don't really care about it, it's just getting in the way of our test. We somehow need to tell PHPUnit that [Drupal\Core\StringTranslation\StringTranslationTrait](https://github.com/dcycle/unit-test-tutorial/blob/first-problem/src/AutoEntityLabelManager.php#L5) needs to exist, _but we don't really care -- right now -- what it does_.
+So what's happening here? It turns out `AutoEntityLabelManager` [uses something called `StringTranslationTrait`](https://github.com/dcycle/unit-test-tutorial/blob/circle-ci/src/AutoEntityLabelManager.php#L16). A PHP trait is a code sharing pattern. It's a fascinating topic and super useful to write testable code (we'll get to it later); but right now we don't need it and don't really care about it, it's just getting in the way of our test. We somehow need to tell PHPUnit that [Drupal\Core\StringTranslation\StringTranslationTrait](https://github.com/dcycle/unit-test-tutorial/blob/first-problem/src/AutoEntityLabelManager.php#L5) needs to exist, _but we don't really care -- right now -- what it does_.
 
 That's where our `phpunit-bootstrap.php` file comes in. In it, we can define `Drupal\Core\StringTranslation\StringTranslationTrait` so that PHP will not complain that it does not exit.
 
@@ -254,7 +254,7 @@ Because of the magic of Docker, the same output can be found on [our CI infrastr
 Introducing test _providers_
 -----
 
-OK, we're getting into the jargon of PHPUnit now. To introduce the concept of test providers, consider this: almost every time we run a test, we'd like to bombard our _unit_ (our PHP method) with a variety of inputs and expected outputs, and confirm they always work.
+OK, we're getting into the jargon of PHPUnit now. To introduce the concept of test providers, consider this: almost every time we run a test, we'd like to bombard our _unit_ (our PHP method) with a variety of inputs and expected outputs, and confirm our unit always works as expected.
 
 The basic testing code is always the same, but the inputs and expected outputs change.
 
@@ -271,7 +271,7 @@ Consider our existing test:
 
 Maybe calling our method with "whatever" should yield TRUE, but we might also want to test other inputs to make sure we cover every possible usecase for the method. In our case, looking at [the method](https://github.com/dcycle/unit-test-tutorial/blob/circle-ci/src/AutoEntityLabelManager.php#L359-L366), we can reasonably surmise that calling it with "profile2" should yield FALSE. Again, I'm not sure why this is; in the context of this tutorial, all I want to do is to make sure the method works as expected.
 
-So the answer here is to serarate the testing code from the inputs and expected outputs. That's where the _provider_ comes in. We will add arguments to the test code, and define a separate function which call our test code with different arguments. The end results looks like this (I also like to print_r() the expected and actual output in case they differ, but this is not required):
+So the answer here is to serarate the testing code from the inputs and expected outputs. That's where the _provider_ comes in. We will add arguments to the test code, and define a separate function which calls our test code with different arguments. The end results looks like this (I also like to print_r() the expected and actual output in case they differ, but this is not required):
 
     /**
      * Test for auto_entitylabel_entity_label_visible().
@@ -379,7 +379,7 @@ Let's start by splitting the validate method into smaller parts, [like this](htt
       return FALSE;
     }
 
-Recall that in unit testing, **we are only testing single units of code**. In this case, the unit if code we are testing is manageTypedData(), above.
+Recall that in unit testing, **we are only testing single units of code**. In this case, the unit of code we are testing is manageTypedData(), above.
 
 In order to test `manageTypedData() **and nothing else**, conceptually, **we need to assume that getTypedData() and manageValidTypedData() are doing their jobs, we will not call them, but replace them with stub methods within a mock object.**
 
