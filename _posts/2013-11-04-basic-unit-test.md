@@ -10,6 +10,9 @@ redirect_from:
   - /blog/37/
   - /node/37/
 ---
+
+**Edit, this blog post is deprecated, see [blog.dcycle.com/unit](https://blog.dcycle.com/unit) instead!**
+
 Unit tests are faster than functional tests and don't require the database.
 
     <?php 
