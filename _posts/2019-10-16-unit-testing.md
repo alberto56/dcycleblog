@@ -19,6 +19,8 @@ Unit tests do not require a full environment with a database and external librar
 
 In this article we will look at how to take any PHP code -- a Drupal site or module, or indeed any other PHP codebase unrelated to Drupal -- and start unit testing it _today_. We'll start by setting up tests which work for any PHP code, and then we'll see how to run your tests on the Drupal testbot if you so desire.
 
+This article accompanies a talk I gave about unit testing at Drupalcamp Ottawa on Octoboer 18, 2019, [here are the accompanying slides](https://alberto56.github.io/presentation-unit-test/#/).
+
 Before we start testing
 -----
 
