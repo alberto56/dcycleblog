@@ -12,6 +12,9 @@ redirect_from:
   - /blog/94/
   - /node/94/
 ---
+
+**Edit, this blog post is deprecated, see [blog.dcycle.com/unit](https://blog.dcycle.com/unit) instead!**
+
 To me, modern code must be tracked by a continuous integration server, and must have automated tests. Anything else is legacy code, even if it was rolled out this morning.
 
 In the last year, I have adopted a policy of never modifying any legacy code, because even a one-line change can have unanticipated effects on functionality, plus there is no guarantee that you won't be re-fixing the same problem in 6 months.
