@@ -4,6 +4,7 @@ backend:
   # See https://www.netlifycms.org/docs/authentication-backends/#github-backend
   name: github
   repo: alberto56/dcycleblog
+  branch: gh-pages
   base_url: https://auth.static.dcycle.com
 media_folder: 'assets/uploads'
 collections:
