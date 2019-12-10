@@ -584,6 +584,8 @@ What we're saying here is that if `tsunamidangerlevel()` returns 1 and `volcanod
 The Drupal testbot
 -----
 
+**Edit (December 10, 2019): [until this issue is fixed](https://github.com/dcycle/drupal-tester/issues/2) I recommend using the CircleCI technique and not testing on the Drupal infrastructure.**
+
 Drupal has its own Continuous Integration infrastructure, or testbot. It's a bit more involving to reproduce its results locally; still, you might want to use if you are developing a Drupal module; and indeed you'll have to use if it you are submitting patches to core.
 
 In fact, it is possible to tweak our code a bit to allow it to run on the Drupal testbot _and_ CircleCI.
