@@ -2,6 +2,12 @@
 layout: post
 title: Écouter des fichiers de musique de votre Mac sur votre téléphone Android
 date: 2019-12-03T14:27:32.381Z
+id: 2019-12-03
+tags:
+  - blog
+permalink: /blog/2019-12-03/musique-mac-android/
+redirect_from:
+  - /blog/2019-12-03/
 ---
 Cet article décrit une technique pour écouter des fichiers de musique (m4a, mp3...) que vous avez sur votre Mac, et que vous aimeriez écouter sur votre téléphone Android, sans passer par un compte cloud (Google Play, etc.). Cette technique est très simple et ne vous permet pas de synchroniser votre nouvelle musique ou fichiers audio entre vos appareils. Donnez-vous au moins une heure ou deux pour compléter les étapes et déboguer.
 
