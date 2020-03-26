@@ -6,6 +6,7 @@ backend:
   repo: alberto56/dcycleblog
   branch: gh-pages
   base_url: https://auth.static.dcycle.com
+  auth_endpoint: auth/github/alberto56
 media_folder: 'assets/uploads'
 collections:
   - name: 'blog posts'
