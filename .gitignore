@@ -3,3 +3,4 @@ _site
 .DS_Store
 .ruby-version
 Gemfile.lock
+.jekyll-cache

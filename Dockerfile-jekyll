@@ -7,3 +7,5 @@ RUN gem install normalize-scss
 RUN gem install compass
 RUN gem install sass
 RUN gem install support-for
+
+ENTRYPOINT [ "jekyll" ]
