@@ -1,4 +1,4 @@
-FROM jekyll/jekyll:pages
+FROM jekyll/minimal:4
 
 RUN gem install jekyll-redirect-from
 RUN gem install jekyll-paginate

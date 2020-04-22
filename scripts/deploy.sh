@@ -1,33 +1,12 @@
 #!/bin/bash
-#
-# Assuming you have the latest version Docker installed, this script will
-# fully create your environment.
-#
 set -e
 
-# See http://patorjk.com/software/taag/#p=display&f=Ivrit&t=Test%208
-cat ./scripts/lib/ascii-art.txt
+./scripts/destroy.sh
+./scripts/build-static-site.sh
+docker run --rm -d --name dcycleblog -p 8081:80 -v "$PWD/_site":/usr/local/apache2/htdocs/ httpd:2.4
 
-echo ''
-echo 'About to try to get the latest version of images the Docker hub.'
-docker pull httpd:2
-docker pull jekyll/jekyll:pages
-
-echo ''
-echo '-----'
-echo 'Updating the server if necessary.'
-docker-compose up -d --build
-
-echo ''
-echo '-----'
-echo 'About to build the Jekyll site.'
-./scripts/build.sh
-
-echo ''
-echo '-----'
-echo 'You can now visit your site:'
-echo ''
-URL=$(docker-compose port httpd 80)
-echo " => Frontend: http://$URL"
-echo " => Netlify backend: http://$URL/admin"
-echo ''
+echo ""
+echo "Visitez http://0.0.0.0:8081 pour voir le site localement."
+echo ""
+echo "Utilisez ./scripts/destroy.sh pour arrêter l'environnement local."
+echo ""
