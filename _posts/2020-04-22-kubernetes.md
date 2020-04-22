@@ -5,6 +5,7 @@ date: 2020-04-22T14:27:32.381Z
 id: 2020-04-22
 tags:
   - blog
+  - planet
 permalink: /kubernetes/
 redirect_from:
   - /blog/2020-04-22/kubernetes/
