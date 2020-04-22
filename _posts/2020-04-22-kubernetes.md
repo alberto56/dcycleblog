@@ -48,6 +48,6 @@ This tutorial is presented in several sections for your convenience:
 * [Secure wildcard subdomains](/kubernetes/13-secure-wildcard-subdomains)
 * [Custom Docker images](/kubernetes/14-custom-docker-images)
 * [Jenkins](/kubernetes/15-jenkins)
-* [Jenkins](/kubernetes/16-next-steps)
+* [Next Steps](/kubernetes/16-next-steps)
 * [Glossary](/kubernetes/glossary)
 * [Resources](/kubernetes/resources)
