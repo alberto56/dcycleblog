@@ -35,5 +35,5 @@ My solution has been to implement a [custom function in Google Sheets](https://d
      month = date.substring(3, 5) - 1;
      year = date.substring(6);
      date = new Date(year, month, day);
-     return Utilities.formatDate(date, timezone, 'MMMM dd, yyyy HH:mm:ss Z')
+     return Utilities.formatDate(date, timezone, 'yyyy-MM-dd')
     }
