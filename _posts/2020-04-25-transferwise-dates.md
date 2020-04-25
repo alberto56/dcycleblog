@@ -22,7 +22,7 @@ My solution has been to implement a [custom function in Google Sheets](https://d
      * will transform the Transferwise Date to a date which is in a format that Google Sheets
      * understands.
      * 
-     * Usage: =TW_CALCDATE(TO_TEXT(H4))
+     * Usage: =DATEVALUE(TW_CALCDATE(TO_TEXT(H4)))
      *
      * (where H4 is a cell containing a "transferwise"-type date string)
      */
