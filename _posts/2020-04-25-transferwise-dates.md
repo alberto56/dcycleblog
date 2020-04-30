@@ -13,27 +13,8 @@ redirect_from:
 
 It exports dates as DD-MM-YYYY, which is not understandable by Google Spreadsheets. This has caused me numerous headaches and calls from my accountant which could be traced back to, say a transaction having taken place on January 7th to appear on July 1st. 
 
-My solution has been to implement a [custom function in Google Sheets](https://developers.google.com/apps-script/guides/sheets/functions):
+Let's say my Transferwise date is in cell A1, here is how I transform it, in another cell:
 
-    /*
-     * Transferwise export statement as CSV uses the date format DD-MM-YYYY, which Google 
-     * Sheets does not understand, if the day is less than or equal to 12, it thinks the day 
-     * is the month; if it more than 12, it does not know how to parse this. This function
-     * will transform the Transferwise Date to a date which is in a format that Google Sheets
-     * understands.
-     * 
-     * Usage: =DATEVALUE(TW_CALCDATE(TO_TEXT(H4)))
-     *
-     * (where H4 is a cell containing a "transferwise"-type date string)
-     */
-    function TW_CALCDATE(date, timezone = 'America/New_York') {
-     if (typeof date != 'string') {
-       return date.toString();
-       return Utilities.formatDate(date, 'America/New_York', 'yyyy-dd-mm');
-     }
-     day = date.substring(0, 2);
-     month = date.substring(3, 5) - 1;
-     year = date.substring(6);
-     date = new Date(year, month, day);
-     return Utilities.formatDate(date, timezone, 'yyyy-MM-dd')
-    }
+    =DATE(RIGHT(A1,4),MID(A1,4,2),LEFT(A1,2))
+
+(At first I tried using [a custom function in Google Sheets App Scripts](https://github.com/alberto56/dcycleblog/blame/d9ed430036a1f5b2296a2caa365191103cfe4106/_posts/2020-04-25-transferwise-dates.md#L18-L39), but I'm moving away from those as too complex.)
