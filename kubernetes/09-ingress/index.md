@@ -18,7 +18,12 @@ We will use Nginx to act as our traffic cop, also called **reverse proxy**, whic
 Installing a traffic cop
 -----
 
-Lucky for us, the Nginx ingress is just another helm chart. Let's call it "traffic-cop":
+Lucky for us, the Nginx ingress is just another helm chart.
+First, let's make sure that the `stable` chart repo is available:
+
+    helm repo add stable https://kubernetes-charts.storage.googleapis.com
+
+Let's call it "traffic-cop":
 
     helm upgrade --install traffic-cop stable/nginx-ingress
 
