@@ -1,0 +1,13 @@
+<div class="container">
+  <div>This page is part of the <strong><a href="{{ page.top }}">{{ page.toptitle }}</a></strong> series.</div>
+  {% if page.next or page.prev %}
+  <ul>
+    {% if page.prev %}
+    <li><a href="{{ page.prev }}">previous page</a></li>
+    {% endif %}
+    {% if page.next %}
+    <li><a href="{{ page.next }}">next page</a></li>
+    {% endif %}
+  </ul>
+  {% endif %}
+</div>
