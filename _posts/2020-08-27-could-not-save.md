@@ -35,4 +35,4 @@ However, there seems to have been a glitch whereby some files were renamed in su
     -rw-r--r--@ 1 albert  staff   257K 27 Aug 12:18 contents.xml
 
 I have no idea why the screenshots were renamed this way. I simply quit OmniOutliner, backed up and then removed those screenshot files, then reopened the file and all was good (except the screenshots which no longer are present).
-The document could not be autosaved. The file name is invalid. With possible solution.
+
