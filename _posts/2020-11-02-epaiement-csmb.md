@@ -18,4 +18,6 @@ Le site https://epaiement.csmb.qc.ca n'a aucune adresse ou numéro de téléphon
 
 Voir images ci-jointes.
 
+J'ai aussi écrit le 2020-11-02 à "Ressources financières" de https://www.csmb.qc.ca/fr-CA/nous-joindre/ressources-financieres.aspx
+
 <img src="/assets/img/2020-11-02-epaiement-csmb/epaiement.png" />
