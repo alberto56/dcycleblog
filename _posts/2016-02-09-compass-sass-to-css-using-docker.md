@@ -44,7 +44,7 @@ First, make sure you have a file called `myproject/some-folder/another-folder/co
 
 Then run this docker command every time you want to recompile your .scss file.
 
-    docker run -v $(pwd):/src antonienko/compass-watch compile /src/some-folder/another-folder --force
+    docker run --rm -v $(pwd):/src antonienko/compass-watch compile /src/some-folder/another-folder --force
 
 This will generate css based on the current scss, then destroy the Docker container.
 
