@@ -131,6 +131,18 @@ But when trying to push an image, I was getting "413 Request Entity Too Large". 
     docker exec nginx-proxy /bin/bash -c 'echo "client_max_body_size 600M;" >> /etc/nginx/vhost.d/mydomain.example.com'
     docker restart nginx-proxy
 
+Edit: Reverse proxy on Drupal 8 or 9
+-----
+
+Thanks to @wells on [this issue](https://www.drupal.org/project/social_auth_google/issues/3207114) and nitin.k on [this issue](https://www.drupal.org/project/metatag/issues/2842049#comment-13948744) for pointing me in the right direction on how Drupal can know its base url should be HTTPS. In order to use modules such as social_auth_google and metatag which require Drupal to know its public URL even if it is behind a reverse proxy, you need to figure out the reverse proxy IP. 
+
+To do so temporarily install devel_php on your site, and then go to /devel/php and enter `dpm($_SERVER['REMOTE_ADDR']);`. This will give you a result such as 172.18.0.5. It is _not_ the same IP as what you get when you ping your URL, or when you inspect the headers the reverse proxy sends to Drupal.
+
+Then add this to your settings, and clear your cache:
+
+    $settings['reverse_proxy'] = TRUE;
+    $settings['reverse_proxy_addresses'] = ['172.18.0.5'];
+
 Enjoy!
 -----
 
