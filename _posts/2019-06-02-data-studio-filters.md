@@ -125,7 +125,7 @@ Contrary to an _outer join_ which uses columns from both the left and right data
 
 At the time of this writing, [Google Data Studio only seems to support left joins](https://support.google.com/datastudio/answer/9061420?hl=en).
 
-(A post on AdvertiseCommunity, [Is there no way to do any other table join than a Left Join?](https://www.en.advertisercommunity.com/t5/Data-Studio/Is-there-no-way-to-do-any-other-table-join-than-a-Left-Join/td-p/1771962), has an accepted answer from July, 2018, suggesting Google's "BigQuery" be used as a middleware between your data sources and Google Data Studio; you could also build your own middleware to get around the Google Data Studio Left Join Only Limitation; however these solutions are outside of the scope of the current article.)
+(A post on AdvertiseCommunity, "Is there no way to do any other table join than a Left Join?", which has since been removed, had an accepted answer from July, 2018 suggesting Google's "BigQuery" be used as a middleware between your data sources and Google Data Studio; you could also build your own middleware to get around the Google Data Studio Left Join Only Limitation; however these solutions are outside of the scope of the current article.)
 
 First step, choose your base data source and how to represent your data
 -----
