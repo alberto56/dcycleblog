@@ -190,6 +190,6 @@ Resources
 
 * [About data blending, Join information from multiple sources to get a more unified view of your data, Data Studio Help](https://support.google.com/datastudio/answer/9061420?hl=en)
 * [In Google Data Studio, can I simulate an outer join for blended data by creating a dummy datasource with all my values?, StackOverflow, June 1st, 2019](https://stackoverflow.com/questions/56406917/in-google-data-studio-can-i-simulate-an-outer-join-for-blended-data-by-creating)
-* [Is there no way to do any other table join than a Left Join?, AdvertiserCommunity](https://www.en.advertisercommunity.com/t5/Data-Studio/Is-there-no-way-to-do-any-other-table-join-than-a-Left-Join/td-p/1771962)
+* [Is there no way to do any other table join than a Left Join?, AdvertiserCommunity](https://www.en.advertisercommunity.com/t5/Data-Studio/Is-there-no-way-to-do-any-other-table-join-than-a-Left-Join/td-p/1771962) -- link no longer working as of April 17, 2021.
 
 
