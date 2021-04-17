@@ -15,7 +15,7 @@ redirect_from:
 Previous knowledge
 -----
 
-This article assumes you have some previous knowledge of how to create databases, of how to connect them to Google Data Studio dashboards; and how display data and filters on Google Data Studio.
+This article assumes you have some previous knowledge of how to create databases, of how to connect them to Google Data Studio dashboards; and how to display data and filters on Google Data Studio.
 
 Premise
 -----
@@ -66,7 +66,7 @@ To follow along, you can create a virtual machine with MySQL and add the above d
 
 Make sure this database is accessible to the world (on a temporary virtual machine for example), go to [Google Data Studio](https://datastudio.google.com/), and create a new blank report called "datablending".
 
-In that report, add your two tables as two datasources, and add them to your report (The "Add to report" button might take a minute appear).
+In that report, add your two tables as two datasources, and add them to your report (The "Add to report" button might take a minute to appear).
 
 Build your report
 -----
