@@ -112,7 +112,7 @@ In an ideal world, we'd like to design a blended filter which would provide the 
 | AZ    | 45        | 0              |
 | Other | 300       | 2              |
 
-This takes data from two data sources, "Pies sold" the first or "left" one, and "Subcontractors", the second or "right" one.
+This takes data from two data sources, "Pies sold", the first or "left" one, and "Subcontractors", the second or "right" one.
 
 What we'd like to do is to fetch states from both data sources and blend them, whether the columns exist in both sources (such as Massachusetts/MA, Other); in the "left" one (AZ); or in the right one only (Connecticut/CT).
 
