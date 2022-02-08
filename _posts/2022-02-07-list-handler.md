@@ -50,7 +50,7 @@ The [buildHeader() and buildRow()](https://git.drupalcode.org/project/webform/-/
 
 ### Creating our subclass of \Drupal\webform\WebformEntityListBuilder
 
-THe first thing we need to do is create a subclass of WebformEntityListBuilder. We can create our own custom module, and in it, at ./my_custom_module/src/MyCustomWebformEntityListBuilder.php, create our class, overriding WebformEntityListBuilder's buildHeader() and buildRow().
+THe first thing we need to do is create a subclass of WebformEntityListBuilder. We can create our own custom module, and in it, at ./my_custom_module/src/MyCustomWebformEntityListBuilder.php, create our class, overriding WebformEntityListBuilder's buildHeader() and buildRow(). We are injecting the 'date.formatter' service so we can format dates nicely the Drupal way.
 
     <?php
     # ./my_custom_module/src/MyCustomWebformEntityListBuilder.php
@@ -60,7 +60,6 @@ THe first thing we need to do is create a subclass of WebformEntityListBuilder. 
     use Drupal\webform\WebformEntityListBuilder;
     use Drupal\webform\Entity\WebformSubmission;
     use Drupal\Core\Entity\EntityInterface;
-    use Drupal\Core\StringTranslation\StringTranslationTrait;
     use Symfony\Component\DependencyInjection\ContainerInterface;
     use Drupal\Core\Entity\EntityTypeInterface;
 
@@ -152,6 +151,6 @@ According to [this DrupalAnswers thread](https://drupal.stackexchange.com/a/1928
       $entity_types['webform']->setListBuilderClass('Drupal\my_custom_module\MyCustomWebformEntityListBuilder');
     }
 
-You will now see the latest submission in the list of webforms.
+You will now see the latest submission in a brand new column in the list of webforms.
 
 Happy coding!
