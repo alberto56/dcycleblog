@@ -12,11 +12,11 @@ redirect_from:
   - /node/2022-02-07/
 ---
 
-In some cases administrative lists are actually views using the core Views module, as is the case with content. These are quite easy to modify in a development environment, export as config, then import in a production environment. How to do so is outside the scope of this article, though.
+In some cases administrative lists are actually views using the core Views module, as is the case with /admin/content (which can be modified using the Views interface at /admin/structure/views/view/content). These are quite easy to modify in a development environment, export as config, then import in a production environment. How to do so is outside the scope of this article, though.
 
-However, certain administrative views do not use views; rather they use an entity's list view.
+However, certain administrative views do not use the Views module; rather they use an entity's list view, which requires some coding to modify.
 
-For example the [Webform](https://www.drupal.org/project/webform) module does not use Views to built its administrative list of webforms. So how can we alter it?
+For example the [Webform](https://www.drupal.org/project/webform) module does not use Views to build its administrative list of webforms. So how can we alter it?
 
 Follow along, this article will show you how!
 
@@ -28,7 +28,7 @@ We will start with a standard installation along with webform_ui and webform.
 
 ### Our goal
 
-Our goal will be to add a column to /admin/structure/webform showing the last submission.
+Our goal will be to add a column to /admin/structure/webform showing the date of last submission, if any.
 
 ### How the Webform administrative list works
 
@@ -42,7 +42,7 @@ Our goal will be to add a column to /admin/structure/webform showing the last su
       requirements:
         _custom_access: '\Drupal\webform\Access\WebformAccountAccess::checkOverviewAccess'
 
-This means we using the Webform entity's list view to display a list of webforms. In turn, the Webform entity [defines its list_builder as \Drupal\webform\WebformEntityListBuilder](https://git.drupalcode.org/project/webform/-/blob/6.1.2/src/Entity/Webform.php#L53).
+This means we are using the Webform entity's list view to display a list of webforms. In turn, the Webform entity [defines its list_builder as \Drupal\webform\WebformEntityListBuilder](https://git.drupalcode.org/project/webform/-/blob/6.1.2/src/Entity/Webform.php#L53).
 
 The code list builder itself is at [./src/WebformEntityListBuilder.php](https://git.drupalcode.org/project/webform/-/blob/6.1.2/src/WebformEntityListBuilder.php).
 
