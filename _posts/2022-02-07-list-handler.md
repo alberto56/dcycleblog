@@ -63,9 +63,16 @@ THe first thing we need to do is create a subclass of WebformEntityListBuilder. 
     use Symfony\Component\DependencyInjection\ContainerInterface;
     use Drupal\Core\Entity\EntityTypeInterface;
 
+    /**
+     * Custom webform list with last submission.
+     *
+     * See https://blog.dcycle.com/blog/2022-02-07/alter-list-view/.
+     */
     class MyCustomWebformEntityListBuilder extends WebformEntityListBuilder {
 
       /**
+       * Injected date formatter.
+       *
        * @var \Drupal\Core\Datetime\DateFormatterInterface
        */
       protected $dateFormatter;
@@ -89,8 +96,6 @@ THe first thing we need to do is create a subclass of WebformEntityListBuilder. 
           'last_submission' => [
             'data' => $this->t('Latest submission'),
             'specifier' => 'latest',
-            'field' => 'latest',
-            'sort' => 'desc',
           ],
         ];
       }
@@ -114,22 +119,25 @@ THe first thing we need to do is create a subclass of WebformEntityListBuilder. 
        *   Either a formatted date, or the translated string "No submission".
        */
       public function lastSubmission(EntityInterface $entity) : string {
-        $query = $this->submissionStorage
-          ->getQuery()
-          ->accessCheck(TRUE)
-          ->condition('webform_id', 'contact')
-          ->sort('completed', 'DESC')
-          ->range(0,1);
-
-        $results = $query->execute();
-
-        if ($row = array_pop($results)) {
-          $submission = WebformSubmission::load(intval($row));
-          return $this->dateFormatter->format($submission->completed->value);
+        if ($entity->isResultsDisabled()) {
+          return $this->t('Results disabled (external)');
         }
         else {
-          return $this->t('No submission');
+          $query = $this->submissionStorage
+            ->getQuery()
+            ->accessCheck(TRUE)
+            ->condition('webform_id', $entity->id())
+            ->sort('completed', 'DESC')
+            ->range(0, 1);
+
+          $results = $query->execute();
+
+          if ($row = array_pop($results)) {
+            $submission = WebformSubmission::load(intval($row));
+            return $this->dateFormatter->format($submission->completed->value);
+          }
         }
+        return $this->t('No submission');
       }
 
     }
@@ -152,5 +160,9 @@ According to [this DrupalAnswers thread](https://drupal.stackexchange.com/a/1928
     }
 
 You will now see the latest submission in a brand new column in the list of webforms.
+
+### Next steps: sorting
+
+I still cannot figure out how to sort the webforms by their last submission date. If anyone manages to do that, leave a comment in the comments thread.
 
 Happy coding!
