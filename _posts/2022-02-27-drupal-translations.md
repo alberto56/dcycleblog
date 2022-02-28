@@ -44,7 +44,7 @@ They can also be done in JavaScript, like this:
 Finally you can translate strings directly in twig template files, like this:
 
     ...
-    <div>{{ "Hello World" | trans }}</div>
+    <div>{{"{{"}} "Hello World" | trans {{"}}"}}</div>
     ...
 
 ### Starting from be beginning
