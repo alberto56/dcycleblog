@@ -158,8 +158,8 @@ Let's visit our dashboard
 
 If you have correctly created your my_custom_module, above, you will be able to log in as user, visit /my-dashboard, and see the following:
 
-> Welcome to your Dashboard
-> Go to admin
+> Welcome to your Dashboard<br/>
+> Go to admin<br/>
 > This page was generated on Sun Feb 27 2022 23:11:08 GMT-0500 (EST)
 
 This dashboard is useless, except in that it demonstrates how to translate strings in three different ways.
