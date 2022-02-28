@@ -12,7 +12,7 @@ redirect_from:
   - /node/2022-02-27/
 ---
 
-So you find yourself, as one does, building a complete user interface with PHP and Javascript buildings for Drupal 9; and you'd like to delegate the translation of the front-end to a non-developer. (You want the client to be empowered to change the UI strings in English or any other language; do _don't_ want to be a bottleneck for string translations).
+So you find yourself, as one does, building a complete user interface with PHP and Javascript buildings for Drupal 9; and you'd like to delegate the translation of the front-end to a non-developer. (You want the client to be empowered to change the UI strings in English or any other language; you _don't_ want to be a bottleneck for string translations).
 
 ### Three types of translations
 
