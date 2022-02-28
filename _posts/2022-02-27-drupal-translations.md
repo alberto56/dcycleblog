@@ -12,7 +12,7 @@ redirect_from:
   - /node/2022-02-27/
 ---
 
-So you find yourself, as one does, building a complete user interface with PHP and Javascript buildings for Drupal 9; and you'd like to delegate the translation of the front-end to a non-developer. (You want the client to be empowered to change the UI strings in English or any other language; you _don't_ want to be a bottleneck for string translations).
+So you find yourself, as one does, building a complete user interface with PHP and Javascript for Drupal 9; and you'd like to delegate the translation of the front-end to a non-developer. (You want the client to be empowered to change the UI strings in English or any other language; you _don't_ want to be a bottleneck for string translations).
 
 ### Three types of translations
 
@@ -47,7 +47,7 @@ Finally you can translate strings directly in twig template files, like this:
     <div>{{"{{"}} "Hello World" | trans {{"}}"}}</div>
     ...
 
-### Starting from be beginning
+### Starting from the beginning
 
 Let's take a concrete example: we will provide code for a very simple application which shows a pseudo-dashboard.
 
@@ -86,10 +86,10 @@ If you start with a standard Drupal installation, and an empty module named `my_
 
 ./templates/dashboard.html.twig
 
-    {{ attach_library('my_custom_module/current_time') }}
-    <h3>{{ "Welcome to your Dashboard" | trans }}<h3>
+    {{"{{"}} attach_library('my_custom_module/current_time') {{"}}"}}
+    <h3>{{"{{"}} "Welcome to your Dashboard" | trans {{"}}"}}<h3>
     <div>
-      <div>{{ admin_page_link }}</div>
+      <div>{{"{{"}} admin_page_link {{"}}"}}</div>
       <div class="current-time"></div>
     </div>
 
@@ -162,7 +162,7 @@ If you have correctly created your my_custom_module, above, you will be able to 
 > Go to admin<br/>
 > This page was generated on Sun Feb 27 2022 23:11:08 GMT-0500 (EST)
 
-This dashboard is useless, except in that it demonstrates how to translate strings in three different ways.
+This dashboard is useless, except in that it demonstrates how to provide translatable strings in PHP, Javascript, and Twig. The point is to show that regardless how you code your translatable strings (PHP, Javascript, or Twig), your string can be translated and overridden in the administrative Drupal interface.
 
 Translating our strings to French
 -----
@@ -194,7 +194,7 @@ You will now see the dashboard in both French and English.
 Overriding English strings
 -----
 
-It can be inefficient to modify code every time an English string is modified. So we can also "translate" English strings to English. Let's say you don't like the base strings, you can translate them, in English, to:
+It can be inefficient to modify the underlying English strings in code every time an English string is modified. So we can also "translate" English strings to English. Let's say you don't like the base strings, you can translate them, in English, to:
 
 * Welcome to your great Dashboard
 * Go to the admin page
@@ -211,7 +211,7 @@ Empowering non-developers to translate strings: a time-saver
 
 I have found that most clients will send unversioned Excel files or (ugh!) Word documents with string modification or translation requests. Dealing with these is time-consuming for developers, and expensive for clients.
 
-After a 30-minute traning on how to translate strings, perhaps shortcuts (links on a wiki page, perhaps) to the string-translation pages, clients are empowered to do their own translation, and developers are not distracted.
+After a 30-minute traning on how to translate strings, with hyperlinks to the string-translation pages on a wiki perhaps, clients are empowered to do their own translation, and developers are not distracted.
 
 An added bonus of string overrides is that you can write your end-to-end tests based on unchanging strings, [for example here we are asserting that the string "Log In" is on the /user page](https://github.com/dcycle/starterkit-drupal8site/blob/9/tests/browser-tests/testLogInAndEdit.js), regardless of whether your site-editors decide to change, say, "Log In" to "Log in" (with a lower-case i) or whatever else.
 
