@@ -45,9 +45,9 @@ Our second file will be `index.php`:
 
     <?php
 
-    print('<html><body><h2>It works!</h2></body></html>');
+    print('<html><body><h2>This page was genrated on ' . date('Y-m-d H:i:s') . '</h2></body></html>');
 
-Run build this:
+Let's build this and start the containers:
 
     docker-compose up -d --build
 
@@ -58,9 +58,9 @@ Now when you visit http://0.0.0.0:8888, you should see something like:
 How to make this a two-container solution
 -----
 
-First, I'd like to thank all the users who posted answers to [Alpine variants of PHP and Apache/httpd in Docker on Stack Overflow](https://stackoverflow.com/questions/41303775/alpine-variants-of-php-and-apache-httpd-in-docker/41306316#41306316), who pointed me in the right direction for this example.
+First, I'd like to thank all the users who posted answers to [Alpine variants of PHP and Apache/httpd in Docker on Stack Overflow](https://stackoverflow.com/questions/41303775/alpine-variants-of-php-and-apache-httpd-in-docker/41306316#41306316), who pointed me in the right direction for this example. Most of the code is lifted directly from the article "Containerize This! How to use PHP, Apache, MySQL within Docker containers", linked in the Resources section at the end of this post.
 
-Let's start by setting it up, and we'll look at how it works after. A lot of this comes from the article "Containerize This! How to use PHP, Apache, MySQL within Docker containers" (see Resources section at the end of this post).
+Let's start by setting it up, and we'll look at how it works after.
 
 First, we need to create a conf file for Apache, in ./php.apache.conf:
 
@@ -115,7 +115,7 @@ Finally, let's rewrite our docker-compose.yml file:
 
 Let's test it:
 
-    docker-compose down -v
+    docker-compose up -d --build
 
 Now when you visit, once again, http://0.0.0.0:8888, you should, again, see something like:
 
