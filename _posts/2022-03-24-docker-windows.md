@@ -11,9 +11,12 @@ redirect_from:
   - /node/2022-03-24/
 ---
 
-Here is how to use Docker Desktop for Windows. This has been tested on a Windows 10 HP EliteBook with 16 Gb or RAM. (I have found that on machines with less RAM certain errors can occur when dealing with multiple containers.)
+Here is how to use Docker Desktop for Windows. This has been tested on a Windows 10 Pro (Supposedly if you're using Windows 10 Home, you're out of luck) HP EliteBook with 16 Gb or RAM. (I have found that on machines with less RAM certain errors can occur when dealing with multiple containers.)
 
-If you have installed Docker Desktop for macOS or for Linux, note that installing it for Windows has manu more steps, so you'll want to set aside at least an hour to get it up and running. You will need to fiddle with the heart of your computer and undergo numerous restarts. Have coffee handy.
+If you have installed Docker Desktop for macOS or for Linux, note that installing it for Windows has many, _many_ more steps, so you'll want to set aside at least an hour to get it up and running. You will need to fiddle with the heart of your computer and undergo numerous restarts. Have coffee handy, as well as sweets.
+
+Let's get started
+-----
 
 Download the Docker Desktop Installer.exe from https://docs.docker.com/desktop/windows/install/
 
@@ -31,20 +34,18 @@ The installation can take several minutes, and you will have to restart your com
 Make changes in the BIOS
 -----
 
-You will need to make sure "Hardward assisted virtualization" and "data execution prevention"  are enabled in the BIOS.
+You will need to make sure "Hardward assisted virtualization" and "data execution prevention" (which I've also seen referred to as "data execution protection", which I think is a mistake but what do I know) are enabled in the BIOS, here is how:
 
 **Restart your computer** and **immediately press the DEL or "delete" key, leaving it pressed until you get a menu on your screen, including an option for BIOS Setup**. (The Delete key is not the backspace key, on an HP laptop is it at the upper-right of the keyboard.)
 
-Enter BIOS Setup (can be by pressing F10), then find "Virtualization Technology (VTx)" (on my laptop this is in Advanced Settings, then Device Configuration.
+Enter BIOS Setup (can be by pressing F10), then find "Virtualization Technology (VTx)" and "data execution prevention" (on my laptop this is in Advanced Settings, then Device Configuration) and enable them.
 
 Exit the BIOS config tool, save, and your computer will restart.
 
 Install the WSL 2 Linux Kernel
 -----
 
-Go to https://aka.ms/wsl2kernel
-
-This should redirect to a Microsoft site where you can download the WSL2 Linux Kernel Update Package for x64 machines.
+Go to https://aka.ms/wsl2kernel, which should redirect to a Microsoft site where you can download the WSL2 Linux Kernel Update Package for x64 machines.
 
 Execute the file which runs you through an installation wizard, answer Yes to all questions.
 
@@ -53,15 +54,13 @@ Restart your computer.
 Setting up your computer to use Docker
 -----
 
-Before launching Docker, make sure Hardware assisted virtualization and data execution protection is enabled in the BIOS. Not to worry, I'll tell you how.
-
-In the Start menu, find "Control Panel", then "programs", and "Programs and features", then, in the sidebar, "Turn Windows features on or off".
+Once your computer is restarted (again), in the Start menu, find "Control Panel", then "programs", and "Programs and features", then, in the sidebar, "Turn Windows features on or off".
 
 Make sure the following are checked:
 
 * Virtual Machine Platform
 * Windows Subsystem for Linux
-* Hyper-V
+* Hyper-V and its two children
 
 Then save.
 
@@ -70,9 +69,11 @@ You're now ready to start Docker
 
 You probably already know this won't work, so you'll need to brush off your Googling skills because you'll need to do a deep dive in Reddit threads and StackOverflow questions.
 
-But maybe this is your lucky day:
+But maybe this is your lucky day (lucky days do exist you know):
 
 **Launch the Docker App**
+
+I will assume you got no errors.
 
 Running your first Docker container
 -----
@@ -85,7 +86,7 @@ It should say:
 
     Unable to find image 'docker/getting-started'
 
-The word "Unable" might throw you off, but this actually means everything is working perfectly!
+The word "Unable" might throw you off, but this actually means everything is working perfectly (I actually [opened a ticket to request that this wording be changed, because of the number of people telling me "Docker deosn't work" because they misinterpreted the word "Unable"](https://github.com/moby/moby/issues/42283))!
 
 You might then get a "Windows Security Alert", and you'll need to allow access.
 
@@ -121,6 +122,17 @@ There's lots more to learn about Docker, which is out of scope for this article,
 
     docker run --rm msoap/ascii-art cowsay 'Happy Coding, Cowperson'
 
+Which will display a cow:
+
+    _________________________
+    < Happy Coding, Cowperson >
+    -------------------------
+           \   ^__^
+            \  (oo)\_______
+               (__)\       )\/\
+                   ||----w |
+                   ||     ||
+
 Troubleshooting
 -----
 
@@ -136,3 +148,4 @@ Resources
 -----
 
 * [Hyper-V Virtualisation Disabled in Firmware, SuperUser, answer by Augustus Francis, edited by Glorfindel](https://superuser.com/a/648237)
+* [Docker for Windows error: "Hardware assisted virtualization and data execution protection must be enabled in the BIOS", answer by Silverstorm](https://stackoverflow.com/a/39989990/1207752)
