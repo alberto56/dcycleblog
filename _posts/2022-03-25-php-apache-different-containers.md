@@ -136,6 +136,8 @@ This is how our Apache container will get the result from the PHP container even
 
 The second part of the magic happens in the php.apache.conf file, which directs Apache to fetch the result from an upstread server php at port 9000.
 
+Finally, thanks to [cytopia](https://stackoverflow.com/a/40449377/1207752) for cluing me into the necessety for the source files to be accessible as a volume on both PHP and Apache.
+
 The advantages of multiple containers
 -----
 
