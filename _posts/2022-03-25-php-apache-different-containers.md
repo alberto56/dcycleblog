@@ -111,7 +111,7 @@ Finally, let's rewrite our docker-compose.yml file:
         volumes:
           - ".:/var/www/html"
         ports:
-          - "8889:80"
+          - "8888:80"
 
 Let's test it:
 
