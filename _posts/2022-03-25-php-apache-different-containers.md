@@ -151,7 +151,7 @@ The advantages of multiple containers
 
 A different container for each process is really the Docker way, and allows for easier maintenance.
 
-In addition, it gives us more leeway in selecting which server we want: swapping out Apache for Nginx, for instance, is easier if it's completely separate from our PHP container.
+In addition, it gives us more leeway in selecting which webserver we want: swapping out Apache for Nginx, for instance, is easier if it's completely separate from our PHP container.
 
 Finally, it allows us to use Alpine images, hence reducing the compressed size of required resources:
 
