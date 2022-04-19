@@ -12,9 +12,9 @@ redirect_from:
   - /node/2022-04-19/
 ---
 
-When allowing users to input phone numbers in Drupal, you might want to make sure that they actually have access to phone number they are using, rather than being allowed to input any random phone number.
+When allowing users to input phone numbers in Drupal, you might want to make sure that they actually have access to the phone number they are using, rather than being allowed to input any random phone number.
 
-In practice, when a user claims to have access to a phone number, we want to design a system that sends a one-time code to the user by SMS, and for the user to enter that code on our site, telling us that the user's phone number has been verified as belonging to them.
+In practice, when a user claims to have access to a phone number, we want to design a system that sends a one-time code to the user by SMS, and for the user to enter that code on our site, telling us that the user's phone number has been verified as belonging to them (or, rather, that they have access to incoming SMS messages).
 
 In this article we will choose an SMS provider, introduce a series of modules which allow phone number verification, and make sure we store our provider API keys in a relatively secure way.
 
@@ -59,7 +59,7 @@ In this example we will add a Phone Number field to user profile pages; this can
 
 In the field settings page, you can check "Yes, only verified numbers" in the "Unique" section, then click "Save field settings".
 
-In the following pae, you can select "Required" in the "Verification" section.
+In the following page, you can select "Required" in the "Verification" section.
 
 Finally click "Save settings".
 
@@ -68,7 +68,7 @@ SMS gateway configuration
 
 We now need to tell Mobile Number to use the SMS gateway (and in our example Twilio) to send SMS messages to phone numbers.
 
-Visit `/admin/config/smsframework/gateways/add` and select the gateway "Twilio". Name it "My Gateway" (the name is important for a further step), then save. New fields will appear allowing you to enter API information from Twilio. I recommend not entering the information here because then it will be in your database, and can potentially be compromised. In the "Account SID", "Auth token" and "From number" fields, you can enter "See unversioned settings.php".
+Visit `/admin/config/smsframework/gateways/add` and select the gateway "Twilio". Name it "My Gateway" (**the name is important for the "Securing Twilio API information" step, below**), then save. New fields will appear allowing you to enter API information from Twilio. **I recommend not entering the information here for security purposes.** In the "Account SID", "Auth token" and "From number" fields, you can enter "See unversioned settings.php".
 
 Save your settings.
 
