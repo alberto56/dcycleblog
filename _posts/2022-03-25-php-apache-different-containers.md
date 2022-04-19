@@ -111,7 +111,7 @@ Finally, let's rewrite our docker-compose.yml file:
         volumes:
           - ".:/var/www/html"
         ports:
-          - "8889:80"
+          - "8888:80"
 
 Let's test it:
 
@@ -136,16 +136,26 @@ This is how our Apache container will get the result from the PHP container even
 
 The second part of the magic happens in the php.apache.conf file, which directs Apache to fetch the result from an upstread server php at port 9000.
 
+Finally, thanks to [cytopia](https://stackoverflow.com/a/40449377/1207752) for cluing me into the necessety for the source files to be accessible as a volume on both PHP and Apache.
+
+What about Nginx?
+-----
+
+I tested [an answer by Rafael Quintela, edited by Potherca, to the StackOverflow question "How to correctly link php-fpm and Nginx Docker containers?"](https://stackoverflow.com/questions/29905953/how-to-correctly-link-php-fpm-and-nginx-docker-containers), which works perfectly. I won't reproduce it here, but I did make a few minor adjustments:
+
+* I used the alpine tags because they're much smaller in size, which makes me happy;
+* You don't need to expose port 9000 in docker-compose.yml, as user Seer pointed out in the comments.
+
 The advantages of multiple containers
 -----
 
 A different container for each process is really the Docker way, and allows for easier maintenance.
 
-In addition, it gives us more leeway in selecting which server we want: swapping out Apache for Nginx, for instance, is easier if it's completely separate from our PHP container.
+In addition, it gives us more leeway in selecting which webserver we want: swapping out Apache for Nginx, for instance, is easier if it's completely separate from our PHP container.
 
 Finally, it allows us to use Alpine images, hence reducing the compressed size of required resources:
 
-Recall that our `php:apache-buster` image was 131.16 MB; `httpd:alpine` and `php:fpm-alpine`, taken together, are 42.94 MB for the `linux/arm64/v8` architecture, a 67% decrease in compressed size.
+Recall that our `php:apache-buster` image was 131.16 MB; `httpd:alpine` and `php:fpm-alpine`, taken together, are 42.94 MB for the `linux/arm64/v8` architecture, a 67% decrease in compressed size. If you're using Nginx instead of Apache, the size is even smaller, at a combined 36.72 MB, a 72% size decrease over our first example in this post.
 
 Resources
 -----
