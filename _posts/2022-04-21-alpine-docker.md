@@ -15,9 +15,9 @@ Working with a new M1-powered MacBook has had a big effect on my Docker workflow
 
 On the one hand, containers properly configured for the ARM achitecture, used by M1, are very fast, as discussed in [Docker PHP on the M1 chip, example with Static Analysis on Drupal: 9 times faster, on November 17, 2021](https://blog.dcycle.com/blog/2021-11-17/m1-docker-php-speed-test/).
 
-On the other hand, I've consistently gotten very ugly errors when using Docker buildx to try to make multi-platform images, both using PHP and Node. One such error is described in [Warning: 'ldconfig' not found in PATH or not executable](https://github.com/dcycle/docker-drupal/issues/21) -- like I said, very, very ugly and not fun to debug.
+On the other hand, I've often gotten very ugly errors when using Docker buildx to try to make multi-platform images, both using PHP and Node. One such error is described in [Warning: 'ldconfig' not found in PATH or not executable](https://github.com/dcycle/docker-drupal/issues/21) -- like I said, very, very ugly and not fun to debug.
 
-I have found that moving from Debian to Alpine-base images has done away with these weird errors completely, which having an agreeable side-effect: vastly smaller images.
+I have found that moving from Debian to Alpine-base images has done away with these weird errors completely, while having an agreeable side-effect: vastly smaller images.
 
 We'll look at smaller images in second, but first, some issues I've encountered with Alpine...
 
@@ -34,23 +34,12 @@ I touch more on this subject in the article [PHP and Apache (or Nginx) in separa
 
 When I moved one of my projects, the [Dcycle Drupal Starterkit](https://github.com/dcycle/starterkit-drupalsite), to Alpine, I applied this separation into distinct containers with good results. [Here is docker-compose.yml files which demonstrates that](https://github.com/dcycle/starterkit-drupalsite/blob/master/docker-compose.yml).
 
-Alpine sometimes requires going through some hoops
------
-
-Here is an example with an image I maintain, which [runs end-to-end tests agains a headless browser](https://github.com/dcycle/docker-browsertesting). When moving this image to Alpine, I came across the fact that [Puppeteer](https://github.com/puppeteer/puppeteer) headless browser controller expends to be an an AMD architecture.
-
-After perusing a number of resources [including this issue](https://github.com/puppeteer/puppeteer/issues/7740), it turns out to be not very intuitive to move to ARM.
-
-These are the kinds of hoops one needs to go through to move from Debian to Alpine.
-
-If you're curious, [Here is the Diff in which the move was made](https://github.com/dcycle/docker-browsertesting/commit/d5de182e409ded1ad81a943d93d10de6fb478bf4).
-
 Alpine over Debian: vastly smaller size
 -----
 
 Big image sizes is not just a nuisance, and reducing the size of the Docker images increases the speed of every step of your pipeline, from development to continuous integration to testing to building. Furthermore, any time a developer finds themselves using a slow internet connection, having smaller-sized images can make the difference between working, and waiting.
 
-Let's look at tags [3](https://hub.docker.com/r/dcycle/browsertesting/tags?page=1&name=3) and [4](https://hub.docker.com/r/dcycle/browsertesting/tags?page=1&name=4) of dcycle/docker-browsertesting, the project I mentioned above.
+Let's look at tags [3](https://hub.docker.com/r/dcycle/browsertesting/tags?page=1&name=3) and [4](https://hub.docker.com/r/dcycle/browsertesting/tags?page=1&name=4) of an image I maintain, which [runs end-to-end tests agains a headless browser](https://github.com/dcycle/docker-browsertesting).
 
 At the time of this writing:
 
