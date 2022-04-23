@@ -69,11 +69,11 @@ Toolbar icon machine names
 
 Now the question is, how do we know that if we want the "Table" icon, its machine name is "table" (as opposed to, say, "wikitable" or something else)?
 
-It turns out that there does not seem to be a centralized list of machine names-to-icons; and finding out the machine name to use for your desired result requires a combination of internet sleuthing and a deep-dive into the source code [the TinyMCE page](https://www.mediawiki.org/wiki/Extension:TinyMCE).
+It turns out that there does not seem to be a centralized list of machine names-to-icons; and finding out the machine name to use for your desired result requires a combination of internet sleuthing and a deep-dive into the source code of [the TinyMCE page](https://www.mediawiki.org/wiki/Extension:TinyMCE).
 
 For example, on the Mediawiki page [Customize toolbar icons, Mediawiki.org, last updated April 21, 2021](https://www.mediawiki.org/wiki/Topic:W76akrulq9pkf5te), we see a list of machine names for icons:
 
-    undo redo | cut copy paste insert selectall | fontselect fontsizeselect bold italic underline strikethrough subscript superscript forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist advlist outdent indent | wikilink wikiunlink table image media | formatselect removeformat| visualchars visualblocks| searchreplace | wikimagic wikisourcecode wikitext wikiupload | wikitoggle nonbreaking singlelinebreak reference comment template
+> undo redo | cut copy paste insert selectall | fontselect fontsizeselect bold italic underline strikethrough subscript superscript forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist advlist outdent indent | wikilink wikiunlink table image media | formatselect removeformat| visualchars visualblocks| searchreplace | wikimagic wikisourcecode wikitext wikiupload | wikitoggle nonbreaking singlelinebreak reference comment template
 
 That's all fine and good, but what if the tool you are looking for is not there? For example, on [the TinyMCE page](https://www.mediawiki.org/wiki/Extension:TinyMCE), it says, at the time of this writing, that there is a tool allowing entering a citation or footnote with this icon:
 
