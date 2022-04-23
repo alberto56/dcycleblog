@@ -11,7 +11,7 @@ redirect_from:
   - /node/2022-04-22/
 ---
 
-In this post we will look at how to customize the TinyMCE toolbar for Mediawiki, by adding tool icons such as "citation".
+In this post we will look at how to customize the TinyMCE toolbar for Mediawiki, by making custom toolsets, and we will look at the challenge of figuring out machine names of tools you would like to use.
 
 To follow along, if you have Docker installed, you can use the [Dcycle Mediawiki Starterkit](https://github.com/dcycle/starterkit-mediawiki). You can also fork the project if you want to use it as a basis for your own project.
 
@@ -34,7 +34,7 @@ Let's start by installing TinyMCE with its default configuration. This requires 
 * Installing TinyMCE in Mediawiki's configuration
 * Rebuild and restart the containers
 
-Dcycle Mediawiki Starterkit has commented-out in [./docker-resources/load-extensions.sh](https://github.com/dcycle/starterkit-mediawiki/blob/master/docker-resources/load-extensions.sh) and [./docker-resources/load-extensions.php](https://github.com/dcycle/starterkit-mediawiki/blob/master/docker-resources/load-extensions.php) to help you. Uncomment that code in your installation, and restart the containers by running, once again:
+Dcycle Mediawiki Starterkit has commented-out code in [./docker-resources/load-extensions.sh](https://github.com/dcycle/starterkit-mediawiki/blob/master/docker-resources/load-extensions.sh) and [./docker-resources/load-extensions.php](https://github.com/dcycle/starterkit-mediawiki/blob/master/docker-resources/load-extensions.php) to help you. Uncomment that code in your installation, and restart the containers by running, once again:
 
     ./scripts/deploy.sh
 
@@ -45,7 +45,7 @@ Customizing TinyMCE toolbar
 
 The toolbar can be configured in ./docker-resources/load-extensions.php
 
-Let's start by adding the following code to make a very minimalist version of the Wysiwyg with only "undo", "redo", and, in a separate section (the section change is denoted by the "pipe" character or "|"), "table":
+Let's start by adding the following code to make a very minimalist version of the Wysiwyg with only "undo", "redo", and, in a separate section (the section change is denoted by the "pipe" character or "\|"), "table":
 
     $wgTinyMCESettings = [
       "#wpTextbox1" => [
