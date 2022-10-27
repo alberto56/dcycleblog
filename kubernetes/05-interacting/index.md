@@ -48,7 +48,7 @@ You should see somethng like (but not exactly):
               minikube                      minikube                      minikube
               do-nyc1-kubernetes-tutorial   do-nyc1-kubernetes-tutorial   do-nyc1-kubernetes-tutorial-admin
 
-You might be seeing `docker-for-desktop`, `minikube`, as well our `kubernetes-tutorial` context, which is this case is prefixed with "do-nyc1" for "digital ocean New York datacenter".
+You might be seeing `docker-for-desktop`, `minikube`, as well our `kubernetes-tutorial` context, which in this case is prefixed with "do-nyc1" for "digital ocean New York datacenter".
 
 Select the appropriate context, in my case this can be done by typing:
 
