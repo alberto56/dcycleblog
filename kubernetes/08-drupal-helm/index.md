@@ -52,7 +52,7 @@ Let's take a look at our **services**:
 First things first
 -----
 
-Let's not get too excited just yet. I just wanted to show you a Drupal site so you'd keep reading instead of falling asleep. However, our site is not set in a way that's optimal for our needs:
+Let's not get too excited just yet. I just wanted to show you a Drupal site so you'd keep reading. However, our site is not set in a way that's optimal for our needs:
 
 * It exposes itself to the outside world via a _LoadBalancer_ instead of _ClusterIP_. This is great if you want to quickly look at a site, but in our case we don't want to access our site directly; rather we'll use a reverse proxy to manage LetsEncrypt. Plus, each LoadBalancer is tied to our cloud provider DigitalOcean charges you $10 a month per LoadBalancer.
 * It sets up two 8Gb persistent volumes to store data outside of Kubernetes, you can see these by typing `kubectl get pvc`. These are charged at $0.10 a month by Gb, for a total of $1.60 a month.
