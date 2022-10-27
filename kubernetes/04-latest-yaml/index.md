@@ -12,7 +12,7 @@ Now, any time you want to get a local copy of the YAML file necessary to interac
     export DOCLUSTERNAME=kubernetes-tutorial
     ./scripts/get-digitalocean-yaml-file.sh
 
-All DigitalOcean Kubernetes clusters need a YAML file to interact when them, and we'll store these YAML files in the `$HOME/.kube` folder. Every week or so, these files will become outdated and no longer usable, you all you need to do is rerun the above commands which will overwrite the old YAML file and replace it with a fresh one.
+All DigitalOcean Kubernetes clusters need a YAML file to interact when them, and we'll store these YAML files in the `$HOME/.kube` folder. Every week or so, these files will become outdated and no longer usable; all you need to do is rerun the above commands which will overwrite the old YAML file and replace it with a fresh one.
 
 If you want to see what the YAML file looks like, you can run:
 
