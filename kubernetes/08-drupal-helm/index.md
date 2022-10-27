@@ -65,7 +65,7 @@ Let's, therefore, delete our first site before moving on:
 
     helm delete my-first-vanilla-drupal
 
-You might have a volume (or, rather a PVC -- persistent volume claim -- see the glossary) lying around which was not deleted (and thus keeps incurring charges), you can delete it like this:
+You might have a volume (or, rather a PVC -- persistent volume claim -- see the [glossary](https://blog.dcycle.com/kubernetes/glossary/)) lying around which was not deleted (and thus keeps incurring charges), you can delete it like this:
 
     kubectl get pvc
     # NAME
