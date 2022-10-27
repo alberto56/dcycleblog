@@ -9,7 +9,7 @@ next: /kubernetes/12-customize-helm-template
 
 Recall that one of our success criteria from the beginning of this article is set-it-and-forget-it Let's Encrypt HTTPS encryption for all our domains. The goal here is to automatically generate, and renew, encryption certificates, for our domains, with zero manual steps.
 
-We will use the [cert-manager](https://hub.kubeapps.com/charts/stable/cert-manager) as in [this script](https://github.com/dcycle/dcycle-kube-helper/blob/master/scripts/install-cert-manager.sh)
+We will use the [cert-manager](https://cert-manager.io/docs/getting-started/) as in [this script](https://github.com/dcycle/dcycle-kube-helper/blob/master/scripts/install-cert-manager.sh)
 
     ./scripts/install-cert-manager.sh
 
