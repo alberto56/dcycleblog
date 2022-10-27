@@ -11,7 +11,7 @@ We don't want every one of applications (Drupal, but also eventually others) to 
 
 Following the principle of separation of concerns, we don't want to install LetsEncrypt, and manage domains and virtual hosts, for each application. Rather, we will put in place a **traffic cop** which will manage HTTPS encryption and, based on the requested domain and path, load up the application we want.
 
-Kubernetes uses the term **ingress** to refer to a pathway from the outside world to the cluster. (If you did not understand this sentence, refer to the glossary!)
+Kubernetes uses the term **ingress** to refer to a pathway from the outside world to the cluster. (If you did not understand this sentence, refer to [the glossary](https://blog.dcycle.com/kubernetes/glossary/)!)
 
 We will use Nginx to act as our traffic cop, also called **reverse proxy**, which means that it stands between the outside world and our applications. (A _proxy_ is something else entirely, it is the opposite of a _reverse proxy_.)
 
