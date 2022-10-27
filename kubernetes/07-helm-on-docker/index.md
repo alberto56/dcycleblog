@@ -30,9 +30,4 @@ To avoid typing this in every time we need helm, we can add the following **alia
     helm version
     # version.BuildInfo{Version:"v3.1.1", GitCommit:"afe70585407b420d0097d07b21c47dc511525ac8", GitTreeState:"clean", GoVersion:"go1.13.8"}
 
-We can also run [this script](https://github.com/dcycle/dcycle-kube-helper/blob/master/scripts/helm.sh):
-
-    ./scripts/helm.sh version
-    version.BuildInfo{Version:"v3.1.2", GitCommit:"d878d4d45863e42fd5cff6743294a11d28a9abce", GitTreeState:"clean", GoVersion:"go1.13.8"}
-
 Your version may differ, but make sure it's 3 or above.
