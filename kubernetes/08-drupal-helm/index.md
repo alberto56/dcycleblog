@@ -11,8 +11,6 @@ Our initial setup is complete, time to install our first Drupal site on Kubernet
 
 We will not actually create a fully-functional customized Drupal site, but rather use a community chart, just wake us up slightly.
 
-**If you have decided to use [./scripts/helm.sh](https://github.com/dcycle/dcycle-kube-helper/blob/master/scripts/helm.sh) instead of creating an alias for helm in your .bash_profile, substitute "helm" for "./scripts/helm.sh" in the following examples and for the rest of this tutorial.**
-
     helm repo add bitnami https://charts.bitnami.com/bitnami
     # "stable" has been added to your repositories
     helm upgrade --install my-first-vanilla-drupal bitnami/drupal
