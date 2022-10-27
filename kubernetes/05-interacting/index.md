@@ -18,7 +18,7 @@ We still need to tell `kubectl` that this file exists. This is done using an env
     export KUBECONFIG=~/.kube/config:~/.kube/kubernetes-helper-kubernetes-tutorial.yml
     export KUBECONFIGONDOCKER=/root/.kube/config:/root/.kube/kubernetes-helper-kubernetes-tutorial.yml
 
-The KUBECONFIG environment variable will be used by our `kubectl`. The KUBECONFIGONDOCKER environment is identical, but assumes that our YAML files are in the .kube directory of the root user, which is the case if we run commands on Docker containers which require access to our YAML files. We'll see a concrete example later on with Helm.
+The KUBECONFIG environment variable will be used by our `kubectl`. The KUBECONFIGONDOCKER environment is identical, but assumes that our YAML files are in the .kube directory of the root user, which is the case if we run commands on Docker containers which require access to our YAML files. We'll see a concrete example later on.
 
 In the future, if you have several Kubernetes clusters, each will have their own yaml file and the above line might look something like:
 
