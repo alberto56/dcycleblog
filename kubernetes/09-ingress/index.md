@@ -18,15 +18,12 @@ We will use Nginx to act as our traffic cop, also called **reverse proxy**, whic
 Installing a traffic cop
 -----
 
-Lucky for us, the Nginx ingress is just another helm chart.
-First, let's make sure that the `stable` chart repo is available:
+Lucky for us, the Nginx ingress is just another helm chart, as described in [the Kubernetes NGINX Ingress Controller installation guide](https://kubernetes.github.io/ingress-nginx/deploy/):
 
-    helm repo add stable https://charts.helm.sh/stable
-
-Let's call it "traffic-cop":
-
-    helm upgrade --install traffic-cop stable/nginx-ingress
-
+    helm upgrade --install traffic-cop ingress-nginx \
+      --repo https://kubernetes.github.io/ingress-nginx \
+      --namespace ingress-nginx --create-namespace
+  
 After a few seconds you'll see a bunch of output which we can ignore for now.
 
 Now we can find out the public IP of the reverse proxy **service** (in Kubernetes, a **service** is basically a running application):
