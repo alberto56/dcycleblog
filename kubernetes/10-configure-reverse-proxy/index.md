@@ -22,4 +22,4 @@ It will tell you that it can take up to 48 hours to propagate; in my experience 
     curl world.example.com
     # default backend - 404
 
-(We'll make sure they load up the correct applicatins later on in the article.)
+(We'll make sure they load up the correct applications later on in the article.)
