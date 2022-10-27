@@ -49,6 +49,8 @@ Let's take a look at our **services**:
 
 **Services** define your application as an abstraction layer: underlying resources (storage, computing power) may die or change; your service will always be available. In the above example, we have created a database service, and a Drupal service (the Drupal codebase along with a webserver). The external IP of the LoadBalancer service is how we'll access Drupal. In the above example, the external IP is `<pending>`; rerun `kubectl get services` until you see an external IP for the LoadBalancer service. When I tried this I got `138.197.224.150`, so **after waiting five minutes for things to warm up**, when I used a browser to visit http://138.197.224.150, I saw an actual running Drupal site. Yay! If after fifteen minutes you're still not seeing a Drupal site, you might have a problem; if you see your Drupal site, let's move on!
 
+If you are not seeing a Drupal site here, it might be useful to visit the DigitalOcean Kubernetes dashboard to see if all your resources have deployed successfully. Adding resources (nodes) to your Kubernetes cluster via the DigitalOcean website might be helpful here.
+
 First things first
 -----
 
