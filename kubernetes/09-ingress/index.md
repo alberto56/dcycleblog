@@ -21,20 +21,19 @@ Installing a traffic cop
 Lucky for us, the Nginx ingress is just another helm chart, as described in [the Kubernetes NGINX Ingress Controller installation guide](https://kubernetes.github.io/ingress-nginx/deploy/):
 
     helm upgrade --install traffic-cop ingress-nginx \
-      --repo https://kubernetes.github.io/ingress-nginx \
-      --namespace ingress-nginx --create-namespace
+      --repo https://kubernetes.github.io/ingress-nginx
   
 After a few seconds you'll see a bunch of output which we can ignore for now.
 
 Now we can find out the public IP of the reverse proxy **service** (in Kubernetes, a **service** is basically a running application):
 
-    kubectl get services --namespace ingress-nginx | grep traffic-cop
+    kubectl get services | grep traffic-cop
     # traffic-cop-nginx-ingress-controller        LoadBalancer   10.245.137.97    <pending>         80:32524/TCP,443:30090/TCP   55s
     # traffic-cop-nginx-ingress-default-backend   ClusterIP      10.245.189.153   <none>            80/TCP                       55s
 
 We're looking for the public IP of our service. In the above output, the public IP is still `<pending>`. After a minute or so the public IP should be assigned, so run kubectl again until you see it. For example:
 
-    kubectl get services --namespace ingress-nginx | grep traffic-cop
+    kubectl get services | grep traffic-cop
     # traffic-cop-nginx-ingress-controller        LoadBalancer   10.245.137.97    167.172.10.117     80:32524/TCP,443:30090/TCP   1m
     # traffic-cop-nginx-ingress-default-backend   ClusterIP      10.245.189.153   <none>            80/TCP                       1m
 
