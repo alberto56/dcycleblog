@@ -17,6 +17,10 @@ Try the following commands to make sure everything is set up:
     docker-compose -v
     kubectl version
 
+If `kubectl version` gives you a segmentation fault, you can run kubectl from a docker image instead:
+
+    docker run --rm bitnami/kubectl version
+
 The output should look something like this, although the version numbers may differ:
 
     $ docker -v
