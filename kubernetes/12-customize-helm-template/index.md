@@ -30,7 +30,7 @@ and two instances of:
 
 If we were managing all these YAML files directly, we would just modify them. But, because we like to keep things complicated, we'll need to understand how these files are generated and modify, instead, the Helm configuration used to generate these files. For that we need to look at the Helm chart itself [which is on Github](https://github.com/bitnami/charts/tree/master/bitnami/drupal). Look, specifically, at:
 
-* [drupal/templates/svc.yaml](https://github.com/helm/charts/blob/master/stable/drupal/templates/svc.yaml)
+* [drupal/templates/svc.yaml](https://github.com/bitnami/charts/blob/main/bitnami/drupal/templates/svc.yaml)
 
 Noticing that the YAML files are built using a template and configuration variables, for example,
 
