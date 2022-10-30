@@ -17,18 +17,17 @@ Try the following commands to make sure everything is set up:
     docker-compose -v
     kubectl version
 
-If `kubectl version` gives you a segmentation fault, you can run kubectl from a docker image instead:
-
-    docker run --rm bitnami/kubectl version
-
 The output should look something like this, although the version numbers may differ:
 
     $ docker -v
-    Docker version 19.03.5, build 633a0ea
+    Docker version 20.10.20, build 9fdeb9c
     $ docker-compose -v
-    docker-compose version 1.25.4, build 8d51620a
+    Docker Compose version v2.12.0
     $ kubectl version
-    Client Version: version.Info{Major:"1", Minor:"8", GitVersion:"v1.8.3", GitCommit:"f0efb3cb883751c5ffdbe6d515f3cb4fbe7b7acd", GitTreeState:"clean", BuildDate:"2017-11-08T18:39:33Z", GoVersion:"go1.8.3", Compiler:"gc", Platform:"darwin/amd64"}
+    WARNING: This version information is deprecated and will be replaced with the output from kubectl version --short.  Use --output=yaml|json to get the full version.
+    Client Version: version.Info{Major:"1", Minor:"25", GitVersion:"v1.25.3", GitCommit:"434bfd82814af038ad94d62ebe59b133fcb50506", GitTreeState:"clean", BuildDate:"2022-10-12T10:47:25Z", GoVersion:"go1.19.2", Compiler:"gc", Platform:"darwin/arm64"}
+    Kustomize Version: v4.5.7
+    Server Version: version.Info{Major:"1", Minor:"24", GitVersion:"v1.24.4", GitCommit:"95ee5ab382d64cfe6c28967f36b53970b8374491", GitTreeState:"clean", BuildDate:"2022-08-17T18:47:37Z", GoVersion:"go1.18.5", Compiler:"gc", Platform:"linux/amd64"}
 
 You can ignore errors (if any) related to the kubectl for now, as long as you see version info. If any of these commands are "not found", make sure you install them before moving on.
 
