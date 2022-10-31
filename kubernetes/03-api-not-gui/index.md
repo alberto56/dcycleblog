@@ -9,7 +9,7 @@ next: /kubernetes/04-latest-yaml
 
 Managing a Digital Ocean Kubernetes cluster requires downloading a YAML file, _which expires every week or so_.
 
-Logging into the DigitalOcean GUI (graphical user interface) and fiddling with a graphical user interface to get a new copy of the YAML file once a week is not cool, and cannot be automated; now is a good time to get into the habit of interacting with DigitalOcean using the API, not the GUI.
+Logging into the DigitalOcean GUI (graphical user interface) and fiddling with a graphical user interface to get a new copy of the YAML file once a week is not cool. To automate it, now is a good time to get into the habit of interacting with DigitalOcean using the API, not the GUI.
 
 Let's start by getting your API key:
 
