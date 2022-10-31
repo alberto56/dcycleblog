@@ -13,7 +13,7 @@ All the credentials to manage your clusters are in the yaml files such as `$HOME
 
 It is a good idea to store all your Kubernetes YAML files in your ~/.kube directory. Keep in mind that these files contain sensitive material so don't share them.
 
-We still need to tell `kubectl` that this file exists. This is done using an environment variable. To make it always available when we use our command line, let's add it to `~/.bash_profile`. Edit that file and add the following line to it:
+We still need to tell `kubectl` that this file exists. This is done using an environment variable. To make it always available when we use our command line, let's add it to `~/.zshenv` (or `~/.bash_profile`, depending on your computer). Edit that file and add the following line to it:
 
     export KUBECONFIG=~/.kube/config:~/.kube/kubernetes-helper-kubernetes-tutorial.yml
     export KUBECONFIGONDOCKER=/root/.kube/config:/root/.kube/kubernetes-helper-kubernetes-tutorial.yml
@@ -28,7 +28,7 @@ In the future, if you have several Kubernetes clusters, each will have their own
 
 Every time you modify ~/.bash_profile, you need to _source_ it on your open terminal windows; it will be loaded automatically for new terminal windows. On your open terminal windows, you can see that this works by running:
 
-    source ~/.bash_profile
+    source ~/.zshenv # or .bash_profile, depends on your computer
     echo $KUBECONFIG
 
 The output should be
