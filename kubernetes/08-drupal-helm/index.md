@@ -9,7 +9,7 @@ next: /kubernetes/09-ingress
 
 Our initial setup is complete, time to install our first Drupal site on Kubernetes!
 
-We will not actually create a fully-functional customized Drupal site, but rather use a community chart, just wake us up slightly.
+We will not actually create a fully-functional customized Drupal site, but rather use a community chart, just to wake us up slightly.
 
     helm repo add bitnami https://charts.bitnami.com/bitnami
     # "stable" has been added to your repositories
