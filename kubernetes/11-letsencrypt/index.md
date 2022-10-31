@@ -13,6 +13,4 @@ We will use the [cert-manager](https://cert-manager.io/docs/getting-started/) as
 
     ./scripts/install-cert-manager.sh
 
-(I get a "Failed to download OpenAPI" error but it seems to work nonetheless.)
-
 Note that we have not yet generated certificates; we just installed the tools necessary to automate HTTPS access to our environments. We'll use these later on.
