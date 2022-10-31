@@ -51,7 +51,7 @@ You'll get the desired value for the ingress type, ClusterIP, which means that t
 Which leaves the issue of the 8Gb volumes. If we want 1Gb rather than 8Gb, we can type:
 
     helm --set service.type=ClusterIP \
-      --set mariadb.master.persistence.size=1Gi \
+      --set mariadb.primary.persistence.size=1Gi \
       --set persistence.drupal.size=1Gi \
       template bitnami/drupal
 
@@ -61,7 +61,7 @@ Now that our template is working correctly, we can actually create a release bas
 
     helm  --set service.type=ClusterIP \
       --set mariadb.master.persistence.size=1Gi \
-      --set persistence.drupal.size=1Gi \
+      --set persistence.size=1Gi \
       upgrade --install my-first-vanilla-drupal bitnami/drupal
 
 Let's now make sure we have a ClusterIP and no LoadBalancer (we won't need one):
