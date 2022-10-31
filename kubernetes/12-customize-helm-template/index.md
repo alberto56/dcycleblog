@@ -52,7 +52,7 @@ Which leaves the issue of the 8Gb volumes. If we want 1Gb rather than 8Gb, we ca
 
     helm --set service.type=ClusterIP \
       --set mariadb.primary.persistence.size=1Gi \
-      --set persistence.drupal.size=1Gi \
+      --set persistence.size=1Gi \
       template bitnami/drupal
 
 (The [bitnami/mariadb](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) chart [is a dependency](https://github.com/bitnami/charts/blob/master/bitnami/drupal/requirements.yaml) of bitnami/drupal, and to override values in a subchart, we need to prefix the value (master.persistence.size) with the subchart name (mariadb).)
@@ -60,7 +60,7 @@ Which leaves the issue of the 8Gb volumes. If we want 1Gb rather than 8Gb, we ca
 Now that our template is working correctly, we can actually create a release based on it:
 
     helm  --set service.type=ClusterIP \
-      --set mariadb.master.persistence.size=1Gi \
+      --set mariadb.primary.persistence.size=1Gi \
       --set persistence.size=1Gi \
       upgrade --install my-first-vanilla-drupal bitnami/drupal
 
