@@ -44,3 +44,5 @@ The above command will print instructions for what to do next, something like:
     ./scripts/docker-hub/push-build.sh"
 
 At the end of this script, you will obtain a link to see your image on the Docker Hub. I used this technique to create [an image with the tag "demotag" on the Docker Hub](https://hub.docker.com/r/dcycle/drupal-starterkit/tags).
+
+Because nothing in life is simple, later on we will need to consider the OS architecture of your image, which is determined by the Docker host computer used to build the image. For example, if you're building the image with mac OS on an M-series chip, the architecture can be something like linux/amd64. If you use an Intel chip, the architecture of your image can be linux/amd64.
