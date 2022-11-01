@@ -11,9 +11,9 @@ In order to be able to deploy your Drupal site to Kubernetes, you'll need a plac
 
 You can also create your own registry, which is outside the scope of this article. If you'd like to set up your own private registry, it's just another helm chart away: [stable/docker-registry](https://github.com/helm/charts/tree/master/stable/docker-registry). But for this article we'll go with the free public Docker Hub registry: create an account (which we'll call "example-account" in this article), and make sure you have your credentials handy.
 
-You will also need to develop using Docker containers. Your technique can differ from mine, but the important thing is that your codebase contain a script which can create the packaged Docker images (for example one with Drupal and PHP and a webserver; another with a mysql database).
+You will also need to develop using Docker containers. Your technique can differ from mine, but the important thing is that your codebase contain a script which can create the packaged Docker images (for example one with Drupal and PHP and a webserver; another with a mariadb database).
 
-For the purposes of this tutorial, we can use the [Dcycle Drupal 8 starterkit](https://github.com/dcycle/starterkit-drupal8site), designed exactly for this purpose. Feel free to fork that project if you'd like to follow along. Here is how it works:
+For the purposes of this tutorial, we can use the [Dcycle Drupal Starterkit](https://github.com/dcycle/starterkit-drupalsite), designed exactly for this purpose. Feel free to fork that project if you'd like to follow along. Here is how it works:
 
     cd ~/Desktop
     git clone https://github.com/dcycle/starterkit-drupal8site.git
@@ -26,7 +26,7 @@ After a few minutes, you should be seeing something like:
 
      => Drupal: http://0.0.0.0:32783/user/reset/1/1587565168/FJWEqYnG2SvJVmWy6hbsaDDImgJbm6kIkwM85MDBx5w/login
 
-Visit that URL (which will differ for you), and you should be seeing a local Drupal site, ready for use. If your codebase is not based off the Dcycle Drupal 8 starterkit, you will still need to have a one-click deployment method similar to ./scripts/deploy.sh.
+Visit that URL (which will differ for you), and you should be seeing a local Drupal site, ready for use. If your codebase is not based off the Dcycle Drupal Starterkit, you will still need to have a one-click deployment method similar to ./scripts/deploy.sh.
 
 Still, this is not (yet!) ready for deployment to Kubernetes, for the following reason: [your custom code is shared with your container using a volume](https://github.com/dcycle/starterkit-drupal8site/blob/406e03c22e9e10a77cc039adc87d032d8b9fb7ec/docker-compose.dev.yml#L16), which is great for development, but not for deployment to Kubernetes.
 
