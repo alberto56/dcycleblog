@@ -24,7 +24,9 @@ We now need to add a URL to access jenkins (use your own domain instead of "exam
     export DOMAIN=jenkins.example.com
     ./scripts/install-jenkins-domain.sh
 
-Again, repeatedly run:
+In some cases this might give you a error or not give you the "All done!" message. If such is the case, run it repeatedly.
+
+Once yousee the "All done!" message, repeatedly run:
 
     kubectl describe certificate my-https-secret
 
