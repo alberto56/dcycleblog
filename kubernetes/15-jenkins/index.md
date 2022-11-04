@@ -38,8 +38,6 @@ You can also repeatedy run:
 
 To see when Jenkins is ready (it should be "running" and have a status of "ready"). Once it is, you will now be able to visit https://jenkins.example.com in the browser and log in.
 
-Log into Jenkins, click "Install suggested plugins", and restart Jenkins.
-
 We still need a few things to happen for our Jenkins server to be ready for action:
 
 First We need Jenkins to receive Webhooks from Github
