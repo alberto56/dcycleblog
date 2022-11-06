@@ -13,4 +13,6 @@ docker run --rm \
   jekyll/minimal:4 \
   /bin/bash -c 'rm -rf /srv/jekyll/_site .jekyll*'
 
+docker network rm "$starterkitjekyll" || echo 'docker network cannot be deleted; moving on.'
+
 echo 'Environment destroyed.'

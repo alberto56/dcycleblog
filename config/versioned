@@ -1,0 +1,5 @@
+# Use a random number between 8000 and 8999
+DOCKERPORT=8081
+# Use a relatively unique name
+DOCKERNETWORK=dcycleblog
+DOCKERNAME=dcycleblog

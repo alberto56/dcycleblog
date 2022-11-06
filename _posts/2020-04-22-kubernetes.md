@@ -2,6 +2,7 @@
 layout: post
 title:  "Deploying Drupal to Kubernetes, no previous knowledge required"
 date: 2020-04-22T14:27:32.381Z
+updated: 2022-11-06T14:27:32.381Z
 id: 2020-04-22
 tags:
   - blog

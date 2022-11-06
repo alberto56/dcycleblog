@@ -4,4 +4,12 @@
 #
 set -e
 
-docker run --rm --link dcycleblog:site dcycle/broken-link-checker:2 http://site
+source ./config/versioned
+
+docker run --rm \
+  --network "$DOCKERNETWORK" \
+  dcycle/broken-link-checker:2 http://"$DOCKERNAME" \
+  --check-extern
+echo ""
+echo "Done checking for broken links!"
+echo ""
