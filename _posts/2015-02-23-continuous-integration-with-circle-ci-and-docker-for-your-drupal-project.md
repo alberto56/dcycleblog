@@ -43,7 +43,7 @@ Step 1: get a local CoreOS+Docker environment
 
 Let's start by setting up a local development environment on which we can run Docker. Docker is a system which uses Linux containers to run your software and all its dependencies in an isolated environment.
 
-If you need a primer on Docker, check out [Getting Started with Docker on Servers for Hackers (March 20, 2014)](https://serversforhackers.com/getting-started-with-docker/), and [A quick intro to Docker for a Drupal project](http://dcycleproject.org/blog/91/quick-intro-docker-drupal-project).
+If you need a primer on Docker, check out [Getting Started with Docker on Servers for Hackers (March 20, 2014)](https://serversforhackers.com/getting-started-with-docker/), and [A quick intro to Docker for a Drupal project](http://blog.dcycle.com/blog/91/quick-intro-docker-drupal-project).
 
 Docker works best on CoreOS, which you can install quite easily on any computer using Vagrant and VirtualBox, as explained at [Running CoreOS on Vagrant](https://coreos.com/docs/running-coreos/platforms/vagrant/).
 

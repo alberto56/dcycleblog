@@ -24,7 +24,7 @@ This article will focus on a simple technique I use to bring legacy Drupal code 
 Unit vs. functional testing
 -----
 
-If you have already written automated tests for Drupal, you know about Simpletest and the concept of functional web-request tests with a temporary database: the vast majority of tests written for Drupal 7 code are based on the `DrupalWebTestCase`, which builds a Drupal site from scratch, often installing something like a [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module), using a temporary database, and then allows your test to make web requests to that interface. It's all automatic and temporary environments are destroyed when tests are done.
+If you have already written automated tests for Drupal, you know about Simpletest and the concept of functional web-request tests with a temporary database: the vast majority of tests written for Drupal 7 code are based on the `DrupalWebTestCase`, which builds a Drupal site from scratch, often installing something like a [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module), using a temporary database, and then allows your test to make web requests to that interface. It's all automatic and temporary environments are destroyed when tests are done.
 
 It's great, it really simulates how your site is used, but it has some drawbacks: first, it's a bit of a pain to set up: your continuous integration server needs to have a LAMP stack or spin up Vagrant boxes or Docker containers, you need to set up virtual hosts for your code, and most importantly, it's very time-consuming, because each test case in each test class creates a brand new Drupal site, installs your modules, and destroys the environment.
 
@@ -164,7 +164,7 @@ Notice that our return values are not meant to be complete: they only contain th
 Write a test
 -----
 
-It is now possible to write a unit test for our logic without requiring the database. You can copy the contents of [this sample unit test](http://dcycleproject.org/blog/basic-unit-test) to your module folder as mymodule.test, add `files[] = mymodule.test` to your `mymodule.info`, enable the `simpletest` modules and clear your cache.
+It is now possible to write a unit test for our logic without requiring the database. You can copy the contents of [this sample unit test](http://blog.dcycle.com/blog/basic-unit-test) to your module folder as mymodule.test, add `files[] = mymodule.test` to your `mymodule.info`, enable the `simpletest` modules and clear your cache.
 
 There remains the task of actually writing the test: in your `testModule()` function, the following lines will do:
 

@@ -5,7 +5,7 @@ author: admin
 id: ae67284c
 tags:
   - snippet
-permalink: /blog/ae67284c/docker-compose-cp
+permalink: /blog/ae67284c/docker-compose-cp/
 redirect_from:
   - /blog/ae67284c/
   - /node/ae67284c/

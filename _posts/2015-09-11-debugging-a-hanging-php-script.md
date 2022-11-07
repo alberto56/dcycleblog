@@ -72,4 +72,4 @@ Now visit `http://example.local/test.php`, and it will hang.
 
 To figure out why it's hanging, on another page go to `http://example.local/webgrind`, and click "Update" periodically. A list of costly functions (in this case `whatever()` and `sleep()`) will be shown.
 
-<img src="http://dcycleproject.org/sites/dcycleproject.org/files/screen_shot_2015-09-11_at_1.09.25_pm.png" />
+<img src="http://blog.dcycle.com/sites/blog.dcycle.com/files/screen_shot_2015-09-11_at_1.09.25_pm.png" />

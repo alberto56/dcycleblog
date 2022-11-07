@@ -16,8 +16,8 @@ redirect_from:
 Step 1: install Phabricator and make it track a git repo
 ---------------------------
 
- * If you are just evaluating Phabricator you can use [these instructions](http://dcycleproject.org/blog/79/installing-evaluation-version-phabricator) to set up an evaluation version in less than an hour.
- * Once that is done, [set up Phabricator to track a git repo](http://dcycleproject.org/blog/80/setting-phabricator-track-git-repo).
+ * If you are just evaluating Phabricator you can use [these instructions](http://blog.dcycle.com/blog/79/installing-evaluation-version-phabricator) to set up an evaluation version in less than an hour.
+ * Once that is done, [set up Phabricator to track a git repo](http://blog.dcycle.com/blog/80/setting-phabricator-track-git-repo).
 
 Step 2: understand the difference between reviews and audits
 ------------------------------------------------------------

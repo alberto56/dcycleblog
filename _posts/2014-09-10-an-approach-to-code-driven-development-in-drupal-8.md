@@ -21,17 +21,17 @@ In Drupal, what makes your site unique is often configuration which resides in t
 
 For the purpose of this article, our goal will be for all _configuration_ (the current theme, the content types, module-specific config, the active module list...) to be in _code_, and only _content_ to be in the database. There are several advantages to this approach:
 
- * Because all our configuration is in code, we can package all of it into a single module, which we'll call a [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module). When enabled, this module should provide a fully workable site without any content.
- * When a site deployment module is combined with generated content, it becomes possible to create new instances of a website [without cloning the database](http://dcycleproject.org/blog/48/do-not-clone-database). [Devel](https://www.drupal.org/project/devel)'s `devel_generate` module, and [Realistic Dummy Content](https://www.drupal.org/project/realistic_dummy_content) can be used to create realistic dummy content. This makes on-ramping new developers easy and consistent.
+ * Because all our configuration is in code, we can package all of it into a single module, which we'll call a [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module). When enabled, this module should provide a fully workable site without any content.
+ * When a site deployment module is combined with generated content, it becomes possible to create new instances of a website [without cloning the database](http://blog.dcycle.com/blog/48/do-not-clone-database). [Devel](https://www.drupal.org/project/devel)'s `devel_generate` module, and [Realistic Dummy Content](https://www.drupal.org/project/realistic_dummy_content) can be used to create realistic dummy content. This makes on-ramping new developers easy and consistent.
  * Because unversioned databases are not required to be cloned to set up new environments, your continuous integration server can set up new instances of your site based on a known good starting point, making tests more robust.
 
 Code-driven development for Drupal 7
 ------------------------------------
 
-Before moving on to D8, let's look at a typical D7 workflow: The technique I use for developing in Drupal 7 is making sure I have one or more [features](http://drupal.org/project/features) with my content types, views, [contexts](http://drupal.org/project/context), and so on; as well as a [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module) which contains, in its `.install` file, [update hooks](https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_update_N/7) which revert my features when needed, enable new modules, and programmatically set configuration which can't be exported via features. That way,
+Before moving on to D8, let's look at a typical D7 workflow: The technique I use for developing in Drupal 7 is making sure I have one or more [features](http://drupal.org/project/features) with my content types, views, [contexts](http://drupal.org/project/context), and so on; as well as a [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module) which contains, in its `.install` file, [update hooks](https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_update_N/7) which revert my features when needed, enable new modules, and programmatically set configuration which can't be exported via features. That way,
 
  * incrementally deploying sites is as simple as calling `drush updb -y` (to run new update hooks).
- * deploying a site for the first time (or redeploying it from scratch) requires creating the database, enabling our site deployment module (which [runs all or update hooks](http://dcycleproject.org/blog/43/run-all-update-hooks-install-hook)), and optionally generating dummy content if required. For example: `drush si -y && drush en mysite_deploy -y && drush en devel_generate && drush generate-content 50`.
+ * deploying a site for the first time (or redeploying it from scratch) requires creating the database, enabling our site deployment module (which [runs all or update hooks](http://blog.dcycle.com/blog/43/run-all-update-hooks-install-hook)), and optionally generating dummy content if required. For example: `drush si -y && drush en mysite_deploy -y && drush en devel_generate && drush generate-content 50`.
 
 I have been using this technique for a few years on all my D7 projects and, in this article, I will explore how something similar can be done in D8.
 
@@ -87,7 +87,7 @@ The solution I am using is to assign a site UUID in the site deployment module. 
       \Drupal::configFactory() ->getEditable('system.site')
         ->set('uuid', $uuid)
         ->save();
-    }    
+    }
 
 And the site deployment module's .install file looks like this:
 
@@ -170,7 +170,7 @@ Let's get started. Make sure you have version 7.x of Drush (compatible with Drup
     mkdir mysite
     cd mysite
     mkdir deploy
-    echo "Contains config meant to be deployed, see http://dcycleproject.org/blog/68" >> deploy/README.txt
+    echo "Contains config meant to be deployed, see http://blog.dcycle.com/blog/68" >> deploy/README.txt
     drush dl drupal-8.0.x
     mv drupal* drupal_root
     cp drupal_root/example.gitignore drupal_root/.gitignore
@@ -184,7 +184,7 @@ Now let's install our first instance of the site:
     echo 'create database mysite'|mysql -uroot -proot
     drush si --db-url=mysql://root:root@localhost/mysite -y
 
-Now create a site deployment module: [here is the code that works for me](http://dcycleproject.org/blog/69/drupal-8-site-deployment-module). We'll set the correct site UUID in `mysite_deploy.install` later. Add this to git:
+Now create a site deployment module: [here is the code that works for me](http://blog.dcycle.com/blog/69/drupal-8-site-deployment-module). We'll set the correct site UUID in `mysite_deploy.install` later. Add this to git:
 
     git add drupal_root/modules/custom
     git commit -am 'added site deployment module'

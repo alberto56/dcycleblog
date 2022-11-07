@@ -11,12 +11,12 @@ redirect_from:
   - /blog/102/
   - /node/102/
 ---
-Sometimes features are overridden the moment you enable them. Here is an automated test to fail when features are overridden. You can include it in your [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module)'s automated test.
+Sometimes features are overridden the moment you enable them. Here is an automated test to fail when features are overridden. You can include it in your [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module)'s automated test.
 
     /**
      * Information on Features override status. Can fail if some features are overridden.
      *
-     * see http://dcycleproject.org/blog/102
+     * see http://blog.dcycle.com/blog/102
      *
      * @param $exceptions = array()
      *   Overrides we know of and which should not trigger a failure:

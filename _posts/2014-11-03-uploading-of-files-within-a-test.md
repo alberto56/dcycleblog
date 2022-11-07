@@ -34,7 +34,7 @@ Here is how I do it:
 		/**
 		 * Prepare a file for use in an $edit array of a drupalPost()
 		 *
-		 * See http://dcycleproject.org/blog/78
+		 * See http://blog.dcycle.com/blog/78
 		 *
 		 * @param $path
 		 *   A path in your module such as sites/all/modules/mymodule/test.png

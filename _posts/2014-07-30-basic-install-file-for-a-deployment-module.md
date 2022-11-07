@@ -10,7 +10,7 @@ redirect_from:
   - /blog/65/
   - /node/65/
 ---
-Here is a typical .install file for [site deployment modules](http://dcycleproject.org/blog/44/what-site-deployment-module):
+Here is a typical .install file for [site deployment modules](http://blog.dcycle.com/blog/44/what-site-deployment-module):
 
     /**
      * @file
@@ -19,7 +19,7 @@ Here is a typical .install file for [site deployment modules](http://dcycleproje
 
     /**
      * Implements hook_install().
-     * See http://dcycleproject.org/blog/43/run-all-update-hooks-install-hook
+     * See http://blog.dcycle.com/blog/43/run-all-update-hooks-install-hook
      */
     function mysite_deploy_install() {
       for ($i = 7001; $i < 8000; $i++) {

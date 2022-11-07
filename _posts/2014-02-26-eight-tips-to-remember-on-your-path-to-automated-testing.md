@@ -34,7 +34,7 @@ Eventually, you will want to add value to your continuous integration job by run
 
 Basically, any testing and analysis you can do on the command line should be done within your continuous integration job.
 
-If done right, and if you have high confidence in your test suite, you can eventually use your CI server to [deploy continuously](http://dcycleproject.org/blog/46) to preproduction, but let's not get ahead of ourselves.
+If done right, and if you have high confidence in your test suite, you can eventually use your CI server to [deploy continuously](http://blog.dcycle.com/blog/46) to preproduction, but let's not get ahead of ourselves.
 
 Tip #2: Test your code, not the database
 ----------------------------------------
@@ -43,7 +43,7 @@ Most Drupal developers I've talked to create their local development environment
 
 They also tend to clone the production or preproduction database back to Jenkins in their continuous integration.
 
-For me, this is the wrong approach, as I've [documented in this blog post](http://dcycleproject.org/blog/48).
+For me, this is the wrong approach, as I've [documented in this blog post](http://blog.dcycle.com/blog/48).
 
 Basically, any tests you write should reside in your git repo and be limited to testing what's in the git repo. If you try to test the production database, here is a typical scenario:
 
@@ -57,7 +57,7 @@ You will now see a history of failures which will indicate problems outside of y
 
 Keep in mind that the tests you write should depend on a _known good starting point_: you should be able to consistently reproduce an environment leading to a success or a failure. Drupal's Simpletests completely ignore the current host database and create a new database from scratch just for testing, then destroy that database.
 
-How to do this? First, I always use a [site deployment module](http://dcycleproject.org/blog/44) whose job it is to populate the database with everything that makes your site unique: enabling the site deployment module should enable all modules used by your site, and, using [Features](http://drupal.org/project/features) and related modules, deploy all views, content types, and the like, set all variables and set the default theme. The site deployment module can then be used by new developers on your team who need a development environment, and also by the CI server, _all without cloning the database_. If you need dummy content for development, you can use [Devel](https://drupal.org/project/devel)'s `devel_generate` utility, along with [this trick](https://drupal.org/node/1748302) to make your generated content more realistic.
+How to do this? First, I always use a [site deployment module](http://blog.dcycle.com/blog/44) whose job it is to populate the database with everything that makes your site unique: enabling the site deployment module should enable all modules used by your site, and, using [Features](http://drupal.org/project/features) and related modules, deploy all views, content types, and the like, set all variables and set the default theme. The site deployment module can then be used by new developers on your team who need a development environment, and also by the CI server, _all without cloning the database_. If you need dummy content for development, you can use [Devel](https://drupal.org/project/devel)'s `devel_generate` utility, along with [this trick](https://drupal.org/node/1748302) to make your generated content more realistic.
 
 When a bug is reported on your production site, you should reproduce it consistently in your dummy content, and then run your test against the simulation, not the real data. An example of this is the use of Wysiwyg: often, `lorem ipsum` works fine, but once the client starts copy-pasting from Word, all kinds of problems arise. Simulated word-generated markup is the kind of thing your test should set up, and then test against.
 
@@ -68,7 +68,7 @@ Tip #3: Understand the effort involved
 
 Testing is time-consuming. If your client or employer asks for it, that desire needs to come with the appropriate resources. Near the beginning of a project, you can easily double all time estimates, and the payoff will come later on.
 
-<img src="http://dcycleproject.org/sites/dcycleproject.org/files/pyramid2.png" />
+<img src="http://blog.dcycle.com/sites/blog.dcycle.com/files/pyramid2.png" />
 
 Stakeholders cannot expect the same velocity for a project with and without automated testing: if you are implementing testing correctly, your end-of-sprint demos will contain less features. On the other hand, once you have reached your sweet spot (see chart, above), the more manageable number of bugs will mean you can continue working on features.
 
@@ -79,7 +79,7 @@ Don't try to test everything at once. If your team is called upon to "implement 
 
 When working with legacy sites, or even new sites for which there is pressure to deliver fast, I have seen many teams never deliver a single test, instead delivering excuses such as "it's really simple, we don't need to test it", or "we absolutely had to deliver it this week". In reality, we tend to see "automated testing" as insurmountable and try to weasel our way of it.
 
-To overcome this, I often start a project with a single test: find a function in your code which you can run against a unit test (no database required), and write your first test. In Drupal, you can use a Simpletest Unit test (as in [this example](http://dcycleproject.org/blog/basic-unit-test)) and then run it straight from the browser.
+To overcome this, I often start a project with a single test: find a function in your code which you can run against a unit test (no database required), and write your first test. In Drupal, you can use a Simpletest Unit test (as in [this example](http://blog.dcycle.com/blog/basic-unit-test)) and then run it straight from the browser.
 
 Once you're satisfied, add this line to your CI job so the test is run on every push:
 
@@ -113,16 +113,16 @@ In my experience, if your entire test suite takes more than two hours to run, de
 
 In his book _[Succeeding with Agile](http://www.amazon.com/gp/product/0321579364/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321579364&linkCode=as2&tag=dcycle-20)_, Mike Cohn came up with the idea of a test pyramid, as shown in the diagram below (you can learn more about the concept [in this blog post](http://martinfowler.com/bliki/TestPyramid.html)).
 
-<img src="http://dcycleproject.org/sites/dcycleproject.org/files/pyramid.png" />
+<img src="http://blog.dcycle.com/sites/blog.dcycle.com/files/pyramid.png" />
 
 Based on this concept, we quickly realize that:
 
  * Several steps are redundant among the GUI use cases.
  * The exact same underlying functionality is tested several times over.
 
-Thinking of this from a different angle, we can start by testing our pure functions using unit tests. This will make for lightning-fast tests, and will get the team into the habit of not mixing UI functions, database functions and pure functions (for an example of what _not to do_, see Drupal's own [block_admin_display_form_submit](http://dcycleproject.org/blog/27)).
+Thinking of this from a different angle, we can start by testing our pure functions using unit tests. This will make for lightning-fast tests, and will get the team into the habit of not mixing UI functions, database functions and pure functions (for an example of what _not to do_, see Drupal's own [block_admin_display_form_submit](http://blog.dcycle.com/blog/27)).
 
-Once you have built up a suite of unit tests which actually has value, move on to the next step: tests which require the database. This requires some variation of a [site deployment module](http://dcycleproject.org/blog/44) or another technique to bring the database to a known-good starting point before you run the test; it is harder to grasp and setting up a CI job for these types of tests is difficult too. However, your team will more likely be willing to work hard to overcome these obstacles because of the success they achieved with unit tests.
+Once you have built up a suite of unit tests which actually has value, move on to the next step: tests which require the database. This requires some variation of a [site deployment module](http://blog.dcycle.com/blog/44) or another technique to bring the database to a known-good starting point before you run the test; it is harder to grasp and setting up a CI job for these types of tests is difficult too. However, your team will more likely be willing to work hard to overcome these obstacles because of the success they achieved with unit tests.
 
 All of the above can be done with Drupal's core `simpletest`.
 
@@ -161,7 +161,7 @@ Tip #8: Don't subvert your process
 
 When it becomes challenging to write tests, you might figure that, just this once, you'll not test something. A typical example I've seen of this, in project after project, is communication with outside systems and outside APIs. Because we're not controlling the outside system, it's hard to test it, right? True, but not impossible. If you've set aside enough time in your estimates to do things right, you will be able to implement [mock objects](http://en.wikipedia.org/wiki/Mock_object), making sure you test everything.
 
-For example, in [this blog post](http://dcycleproject.org/blog/38), I demonstrate how I used the [Mockable](https://drupal.org/project/mockable) module to define mock objects to test integration between Drupal and a content deployment system.
+For example, in [this blog post](http://blog.dcycle.com/blog/38), I demonstrate how I used the [Mockable](https://drupal.org/project/mockable) module to define mock objects to test integration between Drupal and a content deployment system.
 
 You will come across situations where implementing testing seems very hard, but however much effort I put into implementing automated testing for something, I have never regretted it.
 

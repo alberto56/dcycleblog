@@ -41,7 +41,7 @@ You might also want to use this version which makes sure the administrator user 
      * role E, the permission B will not be set to both roles C and E because
      * permission-role mappings are not cumulative.
      *
-     * See http://dcycleproject.org/blog/101
+     * See http://blog.dcycle.com/blog/101
      *
      * This function asserts that no two features are trying to set the same
      * permissions.

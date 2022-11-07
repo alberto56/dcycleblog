@@ -16,7 +16,7 @@ redirect_from:
 Step 1: install Phabricator
 ---------------------------
 
-If you are just evaluating Phabricator you can use [these instructions](http://dcycleproject.org/blog/79/installing-evaluation-version-phabricator) to set up an evaluation version in less than an hour.
+If you are just evaluating Phabricator you can use [these instructions](http://blog.dcycle.com/blog/79/installing-evaluation-version-phabricator) to set up an evaluation version in less than an hour.
 
 Step 2: set up authentication
 -----------------------------
@@ -72,4 +72,4 @@ Note: when attempting to start the daemon, you may get "PHP missing extensions e
 Next step
 ----------
 
- * [Using Phabricator for code review](http://dcycleproject.org/blog/81/setting-phabricator-review-code).
+ * [Using Phabricator for code review](http://blog.dcycle.com/blog/81/setting-phabricator-review-code).

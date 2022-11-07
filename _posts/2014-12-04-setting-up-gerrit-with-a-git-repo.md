@@ -16,7 +16,7 @@ redirect_from:
 Step 1: install Gerrit
 ----------------------
 
-See [this post](http://dcycleproject.org/blog/82) for instructions on how to install Gerrit on CentOS. We will assume that your Gerrit instance is available at http://gerrit.example.com:8080.
+See [this post](http://blog.dcycle.com/blog/82) for instructions on how to install Gerrit on CentOS. We will assume that your Gerrit instance is available at http://gerrit.example.com:8080.
 
 Step 2: Set the canonical URL
 -----------------------------
@@ -43,7 +43,7 @@ Add your name and your public ssh key.
 Step 4: Understanding how Gerrit works.
 -----------------------------
 
-Gerrit seems to be designed to _manage_ git repos, rather than tack onto an existing workflow ([like Phabricator](http://dcycleproject.org/blog/81/setting-phabricator-review-code)). I [looked this up](http://stackoverflow.com/questions/15384799/how-to-update-gerrit-repos-with-changes-submitted-directly-to-git/15393748#15393748) and it seems that Gerrit requires you to host your Git repo on the Gerrit server itself.
+Gerrit seems to be designed to _manage_ git repos, rather than tack onto an existing workflow ([like Phabricator](http://blog.dcycle.com/blog/81/setting-phabricator-review-code)). I [looked this up](http://stackoverflow.com/questions/15384799/how-to-update-gerrit-repos-with-changes-submitted-directly-to-git/15393748#15393748) and it seems that Gerrit requires you to host your Git repo on the Gerrit server itself.
 
 If you are already hosting your git repos on Stash, or Gitolite, or GitHub, you might want to experiment using mirroring or some other technique, but for this demo I will make Gerrit the canonical git provider for my repo.
 
@@ -54,7 +54,7 @@ Step 5: Move your canonical git repo to Gerrit
 
 Wherever your current git repo is now, the only way I could get Gerrit to work was to move the Git repo to Gerrit, although [there is a discussion about this (and maybe some workaround)](https://groups.google.com/forum/#!topic/repo-discuss/-QjX2aT-3v0).
 
-So: first thing to do is to log into Gerrit and move to Gerrit's git folder. If you followed [these instructions](http://dcycleproject.org/blog/82) to install Gerrit, your git directory on Gerrit will be at `/root/git`. This is not an ideal location, and is probably not secure, but if you are just evaluating Gerrit with some dummy repositories, it will do.
+So: first thing to do is to log into Gerrit and move to Gerrit's git folder. If you followed [these instructions](http://blog.dcycle.com/blog/82) to install Gerrit, your git directory on Gerrit will be at `/root/git`. This is not an ideal location, and is probably not secure, but if you are just evaluating Gerrit with some dummy repositories, it will do.
 
 As described [here](https://groups.google.com/forum/#!topic/repo-discuss/UBxDXPmRMvc), you will need to create a local copy of your external git repo. Gerrit's local copy _will become the canonical git repo for your project_. Here is an example with [one of my projects on GitHub](https://github.com/alberto56/drupal7ci_stage2):
 

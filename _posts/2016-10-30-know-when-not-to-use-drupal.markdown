@@ -31,7 +31,7 @@ I have built my entire career on Drupal, and I have been accused (with reason) s
 
 The result has been that I now tend to use Drupal for what it's good at, data-heavy web applications with user-supplied content. However, I have integrated other technologies to my toolbox: among them [node.js](https://nodejs.org/en/) for real-time websocket communication, and [Jekyll](http://jekyllrb.com) for sites that don't need to be dynamic on the server-side. In fact, these technologies can be used alongside Drupal to create a great ecosystem.
 
-[My blog](http://dcycleproject.org) has looked like this for quite some time:
+[My blog](http://blog.dcycle.com) has looked like this for quite some time:
 
 <img alt="Very ugly design." src="http://blog.dcycle.com/assets/img/ugh.png" />
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Builds a complete development environment using Docker.
-# See http://dcycleproject.org/blog/113
+# See http://blog.dcycle.com/blog/113
 set -e
 
 # Start by destroying previous development environments.

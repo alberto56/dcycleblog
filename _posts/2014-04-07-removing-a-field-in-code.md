@@ -16,7 +16,7 @@ Here is a situation that happens once in a while:
  * Other content types (pages, for example) can be translated the traditional way (where you have different `nid`s for different languages).
  * To do this, [entity translation](https://drupal.org/project/entity_translation) can be used to make fields translatable, so you create a new `translatable-body` field just for events.
 
-The above will result in there being two body fields for events, one translatable and one not. If you are using Features and a [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module) to deploy your site, you can use something like the following code in your site deployment module's [update hooks](https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_update_N/7) to remove the superfluous body field instance in the event content type:
+The above will result in there being two body fields for events, one translatable and one not. If you are using Features and a [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module) to deploy your site, you can use something like the following code in your site deployment module's [update hooks](https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_update_N/7) to remove the superfluous body field instance in the event content type:
 
     /**
      * Remove extra body field from event

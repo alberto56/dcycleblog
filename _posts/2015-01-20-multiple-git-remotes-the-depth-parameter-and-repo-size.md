@@ -12,7 +12,7 @@ redirect_from:
   - /blog/87/
   - /node/87/
 ---
-When building a Drupal 7 site, one oft-used technique is to keep the entire Drupal root under git (for Drupal 8 sites, I favor [having the Drupal root one level up](http://dcycleproject.org/blog/68)).
+When building a Drupal 7 site, one oft-used technique is to keep the entire Drupal root under git (for Drupal 8 sites, I favor [having the Drupal root one level up](http://blog.dcycle.com/blog/68)).
 
 Starting a new project can be done by downloading an unversioned copy of D7, and initializing a git repo, like this:
 

@@ -13,7 +13,7 @@ redirect_from:
     /**
      * Create a user with specific roles
      *
-     * See http://dcycleproject.org/blog/45
+     * See http://blog.dcycle.com/blog/45
      *
      * @param $roles
      *   An array of roles by human name, for example, array('administrator', etc.)
