@@ -10,7 +10,7 @@ redirect_from:
   - /blog/2016-09-30/
 ---
 
-This technical post will run through how I went about migrating this site (the Dcycle blog) from Drupal to Jekyll. For the reasons _why_ I migrated, please see [Know when not to use Drupal](http://dcycleproject.org/blog/2016-10-02).
+This technical post will run through how I went about migrating this site (the Dcycle blog) from Drupal to Jekyll. For the reasons _why_ I migrated, please see [Know when not to use Drupal](http://blog.dcycle.com/blog/2016-10-02).
 
 Exporting very simple content from Drupal to Jekyll
 -----

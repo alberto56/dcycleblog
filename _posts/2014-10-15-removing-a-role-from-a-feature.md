@@ -11,7 +11,7 @@ redirect_from:
   - /blog/76/
   - /node/76/
 ---
-Say you have created a user role and deployed it with a feature dependent on your [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module). Now you want to delete it:
+Say you have created a user role and deployed it with a feature dependent on your [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module). Now you want to delete it:
 
 First, remove it from your feature.
 

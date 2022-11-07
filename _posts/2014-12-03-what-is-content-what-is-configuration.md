@@ -29,7 +29,7 @@ As more complex sites were being built, a new distinction had to be made between
 
 Thus the [features](https://www.drupal.org/project/features) module was born, allowing views, content types, and vocabularies (but not nodes and taxonomy terms) to be developed outside of the database, and then deployed into production.
 
-Drupal 8's [config management system](http://dcycleproject.org/blog/68/approach-code-driven-development-drupal-8) takes that one step further by providing a mature, central API to deal with this.
+Drupal 8's [config management system](http://blog.dcycle.com/blog/68/approach-code-driven-development-drupal-8) takes that one step further by providing a mature, central API to deal with this.
 
 The devil is in the details
 ---------------------------
@@ -41,7 +41,7 @@ This is all fine and good, but edge cases soon begin to arise:
  * What about a block whose placement is known, but whose content is not? Is this content? Is it configuration?
  * What about a view which references a taxonomy term id in a hard-coded filter. We can export the view, but the taxonomy term has an incremental ID ans is not guaranteed to work on all environments.
 
-The wrong answer to any of these questions can lead to a misguided development approach which will come back to haunt you afterward. You might wind up using [incremental IDs in your code](http://dcycleproject.org/blog/50/do-not-use-incremental-ids-your-code) or deploying something as configuration which is, in fact, content.
+The wrong answer to any of these questions can lead to a misguided development approach which will come back to haunt you afterward. You might wind up using [incremental IDs in your code](http://blog.dcycle.com/blog/50/do-not-use-incremental-ids-your-code) or deploying something as configuration which is, in fact, content.
 
 Defining our terms
 ------------------
@@ -59,16 +59,16 @@ This is what our deliverable is _for a given project_. This is important. There 
 
  * If I am a contributor to the [Views](https://www.drupal.org/project/views) contrib project, my _deliverable_ is _a system which allows users to create views in the database_. In this case I will not export many particular views.
 
- * For another project, my deliverable may be _a website which contains a set number of lists (views)_. In this case I may use [features](https://www.drupal.org/project/features) (D7) or [config management](http://dcycleproject.org/blog/68/approach-code-driven-development-drupal-8) (D8) to export all the views my client asked for. Furthermore, I may enable views_ui (the Views User interface) only on my development box, and disable it on production.
+ * For another project, my deliverable may be _a website which contains a set number of lists (views)_. In this case I may use [features](https://www.drupal.org/project/features) (D7) or [config management](http://blog.dcycle.com/blog/68/approach-code-driven-development-drupal-8) (D8) to export all the views my client asked for. Furthermore, I may enable views_ui (the Views User interface) only on my development box, and disable it on production.
 
- * For a third project, my deliverable may a website with a number of set views, _plus the ability for the client to add new ones_. In this only certain views will be in code, and I will enable the views UI as a dependency of my [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module). The views my client creates on production will be data.
+ * For a third project, my deliverable may a website with a number of set views, _plus the ability for the client to add new ones_. In this only certain views will be in code, and I will enable the views UI as a dependency of my [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module). The views my client creates on production will be data.
 
 Data
 ----
 
 A few years ago, I took a step back from my day-to-day Drupal work and thought about what my main pain points were and how to do away with them. After consulting with colleagues, looking at bugs which took longest to fix, and looking at major sources of regressions, I realized that the one thing all major pain points had in common were our deployment techniques.
 
-It struck me that [cloning the database from production to development was wrong](http://dcycleproject.org/blog/48/do-not-clone-database). Relying on production data to do development is sloppy and will cause problems. It is better to invest in [realistic dummy content](https://www.drupal.org/project/realistic_dummy_content) and a good [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module), allowing the standardized deployment of an environment in a few minutes from any commit.
+It struck me that [cloning the database from production to development was wrong](http://blog.dcycle.com/blog/48/do-not-clone-database). Relying on production data to do development is sloppy and will cause problems. It is better to invest in [realistic dummy content](https://www.drupal.org/project/realistic_dummy_content) and a good [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module), allowing the standardized deployment of an environment in a few minutes from any commit.
 
 Once we remove data from the development equation in this way, it is easier to define what data is: anything which can differ from one environment to the next without overriding a feature.
 
@@ -99,7 +99,7 @@ We might be tempted to figure out a way to assign a unique ID to our "About us" 
 
 I have an approach which I consider more logical for these situations:
 
-First, in my [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module)'s `hook_update_N()`, create the node and the menu item, bypassing features entirely. Something like:
+First, in my [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module)'s `hook_update_N()`, create the node and the menu item, bypassing features entirely. Something like:
 
     function mysite_deploy_update_7023() {
       $node = new stdClass();
@@ -128,7 +128,7 @@ What are the advantages of placeholder content?
 
  * It is deployable in a standard manner: any environment can simply run `drush updb -y` and the placeholder content will be deployed.
  * It can be changed without rendering your features (D7) or configuration (D8) overriden. This is a good thing: if our incremental deployment script calls [`features_revert()`](http://drupalcontrib.org/api/drupal/contributions!features!features.module/function/features_revert/7) or `drush fra -y` (D7) or `drush cim -y` (D8), all changes to features are deleted. We do not want changes made to our placeholder content to be deleted.
- * It can be easily tested. All we need to do is make sure our site deployment module's [`hook_install()` calls all `hook_update_N()`s](http://dcycleproject.org/blog/65/basic-install-file-deployment-module); then we can enable our site deployment module [within our simpletest](http://dcycleproject.org/blog/30/basic-test), and run any tests we want against a known good starting point.
+ * It can be easily tested. All we need to do is make sure our site deployment module's [`hook_install()` calls all `hook_update_N()`s](http://blog.dcycle.com/blog/65/basic-install-file-deployment-module); then we can enable our site deployment module [within our simpletest](http://blog.dcycle.com/blog/30/basic-test), and run any tests we want against a known good starting point.
 
 Overriden features
 ------------------
@@ -137,7 +137,7 @@ Although it is easy to override features on production, I would not recommend it
 
 When a feature gets overridden, it is a symptom that someone does not understand the process. Here are a few ways to mitigate this:
 
- * Make sure your features are reverted (D7) or your configuration is imported (D8) as part of your deployment process, and [automate that process](http://dcycleproject.org/blog/46/continuous-deployment-drupal-style) with a continuous integration server. That way, if anyone overrides a feature on a production, it won't stay overridden long.
+ * Make sure your features are reverted (D7) or your configuration is imported (D8) as part of your deployment process, and [automate that process](http://blog.dcycle.com/blog/46/continuous-deployment-drupal-style) with a continuous integration server. That way, if anyone overrides a feature on a production, it won't stay overridden long.
  * Limit administrator permissions so that only user 1 can override features (this can be more trouble than it's worth though).
  * Implement [`hook_requirements()`](https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_requirements/7) to check for overridden features, warning you on the environment's dashboard if a feature has been overridden.
 

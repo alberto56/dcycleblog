@@ -11,7 +11,7 @@ redirect_from:
   - /blog/79/
   - /node/79/
 ---
-[Phabricator](http://phabricator.org) is a free open-source code review and workflow management system. Here is how to quickly install Phabricator in a manner which should be considered non-secure, so you can determine if it is right for you. You might also be interested in [Gerrit](http://dcycleproject.org/blog/82/setting-gerrit-centos-evaluation) or [Gitlab](https://about.gitlab.com), similar products.
+[Phabricator](http://phabricator.org) is a free open-source code review and workflow management system. Here is how to quickly install Phabricator in a manner which should be considered non-secure, so you can determine if it is right for you. You might also be interested in [Gerrit](http://blog.dcycle.com/blog/82/setting-gerrit-centos-evaluation) or [Gitlab](https://about.gitlab.com), similar products.
 
 (Fans of Docker can skip this entire procedure and [use this Docker image](https://github.com/yesnault/docker-phabricator) instead.)
 
@@ -123,4 +123,4 @@ You now have an insecure version of Phabricator for evaluation and demo purposes
 Next step
 ----------
 
- * [Setting up a link between Phabricator and a git repo](http://dcycleproject.org/blog/80/setting-phabricator-track-git-repo)
+ * [Setting up a link between Phabricator and a git repo](http://blog.dcycle.com/blog/80/setting-phabricator-track-git-repo)

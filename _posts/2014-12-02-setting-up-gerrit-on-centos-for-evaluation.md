@@ -13,7 +13,7 @@ redirect_from:
 ---
 [Gerrit](https://code.google.com/p/gerrit/) is a free open-source code review platform created by Google. Here is how to set up a quick, insecure version of Gerrit for evaluation.
 
-You might also be interested in [Phabricator](http://phabricator.org) ([installing](http://dcycleproject.org/blog/79), [linking with git](http://dcycleproject.org/blog/80), and [reviewing code](http://dcycleproject.org/blog/81)), another product which I am also evaluating for code review.
+You might also be interested in [Phabricator](http://phabricator.org) ([installing](http://blog.dcycle.com/blog/79), [linking with git](http://blog.dcycle.com/blog/80), and [reviewing code](http://blog.dcycle.com/blog/81)), another product which I am also evaluating for code review.
 
 Step 1: get a new server
 ------------------------
@@ -57,12 +57,12 @@ Now you can visit gerrit.example.com:8080 and you will see the Gerrit dashboard!
 Next step
 --------
 
- * [Set up Gerrit with a git repo](http://dcycleproject.org/blog/84/setting-gerrit-git-repo)
+ * [Set up Gerrit with a git repo](http://blog.dcycle.com/blog/84/setting-gerrit-git-repo)
 
 Next step
 ----
 
- * [Reviewing a code change with Gerrit](http://dcycleproject.org/blog/85/using-gerrit-review-change-your-code)
+ * [Reviewing a code change with Gerrit](http://blog.dcycle.com/blog/85/using-gerrit-review-change-your-code)
 
 Resources
 ---------

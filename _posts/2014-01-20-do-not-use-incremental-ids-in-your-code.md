@@ -13,11 +13,11 @@ redirect_from:
 ---
 Drupal uses incremental IDs for such data as taxonomy terms and nodes, but not content types or vocabularies. If, like me, you believe your site's codebase should work with different environments and different databases, your incremental IDs can be different on each environment, causing your code to break.
 
-But wait, you are thinking, I have only one environment: my production environment. 
+But wait, you are thinking, I have only one environment: my production environment.
 
-Even if such is the case, there are advantages to be able to spawn new environments independently of the production environment [without cloning the database upstream](http://dcycleproject.org/blog/48):
+Even if such is the case, there are advantages to be able to spawn new environments independently of the production environment [without cloning the database upstream](http://blog.dcycle.com/blog/48):
 
- * Everything you need to create your website, minus the content, is under version control. The production database, being outside version control, should not be needed to install a new environment. See also "[what is a deployment module?](http://dcycleproject.org/blog/44)".
+ * Everything you need to create your website, minus the content, is under version control. The production database, being outside version control, should not be needed to install a new environment. See also "[what is a deployment module?](http://blog.dcycle.com/blog/44)".
  * New developers can be up and running with a predictable environment and dummy content.
  * Your automated tests, using Drupal's Simpletest, by default deploy a new environment without cloning the database.
  * For predictable results in your continuous integration server, it is best to deploy a new envrionment. The production database is unpredictable and unversioned. If you test it, your test results will be unpredictable as well.
@@ -46,7 +46,7 @@ Example #2: filtering a view by taxonomy tag
 
 You might have a website which uses Drupal's default implementation of articles, with a tag taxonomy field. You might decide that all articles tagged with "blog" should appear in your blog, and you might create a new view, filtered to display all articles with the "blog" tag.
 
-Now, you might export your view into a [feature](https://drupal.org/project/features) and, perhaps, make your feature a dependency of a [site deployment module](http://dcycleproject.org/blog/44) (so that enabling this module on a new environment will deploy your blog feature, and do everything else necessary to make your site unique, such as enabling the default theme, etc.).
+Now, you might export your view into a [feature](https://drupal.org/project/features) and, perhaps, make your feature a dependency of a [site deployment module](http://blog.dcycle.com/blog/44) (so that enabling this module on a new environment will deploy your blog feature, and do everything else necessary to make your site unique, such as enabling the default theme, etc.).
 
 It is important to understand that with this approach, you are in effect putting an incremental ID into code. You view is in fact filtering by the _ID of the "blog" taxonomy term as it happens to exist on the site used to create the view_. When creating the view, we have no idea what this ID is, but we are saying that in order for our view to work, the "blog" taxonomy term needs to be identical on all environments.
 
@@ -63,7 +63,7 @@ Consider, furthermore, that your client decides to create a new view for "jobs" 
 To come up with a better approach, it is important to understand what we are trying to accomplish; and what taxonomy terms are meant to be used for:
 
  * The "blog" category here is somehow, logically, immutable and means something very specific. Furthermore, the existence of the blog category is required for our site. Even if its name changes, the _key_ (or underlying identity) of the blog category should always be the same.
- * Taxonomy terms are referenced with incremental IDs (like nodes) and thus, when writing our code, their IDs (and even their existence) cannot be counted upon. 
+ * Taxonomy terms are referenced with incremental IDs (like nodes) and thus, when writing our code, their IDs (and even their existence) cannot be counted upon.
 
 In this case, we are using taxonomy terms for the wrong purpose. Taxonomy terms, like nodes, are meant to be potentially different for each environment: _our code should not depend on them_.
 
@@ -74,7 +74,7 @@ I myself made this very mistake with my own website code without realizing it. T
 Deploying a fix to an existing site
 -----------------------------------
 
-If you apply these practices from the start of a project, it is relatively straightforward. However, what if a site is already in production with several articles already labelled "blog" (as is the case on the Dcycle website itself)? In this case we need to incrementally deploy the fix. For this, a [site deployment module](http://dcycleproject.org/blog/44) can be of use: in your site deployment module's `.install` file, you can add a new update hook to update all your existing articles labelled "blog", something like:
+If you apply these practices from the start of a project, it is relatively straightforward. However, what if a site is already in production with several articles already labelled "blog" (as is the case on the Dcycle website itself)? In this case we need to incrementally deploy the fix. For this, a [site deployment module](http://blog.dcycle.com/blog/44) can be of use: in your site deployment module's `.install` file, you can add a new update hook to update all your existing articles labelled "blog", something like:
 
     /**
      * Use a machine name rather than an incremental ID to display blog items.

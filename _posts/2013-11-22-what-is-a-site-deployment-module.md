@@ -46,7 +46,7 @@ Using a deployment module aims to meet the following goals:
 
 Essentially, anything not in version control is unreliable, and cloning the database today can yield a bug which won't be present if you clone the database tomorrow. So we'll avoid cloning the database in most cases.
 
-The [Dcycle manifesto](http://dcycleproject.org/manifesto) states that each site should have a deployment module whose job it is to keep track of deployment-related configuration. Once you have settled on a namespace for your project, for example `example`, by convention your deployment module should reside in `sites/*/modules/custom/example_deploy`.
+The [Dcycle manifesto](http://blog.dcycle.com/manifesto) states that each site should have a deployment module whose job it is to keep track of deployment-related configuration. Once you have settled on a namespace for your project, for example `example`, by convention your deployment module should reside in `sites/*/modules/custom/example_deploy`.
 
 Let's now say that we are starting a project, and our first order of business is to create a specific view: we will create the view, export it as a feature, and make the feature a dependency of our deployment module. Starting now, if all your code is under version control, all new environments (production, continuous integration, testing, new local sites) are deployed the same way, simply by creating a database and enabling the deployment module. Using [Drush](https://github.com/drush-ops/drush), you would call something like:
 
@@ -116,12 +116,12 @@ Now, simply add the following code to a `hook_update_N()` in your deployment mod
 
 Now, calling `drush updb -y` on _any_ environment, including your local environment, should enable Javascript aggregation.
 
-It is important to realize that `hook_update_N()s` are only called on environments where the deployment module is already in place, and not on new deployments. To make sure that new deployments and incremental deployments behave similarly, I call all my update hooks from my hook_install, as described [in a previous post](http://dcycleproject.org/node/43):
+It is important to realize that `hook_update_N()s` are only called on environments where the deployment module is already in place, and not on new deployments. To make sure that new deployments and incremental deployments behave similarly, I call all my update hooks from my hook_install, as described [in a previous post](http://blog.dcycle.com/node/43):
 
     /**
      * Implements hook_install().
      *
-     * See http://dcycleproject.org/node/43
+     * See http://blog.dcycle.com/node/43
      */
     function example_deploy_install() {
       for ($i = 7001; $i < 8000; $i++) {

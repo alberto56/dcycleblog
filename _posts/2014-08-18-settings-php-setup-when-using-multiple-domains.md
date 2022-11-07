@@ -19,4 +19,4 @@ When using multiple domains (one per language), I use [language_domains](https:/
     $conf['language_domains']['en'] = 'en.mysite.local';
     $conf['language_domains']['fr'] = 'fr.mysite.local';
 
-Normally, we deploy variables with a [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module), but in this case the variables must have different values for each environment.
+Normally, we deploy variables with a [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module), but in this case the variables must have different values for each environment.

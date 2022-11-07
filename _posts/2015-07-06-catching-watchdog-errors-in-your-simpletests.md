@@ -12,7 +12,7 @@ redirect_from:
   - /blog/96/
   - /node/96/
 ---
-If you are using a [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module), and running simpletests against it in your continuous integration server using `drush test-run`, you might come across Simpletest output like this in your Jenkins console output:
+If you are using a [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module), and running simpletests against it in your continuous integration server using `drush test-run`, you might come across Simpletest output like this in your Jenkins console output:
 
     Starting test MyModuleTestCase.                                         [ok]
     ...
@@ -48,7 +48,7 @@ Add the following code to your Simpletest (if you have several tests, consider c
      * {inheritdoc}
      */
     function tearDown() {
-      // See http://dcycleproject.org/blog/96/catching-watchdog-errors-your-simpletests
+      // See http://blog.dcycle.com/blog/96/catching-watchdog-errors-your-simpletests
       $num_errors = $this->getNumWatchdogEntries(WATCHDOG_ERROR);
       $expected_errors = isset($this->expected_errors) ? $this->expected_errors : 0;
       $this->assertTrue($num_errors == $expected_errors, 'Expected ' . $expected_errors . ' watchdog errors and got ' . $num_errors . '.');
@@ -59,7 +59,7 @@ Add the following code to your Simpletest (if you have several tests, consider c
     /**
      * Get the number of watchdog entries for a given severity or worse
      *
-     * See http://dcycleproject.org/blog/96/catching-watchdog-errors-your-simpletests
+     * See http://blog.dcycle.com/blog/96/catching-watchdog-errors-your-simpletests
      *
      * @param $severity = WATCHDOG_ERROR
      *   Severity codes are listed at https://api.drupal.org/api/drupal/includes%21bootstrap.inc/group/logging_severity_levels/7

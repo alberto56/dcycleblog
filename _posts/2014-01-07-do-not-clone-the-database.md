@@ -11,13 +11,13 @@ redirect_from:
   - /blog/48/
   - /node/48/
 ---
-It is generally agreed that cloning the database downstream (that is, from development toward production) is a bad idea, if only because by doing so all production content is lost; most developers use [Features](http://drupal.org/project/features), [Context](http://drupal.org/project/context), some variation on a [site deployment module](http://dcycleproject.org/blog/44), or a rudimentary written procedure to move new configuration downstream.
+It is generally agreed that cloning the database downstream (that is, from development toward production) is a bad idea, if only because by doing so all production content is lost; most developers use [Features](http://drupal.org/project/features), [Context](http://drupal.org/project/context), some variation on a [site deployment module](http://blog.dcycle.com/blog/44), or a rudimentary written procedure to move new configuration downstream.
 
 However, in a dev-stage-production workflow, the database is often still periodically cloned back upstream:
 
-<img src="http://dcycleproject.org/sites/dcycleproject.org/files/environment_flow.png" style="width:100%"/>
+<img src="http://blog.dcycle.com/sites/blog.dcycle.com/files/environment_flow.png" style="width:100%"/>
 
-In such an approach, anything not in [Features](http://drupal.org/project/features) or a [site deployment module](http://dcycleproject.org/blog/44) exists solely in the database. For example: any content, your default theme, and other information (such as variables not exported with [Strongarm](http://drupal.org/project/strongarm) or block placement information not exported with [Context](http://drupal.org/project/context)) are defined only in your database and not in code. Therefore, to create a realistic development environment, it is tempting to clone your database.
+In such an approach, anything not in [Features](http://drupal.org/project/features) or a [site deployment module](http://blog.dcycle.com/blog/44) exists solely in the database. For example: any content, your default theme, and other information (such as variables not exported with [Strongarm](http://drupal.org/project/strongarm) or block placement information not exported with [Context](http://drupal.org/project/context)) are defined only in your database and not in code. Therefore, to create a realistic development environment, it is tempting to clone your database.
 
 I'll explain why I think database cloning is the wrong approach, and then look at other ways to achieve the same goals. Finally, I'll look at some situations where cloning the database is a good idea.
 
@@ -57,7 +57,7 @@ Because of the importance of having a known-good starting point, Drupal automate
 
 For example, let's say you have a block appear when there are more than 20 registered users on your site. The only way to accurately test this is to have your test control the number of users, and test the presence or absence of your block. If the only way to deploy a new environment with your site is to clone the database, the test has no real way of creating the conditions (active theme, block placement, active modules) to run this test.
 
-However, if you are using Features and a [site deployment module](http://dcycleproject.org/blog/44), all your tests needs to do for the above example is to:
+However, if you are using Features and a [site deployment module](http://blog.dcycle.com/blog/44), all your tests needs to do for the above example is to:
 
  * (1) Enable your site deployment module.
  * (2) Make sure the special block does not appear.
@@ -92,7 +92,7 @@ Once your production site actually starts being used, you end up with much sensi
 
 ### Fixes to a cloned database will "work on my machine", but not elsewhere ###
 
-So you've cloned a database on your laptop, and you changed some configuration on administration pages, and now the problem seems fixed, you've made a demo for your team and your client. The next part is messy though: a list of admin screens to click through on the production site to reproduce the fix (ugh!), or, as I've already seen, cloning the development database _downstream_ (double-ugh!). Both methods are error-prone and do not record the fix in version control, so a month from now you'll forget how it was done. In fact, you will find yourself in a sysyphian effort of repeatedly fixing the same problem over and over, and explaining to your clients and your team, with the help of out-of-date wiki pages, email exchanges and undecipherable comments on issue queues, that you are not an incompetent oaf. 
+So you've cloned a database on your laptop, and you changed some configuration on administration pages, and now the problem seems fixed, you've made a demo for your team and your client. The next part is messy though: a list of admin screens to click through on the production site to reproduce the fix (ugh!), or, as I've already seen, cloning the development database _downstream_ (double-ugh!). Both methods are error-prone and do not record the fix in version control, so a month from now you'll forget how it was done. In fact, you will find yourself in a sysyphian effort of repeatedly fixing the same problem over and over, and explaining to your clients and your team, with the help of out-of-date wiki pages, email exchanges and undecipherable comments on issue queues, that you are not an incompetent oaf.
 
 What are the alternatives to database cloning?
 ----------------------------------------------
@@ -107,15 +107,15 @@ This is possible without cloning the database. Here are some tips and techniques
 
 ### Getting the same configuration and features as production ###
 
-In an ideal world any Drupal site should be deployable without cloning the database, by getting the code from git and enabling the [site deployment module](http://dcycleproject.org/blog/44).
+In an ideal world any Drupal site should be deployable without cloning the database, by getting the code from git and enabling the [site deployment module](http://blog.dcycle.com/blog/44).
 
 You are most likely, however, to inherit a site which is a mess: no site deployment module, no tests, with [Features](http://drupal.org/project/features), if they exist at all, likely to be overridden on the production site. On some projects you'd be lucky to even have a git repo.
 
-One might think that for such sites, which we'll call legacy sites for the purpose of this article, cloning the production database is the only viable option. Unfortunately, that is true, but it should only be a temporary solution, to give you time to extract the important configuration into code, and to create a [site deployment module](http://dcycleproject.org/blog/44).
+One might think that for such sites, which we'll call legacy sites for the purpose of this article, cloning the production database is the only viable option. Unfortunately, that is true, but it should only be a temporary solution, to give you time to extract the important configuration into code, and to create a [site deployment module](http://blog.dcycle.com/blog/44).
 
 Let's say, for example, I get a work request to "fix a little bug on a site which is almost ready". The first thing I do is to clone the entire site to my laptop, with the database and all, and and determine which configurations, features, and variables are affected by the bug. Let's say the site in question has 20 content types, 20 views, 50 enabled modules, three languages and a custom theme.
 
-But the bug in question only affects 2 content types, one view, 3 modules and does not require the custom theme or i18n. I would start by generating a feature (if one does not exist) with the required views and content types, and a site deployment module with the feature as a dependency and a [basic automated test](http://dcycleproject.org/blog/30). Now I can use test-driven development to fix my bug, push everything back to version control and to my continuous integration server, and deploy to production using drush.
+But the bug in question only affects 2 content types, one view, 3 modules and does not require the custom theme or i18n. I would start by generating a feature (if one does not exist) with the required views and content types, and a site deployment module with the feature as a dependency and a [basic automated test](http://blog.dcycle.com/blog/30). Now I can use test-driven development to fix my bug, push everything back to version control and to my continuous integration server, and deploy to production using drush.
 
 Thus, every time an issue is being worked on, a site gradually moves from being a legacy site to a modern, tested site with continuous integration (don't do it all at once as you will get discouraged).
 
@@ -138,7 +138,7 @@ I see this situation as more of an opportunity, and have come up with [a way of 
 When is it OK to clone the database?
 ------------------------------------
 
-"*Don't clone the database*" is a good rule of thumb, but in some cases [cloning the database](http://dcycleproject.org/blog/33) is good idea, for example in the following cases:
+"*Don't clone the database*" is a good rule of thumb, but in some cases [cloning the database](http://blog.dcycle.com/blog/33) is good idea, for example in the following cases:
 
  * For backups and restores.
  * For hard-to-debug "production-only" problems.
@@ -155,18 +155,18 @@ Once in a while, you will have a problem which only manifests itself on a produc
 
 ### As a temporary measure to update a legacy site ###
 
-As mentioned in *"Getting the same configuration and features as production"*, above, most projects are a complete mess once you get your hands on them. We'll call these legacy sites. The only way to move important configuration information into code is often to clone these sites temporarily until you have working [Features](http://drupal.org/project/features) and a [site deployment module](http://dcycleproject.org/blog/44).
+As mentioned in *"Getting the same configuration and features as production"*, above, most projects are a complete mess once you get your hands on them. We'll call these legacy sites. The only way to move important configuration information into code is often to clone these sites temporarily until you have working [Features](http://drupal.org/project/features) and a [site deployment module](http://blog.dcycle.com/blog/44).
 
 ### For proproduction environments ###
 
-For some critical projects, you might decide to [continually deploy](http://dcycleproject.org/blog/46), but not directly to production. In such circumstances, you might have your Jenkins projects continually deploy to a preproduction site (cloned from production before each deployment), to give the team, and the client, a few hours or a day to walk through the changes before approving them for deployment to production.
+For some critical projects, you might decide to [continually deploy](http://blog.dcycle.com/blog/46), but not directly to production. In such circumstances, you might have your Jenkins projects continually deploy to a preproduction site (cloned from production before each deployment), to give the team, and the client, a few hours or a day to walk through the changes before approving them for deployment to production.
 
 Conclusion
 ----------
 
 Since being interested in Drupal dev-stage-prod, deployment and testing, I have often come across colleagues who systematically cloned the database, and have always felt uneasy about it, and in writing this post I have set out to explain why. The post turned out _a lot_ longer than I thought, and the main take-away is that we should all consider our sites as software products, not single-use sites.
 
-As software products, we need standardized deployment methods, both initial and incremental, via a [site deployment module](http://dcycleproject.org/blog/44).
+As software products, we need standardized deployment methods, both initial and incremental, via a [site deployment module](http://blog.dcycle.com/blog/44).
 
 As software products, we also need to implement modern testing and continuous integration techniques.
 

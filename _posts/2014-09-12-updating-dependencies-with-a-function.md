@@ -20,7 +20,7 @@ Now, I add this function to my site deployment module and call it from an update
      *
      * Prepend with an underscore (_) to avoid confusion with hook_update_dependencies().
      *
-     * See http://dcycleproject.org/blog/70/updating-dependencies-function
+     * See http://blog.dcycle.com/blog/70/updating-dependencies-function
      */
     function _mysite_deploy_update_dependencies() {
       $info_file = drupal_parse_info_file(drupal_get_path('module', 'mysite_deploy') . '/mysite_deploy.info');
@@ -33,7 +33,7 @@ Now, I add this function to my site deployment module and call it from an update
       }
     }
 
-My [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module)'s install file might contain something like:
+My [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module)'s install file might contain something like:
 
     mysite_deploy_update_7123() {
       _mysite_deploy_update_dependencies();

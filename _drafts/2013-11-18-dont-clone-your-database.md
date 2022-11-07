@@ -14,4 +14,4 @@ New features are moved _downstream_ from the development to the production envir
 
 In such a model, the production database is often cloned back _upstream_ to the development environment:
 
-<img src="http://dcycleproject.org/sites/dcycleproject.org/files/environment_flow.png" style="width:100%"/>
+<img src="http://blog.dcycle.com/sites/blog.dcycle.com/files/environment_flow.png" style="width:100%"/>

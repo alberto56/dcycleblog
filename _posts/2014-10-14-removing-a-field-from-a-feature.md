@@ -11,7 +11,7 @@ redirect_from:
   - /blog/75/
   - /node/75/
 ---
-So you've created a feature, and made it a dependency of your [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module), and it contains a field you don't want.
+So you've created a feature, and made it a dependency of your [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module), and it contains a field you don't want.
 
 The problem is: your colleagues have the field installed on their local development machines, and the field is on your dev and prod environment.
 

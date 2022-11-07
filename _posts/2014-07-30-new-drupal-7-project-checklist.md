@@ -35,15 +35,15 @@ Questions to ask of a client at the project launch
 
 Here is what should get done in the first Agile sprint, aka Sprint Zero:
 
- * If you are using [continuous integration](http://dcycleproject.org/blog/46/continuous-deployment-drupal-style), a Jenkins job for tracking the master branch: this job should fail if any test fails on the codebase, or if quality metrics ([code review](https://www.drupal.org/project/coder), for example, or [pdepend](http://pdepend.org) metrics) reach predefined thresholds.
- * A Jenkins job for pushing to dev. This is triggered by the first job if tests pass. It pushed the new code to the dev environment, and updates the dev environment's database. [The database is never cloned](http://dcycleproject.org/blog/48/do-not-clone-database); rather, a [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module) is used.
+ * If you are using [continuous integration](http://blog.dcycle.com/blog/46/continuous-deployment-drupal-style), a Jenkins job for tracking the master branch: this job should fail if any test fails on the codebase, or if quality metrics ([code review](https://www.drupal.org/project/coder), for example, or [pdepend](http://pdepend.org) metrics) reach predefined thresholds.
+ * A Jenkins job for pushing to dev. This is triggered by the first job if tests pass. It pushed the new code to the dev environment, and updates the dev environment's database. [The database is never cloned](http://blog.dcycle.com/blog/48/do-not-clone-database); rather, a [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module) is used.
  * An issue queue is set up and the client is given access to it, and training on how to use it.
  * A wiki is set up.
  * A dev environment is set up. This is where the code gets pushed automatically if all tests pass.
  * A prod environment is set up. This environment is normally updated manually after each end of sprint demo.
  * A git repo is set up with a basic Drupal site.
  * A custom module is set up in `sites/*/modules/custom`: this is where custom function go.
- * A [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module) in `sites/all/modules/custom`. All deployment-related code and dependencies go here. A [`.test`](http://dcycleproject.org/blog/30/basic-test) file and an [`.install`](http://dcycleproject.org/blog/65/basic-install-file-deployment-module) should be included.
+ * A [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module) in `sites/all/modules/custom`. All deployment-related code and dependencies go here. A [`.test`](http://blog.dcycle.com/blog/30/basic-test) file and an [`.install`](http://blog.dcycle.com/blog/65/basic-install-file-deployment-module) should be included.
  * A site development module is set up in `sites/*/modules/custom`, which is meant to contain all modules required or useful for development, as dependencies.
  * A custom theme is created.
  * An initial feature is created in `sites/*/modules/features`. This is where all your features will be added.

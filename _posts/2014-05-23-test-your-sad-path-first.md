@@ -15,7 +15,7 @@ One of the techniques I use to make sure I write tests is to write them before I
 
 I have found, though, that when writing tests, our team tends to think only about the happy path: what happens if everything goes according to plan.
 
-Let me give an quick example: let's say you are developing a donation system for anonymous users to make donations on your site. The user story calls for a form where a donation amount can be entered before redirecting the user to the payment form. Using test-driven development and Drupal's Simpletest framework, we might start by writing something like this in our [site deployment module](http://dcycleproject.org/node/44)'s `.test` file:
+Let me give an quick example: let's say you are developing a donation system for anonymous users to make donations on your site. The user story calls for a form where a donation amount can be entered before redirecting the user to the payment form. Using test-driven development and Drupal's Simpletest framework, we might start by writing something like this in our [site deployment module](http://blog.dcycle.com/node/44)'s `.test` file:
 
     // @file mysite_deploy.test
 
@@ -50,7 +50,7 @@ Often, the client will not have thought of that, and will answer something like:
 
 Once the sprint planning session is over, I will start by writing the test based on business considerations above, and also integrating other sad paths I can think of, into my test.
 
-Here is what our test might look like now, assuming we have a `setUp()` function which enables our [site deployment module](http://dcycleproject.org/node/44) and dependent features (including roles); and we are using the `loginAsRole()` method, [documented here](http://dcycleproject.org/blog/45):
+Here is what our test might look like now, assuming we have a `setUp()` function which enables our [site deployment module](http://blog.dcycle.com/node/44) and dependent features (including roles); and we are using the `loginAsRole()` method, [documented here](http://blog.dcycle.com/blog/45):
 
     // @file mysite_deploy.test
 

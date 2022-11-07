@@ -11,7 +11,7 @@ redirect_from:
   - /blog/46/
   - /node/46/
 ---
-Edit (2016-10-03): [This website is no longer Drupal-based](http://dcycleproject.org/blog/2016-10-02/when-not-to-use-drupal/).
+Edit (2016-10-03): [This website is no longer Drupal-based](http://blog.dcycle.com/blog/2016-10-02/when-not-to-use-drupal/).
 
 Deployments are often one of the most pain-inducing aspects of the Drupal development cycle. I have talked to Drupal developers in several shops, and have found that best practices are often ignored in favor of cloning databases downstream, manually reproducing content on prod environments, following a series of error-prone manual steps on each environment, and other bad practices, all of which should be thrown out the door.
 
@@ -19,17 +19,17 @@ In this article I am referring to deployment of site configuration (not content)
 
 Taking best practices to the extreme, it is possible to deploy _continually_, dozens of times a day, automatically. The following procedure is a proof of concept, and you will probably want to adapt it to your needs, introducing a manual step perhaps, if only to make sure your deployments happen on fixed schedule.
 
-Still, I have started using the exact procedure discussed herein to deploy the website you are currently reading, [dcycleproject.org](http://dcycleproject.org). Furthermore, [the code is on Github](https://github.com/alberto56/dcyclesite), so anyone can reproduce the dcycle project site, without the content (I'll detail how later on). 
+Still, I have started using the exact procedure discussed herein to deploy the website you are currently reading, [blog.dcycle.com](http://blog.dcycle.com). Furthermore, [the code is on Github](https://github.com/alberto56/dcyclesite), so anyone can reproduce the dcycle project site, without the content (I'll detail how later on).
 
 Initial goal
 ============
 
-In an effort to demonstrate that the principles of the [Dcycle manifesto](http://dcycleproject.org/) work well for a real — albeit simple — website, I have started to deploy changes to the Dcycle website itself via a [site deployment module](http://dcycleproject.org/blog/44) with automatic testing, a continuous integration server (Jenkins), and continuous deployment. In fact, if you visit [the dcycle website](http://dcycleproject.org/), you might come across a maintenance page. This is a deployment in action, and chances are it's happening automatically.
+In an effort to demonstrate that the principles of the [Dcycle manifesto](http://blog.dcycle.com/) work well for a real — albeit simple — website, I have started to deploy changes to the Dcycle website itself via a [site deployment module](http://blog.dcycle.com/blog/44) with automatic testing, a continuous integration server (Jenkins), and continuous deployment. In fact, if you visit [the dcycle website](http://blog.dcycle.com/), you might come across a maintenance page. This is a deployment in action, and chances are it's happening automatically.
 
 So what is continuous deployment? For our purposes, it is a site development method which follows these principles:
 
  * The site's code is under version control (we are using [Git](http://git-scm.com)).
- * Our site is deployed, initially and incrementally, via a [site deployment module](http://dcycleproject.org/blog/44).
+ * Our site is deployed, initially and incrementally, via a [site deployment module](http://blog.dcycle.com/blog/44).
  * Automatic testing confirms that the features we have developed actually work.
  * Two branches exist: `master`, on which development occurs, and `prod`, considered stable, on which all tests have passed.
  * A continuous integration server (in our case [Jenkins](http://jenkins-ci.org)) monitors the `master` branch, and moves code to the `prod` branch only if automated tests pass.
@@ -50,7 +50,7 @@ Tools
 Before getting started, make sure you have the following.
 
  * A continuous integration server, which can be on your laptop if you wish. [Jenkins](http://jenkins-ci.org) is easy to set up, and took me five minutes to install on Mac OS, and another five minutes on CentOS. Just follow the instructions.
- * A central git repo. You can fork [the code for the dcycleproject.org website](https://github.com/alberto56/dcyclesite) if you like.
+ * A central git repo. You can fork [the code for the blog.dcycle.com website](https://github.com/alberto56/dcyclesite) if you like.
  * A webserver on your laptop. I am using [MAMP](http://www.mamp.info/en/index.html).
  * Access to your production website on the command line via SSH.
  * SSH public-private key access to the production server, to avoid being asked for passwords. This is important for Jenkins to modify the production server automatically.
@@ -60,7 +60,7 @@ We won't be using git hooks or Drupal's GUI.
 Step one: pick an issue
 =======================
 
-More often than not, we are working on _existing_ Drupal sites, not new ones, and we don't have the luxury of redeveloping everything with best practices. So we'll start with a single issue, either a bug or feature request. Here is a real-life example for the [Dcycle website](http://dcycleproject.org):
+More often than not, we are working on _existing_ Drupal sites, not new ones, and we don't have the luxury of redeveloping everything with best practices. So we'll start with a single issue, either a bug or feature request. Here is a real-life example for the [Dcycle website](http://blog.dcycle.com):
 
 I like the idea of each article having its ID reflected in the URL, as is the case with [Stack Overflow](http://stackoverflow.com/). I want the path of my articles to be in the format `blog/12345/title-of-the-post`. I also want it to be possible to shorten the path and have it redirect the full path, so for example `blog/12345` redirects to `blog/12345/title-of-the-post`, as is the case on Stack Overflow.
 
@@ -69,13 +69,13 @@ So, I started out with the goal of implementing this feature using continuous de
 Step two: create a local version of the website
 ===============================================
 
-If your site has a [site deployment module](http://dcycleproject.org/blog/44) or something like it, download your code from git and deploy the site locally, using these commands, substituting your own site deployment module name and database credentials for those in the example:
+If your site has a [site deployment module](http://blog.dcycle.com/blog/44) or something like it, download your code from git and deploy the site locally, using these commands, substituting your own site deployment module name and database credentials for those in the example:
 
     echo 'create database example' | mysql -uroot -proot
     drush si --db-url=mysql://root:root@localhost/example --account-name=root --account-pass=root
     drush en example_deploy -y
 
-If you want to try this at home and create a local version of the [Dcycle website](http://dcycleproject.org), make sure you have a webserver, PHP and MySQL installed, and run the following commands (if you want to actually modify the code, fork it first and use your project URL instead of mine). This example uses MAMP.
+If you want to try this at home and create a local version of the [Dcycle website](http://blog.dcycle.com), make sure you have a webserver, PHP and MySQL installed, and run the following commands (if you want to actually modify the code, fork it first and use your project URL instead of mine). This example uses MAMP.
 
     cd /Applications/MAMP/htdocs
     git clone https://github.com/alberto56/dcyclesite.git dcyclesample
@@ -89,12 +89,12 @@ The above will yield an empty website. Adding some generated content will make d
     drush en devel_generate -y
     drush generate-content 50
 
-If there is no site deployment site, you can [clone the database](http://dcycleproject.org/blog/33), but don't make a habit of it!
+If there is no site deployment site, you can [clone the database](http://blog.dcycle.com/blog/33), but don't make a habit of it!
 
 Step three: make sure you have a site deployment module
 =======================================================
 
-To work well with continuous deployment, your site needs to have a consistent way of being initially and incrementally deployed. To achieve this, I recommend the use of a [site deployment module](http://dcycleproject.org/blog/44).
+To work well with continuous deployment, your site needs to have a consistent way of being initially and incrementally deployed. To achieve this, I recommend the use of a [site deployment module](http://blog.dcycle.com/blog/44).
 
 Create one for your site (one already exists for the Dcycle website code, if you are using that), and make sure the `.install` file contains everything necessary to deploy your site. To make sure initial deployment and incremental deployment result in the same state, I just call all my `update` hooks from my `install` hook, and that has worked fine for me. Your `.install` file might look something like:
 
@@ -103,7 +103,7 @@ Create one for your site (one already exists for the Dcycle website code, if you
      * sites/default/modules/custom/dcycle_deploy/dcycle_deploy.install
      * Initial and incremental deployment of this website.
      */
-    
+
     /**
      * Implements hook_install().
      */
@@ -115,7 +115,7 @@ Create one for your site (one already exists for the Dcycle website code, if you
         }
       }
     }
-    
+
     /**
      * Admin menu
      */
@@ -123,9 +123,9 @@ Create one for your site (one already exists for the Dcycle website code, if you
       module_enable(array('admin_menu_toolbar'));
       module_disable(array('toolbar'));
     }
-    
+
     ...
-    
+
     /**
      * Set dark_elegant as theme
      */
@@ -161,10 +161,10 @@ If you cloned my git repo for this site, the "short path" feature, introduced ab
      * sites/default/modules/custom/dcycle_deploy/dcycle_deploy.test
      * This file contains the testing code for this module
      */
-    
+
     // Test should run with this number of blog posts.
     define('DCYCLE_DEPLOY_TEST_BLOG_COUNT', 5);
-    
+
     /**
      * The test case
      */
@@ -179,7 +179,7 @@ If you cloned my git repo for this site, the "short path" feature, introduced ab
           'group' => 'dcyclesite',
         );
       }
-    
+
       /*
        * Enable your module
        */
@@ -188,7 +188,7 @@ If you cloned my git repo for this site, the "short path" feature, introduced ab
         // dependencies.
         parent::setUp('dcycle_deploy');
       }
-    
+
       /*
        * Test case for dcyclesite.
        */
@@ -211,7 +211,7 @@ If you cloned my git repo for this site, the "short path" feature, introduced ab
           }
         }
       }
-    
+
       /*
        * Login as administrator role.
        *
@@ -238,7 +238,7 @@ If you cloned my git repo for this site, the "short path" feature, introduced ab
         }
         $this->drupalLogin($user);
       }
-    
+
     }
 
 Don't forget to reference your test in your .info file:
@@ -247,7 +247,7 @@ Don't forget to reference your test in your .info file:
     files[] = dcycle_deploy.test
     ...
 
-What are we doing in the automatic test, above? 
+What are we doing in the automatic test, above?
 
 Take a look at the `setUp()` function, which does everything required to create a new environment of this website. Because we have used a site deployment module, "everything" is simply a matter of enabling that module.
 
@@ -278,14 +278,14 @@ In the case of the task at hand, I wrote some custom code in a new module, `dcyc
       # are curious.
       module_enable(array('dcyclesite'));
     }
-    
+
     /**
      * Pattern for articles
      */
     function dcycle_deploy_update_7023() {
       variable_set('pathauto_node_article_pattern', 'blog/[node:nid]/[node:title]');
     }
-    
+
     /**
      * Enable transliteration
      */

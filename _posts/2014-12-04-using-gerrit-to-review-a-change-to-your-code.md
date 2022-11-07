@@ -16,8 +16,8 @@ redirect_from:
 Step 1: install Gerrit and set up your git repo.
 ----------------------
 
- * Start by [installing a Gerrit server](http://dcycleproject.org/blog/82) at http://gerrit.example.com:8080.
- * Then, [make sure you have a git repo](http://dcycleproject.org/blog/82/setting-gerrit-centos-evaluation) on your Gerrit server.
+ * Start by [installing a Gerrit server](http://blog.dcycle.com/blog/82) at http://gerrit.example.com:8080.
+ * Then, [make sure you have a git repo](http://blog.dcycle.com/blog/82/setting-gerrit-centos-evaluation) on your Gerrit server.
 
 Step 2: set up your computer with `git-review`
 --------------
@@ -33,7 +33,7 @@ Each developer needs to instal `git-review` on his or her laptop in order to wor
 Step 3: clone the repo
 --------------
 
-Navigate to your project at http://gerrit.example.com:8080, and you will see the git clone command for that repository. It is important to use the ssh protocol (you will have the options for HTTP or SSH). If you do not see SSH, make sure you have a username set up on your Gerrit account, and an public ssh key associated with it. If it still does not work you can [read these instructions](http://gerrit.dcycleproject.org:8080/Documentation/access-control.html).
+Navigate to your project at http://gerrit.example.com:8080, and you will see the git clone command for that repository. It is important to use the ssh protocol (you will have the options for HTTP or SSH). If you do not see SSH, make sure you have a username set up on your Gerrit account, and an public ssh key associated with it. If it still does not work you can [read these instructions](http://gerrit.blog.dcycle.com:8080/Documentation/access-control.html).
 
 Copy that command and paste it on your local machine, it will look like this:
 

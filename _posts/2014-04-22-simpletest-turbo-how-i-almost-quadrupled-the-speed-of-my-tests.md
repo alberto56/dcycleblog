@@ -11,9 +11,9 @@ redirect_from:
   - /blog/58/
   - /node/58/
 ---
-My development team is using a [site deployment module](http://dcycleproject.org/blog/44) which, when enabled, deploys our entire website (with translations, views, content types, the default theme, etc.).
+My development team is using a [site deployment module](http://blog.dcycle.com/blog/44) which, when enabled, deploys our entire website (with translations, views, content types, the default theme, etc.).
 
-We defined about 30 tests (and counting) which are linked to Agile user stories and confirm that the site is doing what it's supposed to do. These tests are defined in Drupal's own Simpletest framework, and works as follows: for every test, our site deployment module is enabled on a new database ([the database is never cloned](http://dcycleproject.org/blog/48/do-not-clone-database)), which can take about two minutes; the test is run, and then the temporary database is destroyed.
+We defined about 30 tests (and counting) which are linked to Agile user stories and confirm that the site is doing what it's supposed to do. These tests are defined in Drupal's own Simpletest framework, and works as follows: for every test, our site deployment module is enabled on a new database ([the database is never cloned](http://blog.dcycle.com/blog/48/do-not-clone-database)), which can take about two minutes; the test is run, and then the temporary database is destroyed.
 
 This created the following problem: because we were deploying our site 30 times during our test run, a single test run was taking over 90 minutes. Furthermore, we are halfway into the project, and we anticipate doubling, perhaps tripling our test coverage, which would mean our tests would take over four hours to run.
 
@@ -25,11 +25,11 @@ When we look at what is taking so long, we notice that a majority of the process
 
 Enter [Simpletest Turbo](https://drupal.org/project/simpletest_turbo), which provides very simple code to _cache_ your database once the setUp() function is run, so the next test can simply reuse the same database starting point rather than recreate everything from scratch.
 
-<img src="http://dcycleproject.org/sites/dcycleproject.org/files/screen_shot_2014-04-22_at_3.13.55_pm.png" />
+<img src="http://blog.dcycle.com/sites/blog.dcycle.com/files/screen_shot_2014-04-22_at_3.13.55_pm.png" />
 
 Although Simpletest Turbo is in early stages of development, I have used it to almost _quadruple the speed of my tests_, as you can see from this Jenkins trend chart:
 
-<img src="http://dcycleproject.org/sites/dcycleproject.org/files/screen_shot_2014-04-22_at_3.14.08_pm.png" />
+<img src="http://blog.dcycle.com/sites/blog.dcycle.com/files/screen_shot_2014-04-22_at_3.14.08_pm.png" />
 
 I know: my tests are failing more than I would like them to, but now I'm getting feedback every 25 minutes instead of every 95 minutes, so failures are easier to pinpoint and fix.
 

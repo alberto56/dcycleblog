@@ -10,11 +10,11 @@ redirect_from:
   - /blog/54/
   - /node/54/
 ---
-When working on a project, I like to have my [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module), a custom module (for custom code), a single [feature](https://drupal.org/project/features), and a development module.
+When working on a project, I like to have my [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module), a custom module (for custom code), a single [feature](https://drupal.org/project/features), and a development module.
 
 The purpose of the development module is to enable all development tools at once for a given environment. It consists only of dependencies for the moment but could also define, say, [better dummy content](https://drupal.org/comment/7834865#comment-7834865), mock objects and the like. I'd eventually like to have a way to disable these all at once.
 
-Sometimes when my development database is off-track, I can do away with it and reinstall the site (this is easy because I'm [not cloning the database](http://dcycleproject.org/blog/48/do-not-clone-database)]:
+Sometimes when my development database is off-track, I can do away with it and reinstall the site (this is easy because I'm [not cloning the database](http://blog.dcycle.com/blog/48/do-not-clone-database)]:
 
     drush si -y; drush en mysite_deploy mysite_devel -y;
 

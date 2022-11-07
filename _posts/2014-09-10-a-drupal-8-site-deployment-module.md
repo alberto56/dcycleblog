@@ -11,7 +11,7 @@ redirect_from:
   - /blog/69/
   - /node/69/
 ---
-Here is what you might have in a [site deployment module](http://dcycleproject.org/blog/44/what-site-deployment-module) for Drupal 8.
+Here is what you might have in a [site deployment module](http://blog.dcycle.com/blog/44/what-site-deployment-module) for Drupal 8.
 
 In `mysite_deploy.info.yml`:
 
@@ -57,7 +57,7 @@ In `mysite_deploy.module`:
       \Drupal::config('system.site')
         ->set('uuid', $uuid)
         ->save();
-    }    
+    }
 
 An in  `mysite_deploy.install`:
 

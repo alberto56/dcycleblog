@@ -1,6 +1,6 @@
 #!/bin/bash
 # Kills the Docker development environment using Docker; all data is lost.
-# See http://dcycleproject.org/blog/113
+# See http://blog.dcycle.com/blog/113
 
 docker kill dcycle-jekyll-apache-container 2>/dev/null \
   || echo 'Container not running, moving on...'
