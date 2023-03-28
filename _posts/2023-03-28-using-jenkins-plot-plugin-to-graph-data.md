@@ -2,6 +2,14 @@
 layout: post
 title: Using Jenkins' Plot plugin to graph data
 date: 2023-03-28T14:43:30.853Z
+id: 2023-03-28
+author: admin
+tags:
+  - blog
+permalink: /blog/2023-03-28/jenkins-plot-plugin/
+redirect_from:
+  - /blog/2023-03-28/
+  - /node/2023-03-28/
 ---
 Using Jenkins to run periodic tasks, we might end up with useful data we'd like to see over time.
 
@@ -43,7 +51,7 @@ Go back to your job, and, instead of echoing the random number to console, put t
 
 ```
 set -e
-DATE=$(date +%s); 
+DATE=$(date +%s);
 RAND=$(( ( $DATE % 10 )  + 1 ))
 echo "random" > rand.csv
 echo "$RAND" >> rand.csv
@@ -69,7 +77,7 @@ Modify your job to have two random numbers:
 
 ```
 set -e
-DATE=$(date +%s); 
+DATE=$(date +%s);
 RAND=$(( ( $DATE % 10 )  + 1 ))
 RAND2=$(( ( $DATE % 20 )  + 1 ))
 echo "random,random2" > rand.csv
