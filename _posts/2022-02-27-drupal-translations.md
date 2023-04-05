@@ -12,6 +12,9 @@ redirect_from:
   - /node/2022-02-27/
 ---
 
+{% assign openSquiggly = "{" %}
+{% assign closeSquiggly = "}" %}
+
 So you find yourself, as one does, building a complete user interface with PHP and Javascript for Drupal 9; and you'd like to delegate the translation of the front-end to a non-developer. (You want the client to be empowered to change the UI strings in English or any other language; you _don't_ want to be a bottleneck for string translations).
 
 ### Three types of translations
@@ -44,7 +47,7 @@ They can also be done in JavaScript, like this:
 Finally you can translate strings directly in twig template files, like this:
 
     ...
-    <div>{{"{{"}} "Hello World" | trans {{"}}"}}</div>
+    <div>{{ openSquiggly }}{{ openSquiggly }} "Hello World" | trans {{ closeSquiggly }}{{ closeSquiggly }}</div>
     ...
 
 ### Starting from the beginning
@@ -86,10 +89,10 @@ If you start with a standard Drupal installation, and an empty module named `my_
 
 ./templates/dashboard.html.twig
 
-    {{"{{"}} attach_library('my_custom_module/current_time') {{"}}"}}
-    <h3>{{"{{"}} "Welcome to your Dashboard" | trans {{"}}"}}<h3>
+    {{ openSquiggly }}{{ openSquiggly }} attach_library('my_custom_module/current_time') {{ closeSquiggly }}{{ closeSquiggly }}
+    <h3>{{ openSquiggly }}{{ openSquiggly }} "Welcome to your Dashboard" | trans {{ closeSquiggly }}{{ closeSquiggly }}<h3>
     <div>
-      <div>{{"{{"}} admin_page_link {{"}}"}}</div>
+      <div>{{ openSquiggly }}{{ openSquiggly }} admin_page_link {{ closeSquiggly }}{{ closeSquiggly }}</div>
       <div class="current-time"></div>
     </div>
 
