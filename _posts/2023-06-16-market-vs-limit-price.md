@@ -53,7 +53,7 @@ I put the historical data into three tabs in [this Google spreadsheet](https://d
 * USD-CAD
 * CAKE
 
-The reason I put both CAD-USD and USD-CAD is because I want to come up with a demonstration that a specific approach works whether or the market price is on an upward or downward tendancy. Dduring the period covered by our historical data, USD got more expensive for buyers paying in CAD; and inversly, CAD got cheaper for buyers paying in USD. If we can find a way to make limit orders work for us in both cases, then we know that we are not simply winning because we happen to be riding the market.
+The reason I put both CAD-USD and USD-CAD is because I want to come up with a demonstration that a specific approach works whether or the market price is on an upward or downward tendancy. During the period covered by our historical data, USD got more expensive for buyers paying in CAD; and inversly, CAD got cheaper for buyers paying in USD. If we can find a way to make limit orders work for us in both cases, then we know that we are not simply winning because we happen to be riding the market.
 
 Each of our tabs contains variables in blue (you can clone the spreadsheet and put your own numbers there if you want):
 
@@ -78,6 +78,8 @@ On the upper-right corner of each tab you will find a table that looks like this
 | If always using limit price	      | 258,307.05		 |
 | (gain) or loss (negative is good) | 607.92	    	 |
 | % gain (negative is good)	        | 0.24%	         |
+
+This table tells us we are losing .24% if we are consistently using limit orders.
 
 This is an example from the [CAD-USD sheet](https://docs.google.com/spreadsheets/d/1VuDw0i0XrrWA5yEWHcetmdkIHxOhaBD6nKbZuFStFgc/edit#gid=0). In this case our variables (the blue cells) are:
 
