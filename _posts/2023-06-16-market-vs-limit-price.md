@@ -11,6 +11,7 @@ redirect_from:
   - /blog/2023-06-16/
   - /node/2023-06-16/
 ---
+
 I do a lot of business in the U.S. but I live in Canada. I therefore need to convert funds from USD to CAD on a regular basis.
 
 [Wise](http://wise.com) allows you to convert funds either immediately, or by "auto convert" based on a "desired rate".
@@ -73,10 +74,10 @@ The columns, in each of the tabs, are:
 
 On the upper-right corner of each tab you will find a table that looks like this:
 
-| If always using market price	    | 257,699.12	 |
-| If always using limit price	      | 256,417.59	 |
-| (gain) or loss (negative is good) | (1,281.53)	 |
-| % gain (negative is good)	        | -0.50%	     |
+| If always using market price	    | 257,699.12		 |
+| If always using limit price	      | 258,307.05		 |
+| (gain) or loss (negative is good) | 607.92	    	 |
+| % gain (negative is good)	        | 0.24%	         |
 
 This is an example from the [CAD-USD sheet](https://docs.google.com/spreadsheets/d/1VuDw0i0XrrWA5yEWHcetmdkIHxOhaBD6nKbZuFStFgc/edit#gid=0). In this case our variables (the blue cells) are:
 
@@ -84,4 +85,11 @@ This is an example from the [CAD-USD sheet](https://docs.google.com/spreadsheets
 * we want to purchase a total of 200,000.00 USD
 * our limit order lasts 20 days, after which we purchase USD at the market price
 
+Conclusions
+-----
 
+Our exercice seems to indicate that using limit purchases generally results in investment losses, and in cases where we are riding the market (for example buying CAD with USD), can result in very minimal gains (less than 0.01%).
+
+It therefore seems to be the case that partaking in limit orders is not only not worth the hassle, but also a sure way to lose time and money.
+
+If any of my assumptions or formulae are wrong, please let me know in the comments.
