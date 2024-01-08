@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: DodgerBlue;
+  align-items: center;
+}
+
+.flex-container > div,
+.perfectly-centered > div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+
+.perfectly-centered {
+  display: flex;
+  background: red;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+</head>
+<body>
+
+<h1>Create a Flex Container</h1>
+
+<div class="flex-container">
+  <div style="height: 4px; width: 89px;">1</div>
+  <div style="height: 15px; width: 42px;">2</div>
+  <div style="height: 96px; width: 12px;">3</div>
+  <div style="height: 40px; width: 40px;">4</div>
+  <div style="height: 53px; width: 41px;">5</div>
+  <div style="height: 19px; width: 11px;">6</div>
+  <div style="height: 80px; width: 21px;">7</div>
+  <div style="height: 10px; width: 7px;">8</div>
+  <div style="height: 4px; width: 89px;">9</div>
+  <div style="height: 15px; width: 42px;">10</div>
+  <div style="height: 96px; width: 12px;">11</div>
+  <div style="height: 40px; width: 40px;">12</div>
+  <div style="height: 53px; width: 41px;">13</div>
+  <div style="height: 19px; width: 11px;">14</div>
+  <div style="height: 80px; width: 21px;">15</div>
+  <div style="height: 10px; width: 7px;">16</div>
+</div>
+
+<div class="perfectly-centered">
+  <div style="height: 100px; width: 100px;">This is perfectly centered</div>
+</div>
+
+
+</body>
+</html>
