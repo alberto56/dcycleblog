@@ -1,11 +1,12 @@
 FROM jekyll/minimal:4
 
-RUN gem install jekyll-redirect-from
-RUN gem install jekyll-paginate
-RUN gem install susy
-RUN gem install normalize-scss
-RUN gem install compass
-RUN gem install sass
-RUN gem install support-for
+RUN gem install \
+  jekyll-paginate \
+  susy \
+  normalize-scss \
+  compass \
+  sass \
+  support-for \
+  && echo "Done installing gem files"
 
 ENTRYPOINT [ "jekyll" ]
