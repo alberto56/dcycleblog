@@ -1,4 +1,4 @@
-FROM jekyll/minimal:4
+FROM jekyll/jekyll:pages
 
 RUN gem install \
   jekyll-paginate \
