@@ -6,6 +6,3 @@
 }
 
 /** This rule is not used, why are we shipping it? */
-.not-used {
-  color: red;
-}
