@@ -17,6 +17,6 @@ mkdir -p ./.jekyll-cache
 mkdir -p ./_site
 # If you change the image here also change it in ./scripts/deploy.sh
 docker run --rm \
-  --volume="$PWD:/srv/jekyll" \
+  --volume="$PWD/docs:/srv/jekyll" \
   dcycleblog-docker-image \
   build --trace --incremental

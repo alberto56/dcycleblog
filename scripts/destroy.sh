@@ -9,8 +9,8 @@ docker rm dcycleblog 2>/dev/null || true
 # the same container used to create them makes it more likely for this to
 # work.
 docker run --rm \
-  --volume="$PWD:/srv/jekyll" \
-  jekyll/minimal:4 \
+  --volume="$PWD/docs:/srv/jekyll" \
+  jekyll/jekyll:pages \
   /bin/bash -c 'rm -rf /srv/jekyll/_site .jekyll*'
 
 docker network rm "$starterkitjekyll" || echo 'docker network cannot be deleted; moving on.'
