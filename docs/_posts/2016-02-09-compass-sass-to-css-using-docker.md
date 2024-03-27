@@ -12,7 +12,7 @@ redirect_from:
   - /node/107/
 ---
 
-*Edit 2024-03-27: due to the issue [upgrade the image to the OCI Format or Docker Image manifest v2, schema 2 #2](https://github.com/antonienko/compass-watch-docker-container/issues/2), the technique presented in this post is no longer working; we recommend avoid SASS and SCSS in favour of plain CSS. For more information on why, please see [SASS is dead? CSS vs SASS 2024, Eren AKTAŞ, Jan 17, 2024, Medium](https://medium.com/@erennaktas/sass-is-dead-css-vs-sass-2024-a78c65c47a4d)*
+*Edit 2024-03-27: due to the issue [upgrade the image to the OCI Format or Docker Image manifest v2, schema 2 #2](https://github.com/antonienko/compass-watch-docker-container/issues/2), the technique presented in this post is no longer working; we recommend avoiding SASS and SCSS in favour of plain CSS. For more information on why, please see [SASS is dead? CSS vs SASS 2024, Eren AKTAŞ, Jan 17, 2024, Medium](https://medium.com/@erennaktas/sass-is-dead-css-vs-sass-2024-a78c65c47a4d)*
 
 I have seen many developers on a few teams cringe when they need to make a simple CSS change and are faced with this folder structure:
 
