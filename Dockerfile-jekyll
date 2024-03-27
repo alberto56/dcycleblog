@@ -1,0 +1,13 @@
+FROM jekyll/jekyll:pages
+
+RUN gem install \
+  jekyll-paginate \
+  susy \
+  normalize-scss \
+  compass \
+  sass \
+  support-for \
+  jekyll-redirect-from \
+  && echo "Done installing gem files"
+
+ENTRYPOINT [ "jekyll" ]

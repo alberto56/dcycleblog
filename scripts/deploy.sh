@@ -11,7 +11,7 @@ docker network ls | grep "$DOCKERNETWORK" || docker network create "$DOCKERNETWO
 docker run --rm -d \
   --name "$DOCKERNAME" \
   --network "$DOCKERNETWORK" \
-  -p "$DOCKERPORT":80 -v "$PWD/_site":/usr/share/nginx/html:ro nginx:alpine
+  -p "$DOCKERPORT":80 -v "$PWD/docs/_site":/usr/share/nginx/html:ro nginx:alpine
 
 echo ""
 echo "Visitez http://0.0.0.0:$DOCKERPORT pour voir le site localement."
