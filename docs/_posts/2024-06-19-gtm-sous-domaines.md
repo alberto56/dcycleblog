@@ -114,7 +114,11 @@ Pour tester que ça marche, j'ai créé deux sites:
 
 Notons que les cookies semblent apparaître uniquement lorsque je teste les domaines avec [Tag Assistant](http://tagassistant.google.com) en étant connecté, donc il est probable que si vous téléchargiez le premier site, vous ne verrez pas de cookie. Je ne comprends pas pourquoi, mais la solution semble tout de même valide.
 
-Le premier site est géré par GTM, et le deuxième ne l'est pas. Pour éviter la propagation de cookies d'un site à l'autre, j'ai ajouté, dans la section "Google Tag" de GTM, la variable cookie_domain avec la valeur gtm-sous-domaine-1.dcycleproject.org. Dès que j'ai fait ça, les cookies sur gtm-sous-domaine-1.dcycleproject.org sont maintenant:
+Le premier site est géré par GTM, et le deuxième ne l'est pas. Pour éviter la propagation de cookies d'un site à l'autre, j'ai ajouté, dans la section "Google Tag" de GTM, la variable cookie_domain avec la valeur gtm-sous-domaine-1.dcycleproject.org.
+
+<img src="/assets/uploads/variable-cookie-domain-gtm.jpg" alt="Console GTM montrant, sur le tag Google Tag, une variable cookie_domain avec la valeur gtm-sous-domaine-1.dcycleproject.org"/>
+
+Dès que j'ai fait ça, les cookies sur gtm-sous-domaine-1.dcycleproject.org sont maintenant:
 
 ```
 | Nom      | Domaine      |
