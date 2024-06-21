@@ -21,10 +21,10 @@ Pour éviter de devoir changer le code source de notre site web chaque fois qu'o
 
 En soi, GTM ne fait rien du tout, c'est simplement une interface permettant de gérer des tags sans toucher au code source de votre site web. Le seul bout de JavaScript qui doit paraître sur votre site est le JavaScript de GTM lui-même.
 
-GTM est conçu pour être configurée sur la console GTM à <https://tagmanager.google.com/> et non sur le site web
+GTM est conçu pour être configurée sur le tableau de bord GTM à <https://tagmanager.google.com/> et non sur le site web
 -----
 
-La philosophie même de GTM est de permettre à la personne spécialisée dans les tags de faire des changements directement sur la console GTM et non dans le code source du site web.
+La philosophie même de GTM est de permettre à la personne spécialisée dans les tags de faire des changements directement sur le tableau de bord GTM et non dans le code source du site web.
 
 Ma compréhension est donc que, de par sa conception, il semble impossible de configurer GTM directement sur le code source du site web.
 
@@ -41,7 +41,7 @@ Google Analytics (GA) vs GTM et les cookies
 
 Par défaut, [selon le guide "Configure and customize cookies" publié par Google](https://developers.google.com/tag-platform/security/guides/customize-cookies):
 
-> By default, Google tags use automatic cookie domain configuration. Cookies are set on the highest level of domain possible. For example, if your website address is blog.example.com, cookies are set on the example.com domain. If it is detected that you're running a server locally (for example, localhost), cookie_domain is automatically set to 'none', and cookies will use the full domain from the document location.
+> By default, Google tags use automatic cookie domain configuration. Cookies are set on the highest level of domain possible. For example, if your website address is blog.example.com, cookies are set on the example.com domain.
 
 Selon mes tests, la même politique sur les cookies est appliquée à Google Analytics (GA).
 
@@ -54,12 +54,10 @@ Ainsi, sur site-1.example.com, que vous installiez GA directement sur ou en pass
 * Vous vérifiez dans l'onglet Application &gt; cookies
 * Vous aurez maintenant des cookies qui ressemblent à:
 
-```
 | Nom      | Domaine      |
 |----------|--------------|
 | _ga      | .example.com |
 | _ga_XYZ  | .example.com |
-```
 
 * Toujours dans la même session incognito, téléchargez maintenant site-2.example.com *qui n'a aucun code GTM*.
 * Vous vérifiez dans l'onglet Application &gt; cookies
@@ -70,7 +68,7 @@ Ainsi, sur site-1.example.com, que vous installiez GA directement sur ou en pass
 En soi, un cookie qui est visible à un sous-domaine qui n'a pas de code GTM associé ne semble rien faire du tout. Toutefois, certaines organisations pourrait avoir les problèmes suivants:
 
 * Lorsqu'un utilisateur accepte les cookies sur site-1.example.com, il peut ne pas être clair pour cette personne qu'elle accepte aussi les cookies sur site-2.example.com, site-3.example.com, site-4.example.com. Imaginons un TLD comme .gouv.qc.ca, où des sites complètement différents pourraient être implémentés comme sous-domaines. Il est possible que nous voulions éviter que les cookies d'un sous-domaine ne s'activent sur d'autres sous-domaines, même s'ils ne sont pas utilisés.
-* Tel que décrit dans le [issue 3438528 sur Drupal.org](https://www.drupal.org/project/google_tag/issues/3438528), dans le cas où un organisme tel une université (dans cet exemple `yale.edu`) a des centaines de sites web, des cookies d'un sous-domaine peuvent "polluer" tous les autres sous-domaines jusqu'à cause des erreurs de types "400 Bad Request: Request Header Or Cookie Too Large".
+* Tel que décrit dans le [issue 3438528 sur Drupal.org](https://www.drupal.org/project/google_tag/issues/3438528), dans le cas où un organisme tel une université (dans cet exemple `yale.edu`) a des centaines de sites web, des cookies d'un sous-domaine peuvent "polluer" tous les autres sous-domaines allant jusqu'à causer des erreurs de types "400 Bad Request: Request Header Or Cookie Too Large".
 
 Comment limiter les cookies à un seul sous-domaine du TLD?
 -----
@@ -101,7 +99,7 @@ En d'autres termes, si vous utilisez `gtag.js` et non GTM, vous pouvez modifier 
 
 ### GTM
 
-Nous avons déjà vu que l'approche GTM vise à migrer toute la configuration des tags du code source du site web vers la console GTM. Ainsi, selon mes recherches, il semble impossible _via le code source du site web_ de forcer les cookies à apparaître uniquement sur tel ou tel sous-domaine. Plutôt, c'est au responsable GTM de se connecter à la console GTM et de faire le changement suivant _dans toutes les instances du tag "Google Tag":
+Nous avons déjà vu que l'approche GTM vise à migrer toute la configuration des tags du code source du site web vers le tableau de bord GTM. Ainsi, selon mes recherches, il semble impossible _via le code source du site web_ de forcer les cookies à apparaître uniquement sur tel ou tel sous-domaine. Plutôt, c'est au responsable GTM de se connecter à le tableau de bord GTM et de faire le changement suivant _dans toutes les instances du tag "Google Tag"_:
 
 **Dans la section configuration, ajouter la variable cookie_domain ayant pour valeur sous-domaine.example.com**.
 
@@ -116,15 +114,13 @@ Notons que les cookies semblent apparaître uniquement lorsque je teste les doma
 
 Le premier site est géré par GTM, et le deuxième ne l'est pas. Pour éviter la propagation de cookies d'un site à l'autre, j'ai ajouté, dans la section "Google Tag" de GTM, la variable cookie_domain avec la valeur gtm-sous-domaine-1.dcycleproject.org.
 
-<img src="/assets/uploads/variable-cookie-domain-gtm.jpg" alt="Console GTM montrant, sur le tag Google Tag, une variable cookie_domain avec la valeur gtm-sous-domaine-1.dcycleproject.org"/>
+<img src="/assets/uploads/variable-cookie-domain-gtm.jpg" alt="Tableau de bord GTM montrant, sur le tag Google Tag, une variable cookie_domain avec la valeur gtm-sous-domaine-1.dcycleproject.org"/>
 
 Dès que j'ai fait ça, les cookies sur gtm-sous-domaine-1.dcycleproject.org sont maintenant:
 
-```
 | Nom      | Domaine      |
 |----------|--------------|
 | _ga      | .gtm-sous-domaine-1.dcycleproject.org |
 | _ga_XYZ  | .gtm-sous-domaine-1.dcycleproject.org |
-```
 
 et plus aucun cookie n'appraît sur https://gtm-sous-domaine-2.dcycleproject.org, ce qui est le comportement désiré.
