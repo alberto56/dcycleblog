@@ -21,7 +21,7 @@ Pour éviter de devoir changer le code source de notre site web chaque fois qu'o
 
 En soi, GTM ne fait rien du tout, c'est simplement une interface permettant de gérer des tags sans toucher au code source de votre site web. Le seul bout de JavaScript qui doit paraître sur votre site est le JavaScript de GTM lui-même.
 
-GTM est conçu pour être configurée sur la console GTM et non sur le site web
+GTM est conçu pour être configurée sur la console GTM à <https://tagmanager.google.com/> et non sur le site web
 -----
 
 La philosophie même de GTM est de permettre à la personne spécialisée dans les tags de faire des changements directement sur la console GTM et non dans le code source du site web.
