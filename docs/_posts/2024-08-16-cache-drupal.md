@@ -242,9 +242,19 @@ Avec à peu près 1000 lignes en cache, voyons comment ça se compare:
 
 |            | Sans Compressed Cache  | Avec Compressed Cache  |
 |------------|------------------------|------------------------|
-| Espace combiné de cache_dynamic_page_cache, cache_page et cache_render | Invoice | 91.77Mo | 38.89Mo |
-| Temps que ça prend pour visiter 1000 pages non-cachées | 2m23s | 14.362s |
-| Temps que ça prend pour visiter 1000 pages cachées | 0m29s | 14.362s |
+| cache_dynamic_page_cache, cache_page et cache_render | 91.77Mo | 38.89Mo |
+| Temps que ça prend pour visiter 1000 pages non-cachées | 2m23s | 2m23s |
+| Temps que ça prend pour visiter 1000 pages cachées | 0m29s | 0m29s |
+
+Dans nos tests, nous sauvons 57% de l'espace avec Compressed Cache, toutefois ça ne prend pas plus de place.
+
+## Inconvénients de Compressed Cache
+
+Parfois si vous déboguez quelque chose avec la cache, il peut être utile de faire une recherche dans les données de la cache, par exemple:
+
+    select cid from page_cache were data like '%ceci-est-une-classe-css-quon-cherche%';
+
+Avec Compressed Cache, ce genre de recherche n'est plus possible.
 
 ## Sources et ressources
 
