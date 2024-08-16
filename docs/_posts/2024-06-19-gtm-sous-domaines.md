@@ -75,7 +75,7 @@ Comment limiter les cookies à un seul sous-domaine du TLD?
 
 Le TLD ou top-level domain, c'est le domaine que vous avez achetez chez un fournisseur de nom de domaine. Ça ressemble à `example.com` ou `example.qc.ca`.
 
-Comment nous n'avons vu plus, Google associe par défaut les cookies aux TLD, et elle a le droit de le faire selon [la spécification RFC-6265](https://www.rfc-editor.org/rfc/rfc6265) qui indique:
+Comment nous l'avons vu plus haut, Google associe par défaut les cookies aux TLD, et elle a le droit de le faire selon [la spécification RFC-6265](https://www.rfc-editor.org/rfc/rfc6265) qui indique:
 
 > if the value of the Domain attribute is "example.com", the user agent will include the cookie in the Cookie header when making HTTP requests to example.com, www.example.com, and www.corp.example.com
 
