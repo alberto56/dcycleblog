@@ -101,7 +101,7 @@ Ensuite voyons notre bloc:
 
 ## Testez votre bouton
 
-Sur Safari sur Mac, en cliquant sur "Cliquez-moi", vous verrez que l'alerte "Ceci est déclanché lorsqu'on clique le bouton" apparaît plus d'une fois, ce qui n'est pas le comportement désiré! (Sur Chrome sur Mac, du moins pour moi, le message "Ceci est déclanché lorsqu'on clique le bouton" n'apparaît qu'une seule fois, donc faisons nos tests sur Safari. Je présume que Chrome évite d'insaller le même click handler plus d'une fois même.)
+Sur Safari sur Mac, en cliquant sur "Cliquez-moi", vous verrez que l'alerte "Ceci est déclanché lorsqu'on clique le bouton" apparaît plus d'une fois, ce qui n'est pas le comportement désiré! (Sur Chrome sur Mac, du moins pour moi, le message "Ceci est déclanché lorsqu'on clique le bouton" n'apparaît qu'une seule fois, donc faisons nos tests sur Safari. Je présume que Chrome évite d'insaller le même click handler plus d'une fois.)
 
 ## Une correction possible (à ne pas faire!): off()
 
@@ -120,7 +120,7 @@ Un petit hack au `js/mon-js.js` semble régler le problème:
       };
     })(jQuery);
 
-Maintenant, si vous faites un refresh en dur (commande-option-R sur Safari sur Mac, commande-shift-R sur Chrome sur Mac...), votre fureteur chargera cette dernière version du JavaScript, et votre problème _semblera_ réglé: l'alerge n'apparaîtra qu'une seule fois.
+Maintenant, si vous faites un refresh en dur (commande-option-R sur Safari sur Mac, commande-shift-R sur Chrome sur Mac...), votre fureteur chargera cette dernière version du JavaScript, et votre problème _semblera_ réglé: l'alerge n'apparaîtra qu'une seule fois sur Safari.
 
 Pour comprendre pourquoi ceci est une mauvaise idée, imaginez que d'autres librairies veulent aussi ajouter des événements sur clic pour votre bouton:
 
@@ -128,7 +128,7 @@ Pour comprendre pourquoi ceci est une mauvaise idée, imaginez que d'autres libr
 * Dans `exemple_context.libraries.yml`, clônez mon-js et déclarez une librairie mon-js2 en plus de mon-js (identique mais déclarant `js/mon-js2.js` plutôt que `js/mon-js.js`).
 * Dans `src/Plugin/Block/ExempleContext.php`, au lieu de `'library' => ['exemple_context/mon-js']`, mettez `'library' => ['exemple_context/mon-js', 'exemple_context/mon-js2']`.
 
-Ce que nous venons de faire vise à déclancher deux alertes en cliquant sur notre bouton: "Exemple de contexte" et "Exemple de contexte 2".
+Ce que nous venons de faire vise à déclancher deux messages en cliquant sur notre bouton: "Ceci est déclanché lorsqu'on clique le bouton" et "Ceci est aussi déclanché lorsqu'on clique le bouton".
 
 Suite à un `drush cr`, rechargez votre page et cliquez sur votre bouton.
 
@@ -136,18 +136,17 @@ Vous aurez uniquement une des deux alertes, pas les deux. C'est parce que `off()
 
 Retirons `.off()` de notre code dans `js/mon-js.js` et `js/mon-js2.js`, faisons un refresh en dur, et maintenant nous devrions avoir, à nouveau, une dizaine d'alertes, du moins sur Safari sur Mac.
 
-## once(), une autre solution à utiliser avec précaution
+## once(), une autre solution
 
 Drupal inclut la librairie [`once()`](https://github.com/drupal/drupal/blob/bf4ae811643c6e50e5263e19f8eb28e123e4d855/core/assets/vendor/once/once.js) qui permet de sélectionner des items une seule fois. Voyons comment ça marche.
 
-Dans `exemple_context.libraries.yml`, ajoutez aux librairies (mon-js et mon-js2) une nouvelle dépendance: `core/once`. Lorsque nous sélectionnonons 'button.exemple-context', nous pouvons préciser que nous voulons le sélectionner une seule fois dans un contexte donné. Changeons nos documents JavaScript pour y ajouter `once()`;
+Dans `exemple_context.libraries.yml`, ajoutez aux librairies (mon-js et mon-js2) une nouvelle dépendance: `core/once` (ce n'est pas strictement nécessaire car core/once semble déjà être une dépendance de core/jquery, mais j'aime bien être précis). Lorsque nous sélectionnonons 'button.exemple-context', nous pouvons préciser que nous voulons le sélectionner une seule fois. Changeons nos documents JavaScript pour y ajouter `once()`;
 
 ### `js/mon-js.js` avec once()
 
     (function ($) {
       Drupal.behaviors.ExempleContext = {
         attach: function () {
-          // once() est à utiliser avec précaution!
           $(once('mon-js', 'button.exemple-context'))
             .click(function () {
               console.log("Ceci est déclanché lorsqu'on clique le bouton");
@@ -161,7 +160,6 @@ Dans `exemple_context.libraries.yml`, ajoutez aux librairies (mon-js et mon-js2)
     (function ($) {
       Drupal.behaviors.ExempleContext2 = {
         attach: function () {
-          // once() est à utiliser avec précaution!
           $(once('mon-js2', 'button.exemple-context'))
             .click(function () {
               console.log("Ceci est aussi déclanché lorsqu'on clique le bouton");
@@ -246,7 +244,7 @@ Lorsque le DOM est modifié, notre JavaScript custom n'y est pas attaché automa
 
 C'est quoi `buttonGroupJustModified`? On trouve l'élément du DOM qui correspond au groupe de bouton qu'on vient tout juste de modifier et on passe ça à `Drupal.attachBehaviors`.
 
-Cela indique aux comportements Javascript de Drupal que seulement le bouton a changé de ne pas considérer l'ensemble du markup, mais uniquement ce qui a changé.
+Cela indique aux comportements Javascript de Drupal que seulement les boutons ont changé de ne pas considérer l'ensemble du markup, mais uniquement ce qui a changé.
 
 Encore faut-il que notre JavaScript tienne compte de cette information.
 
