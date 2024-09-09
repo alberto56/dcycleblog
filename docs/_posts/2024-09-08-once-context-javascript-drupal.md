@@ -14,17 +14,17 @@ redirect_from:
 
 Si nous voulons ajouter un comportement à un élément du DOM dans Drupal, il peut être utile de comprendre comment `once()` et `context` fonctionnent.
 
-Prenons un exemple où un bloc affiche un bouton et que du Javascript ajoute un comportement (event handler) lorsque le bouton est cliqué affichant une alerte.
+Prenons un exemple où un bloc affiche un bouton et que du Javascript ajoute un comportement (event handler) lorsque le bouton est cliqué affichant un message dans la console.
 
-Pour commencer, sur une installation Drupal toute neuve, créons un module minimal qui fait ce qu'on veut.
+Pour commencer, sur une installation Drupal toute neuve, créons un module minimal `exemple_context` qui fait ce qu'on veut.
 
-## Document `./modules/exemple_context/exemple_context.info.yml`
+### `exemple_context.info.yml`
 
     name: Exemple de contexte
     type: module
     core_version_requirement: ^10 || ^11
 
-## Document `./modules/exemple_context/exemple_context.libraries.yml`
+### `exemple_context.libraries.yml`
 
     mon-js:
       js:
@@ -32,7 +32,7 @@ Pour commencer, sur une installation Drupal toute neuve, créons un module minim
       dependencies:
       - core/jquery
 
-## Document `./modules/exemple_context/js/mon-js.js`
+### `js/mon-js.js`
 
     (function ($) {
       Drupal.behaviors.ExempleContext = {
@@ -44,7 +44,7 @@ Pour commencer, sur une installation Drupal toute neuve, créons un module minim
       };
     })(jQuery);
 
-## Document `./modules/exemple_context/exemple_context.module`
+### `exemple_context.module`
 
     <?php
 
@@ -56,11 +56,11 @@ Pour commencer, sur une installation Drupal toute neuve, créons un module minim
       ];
     }
 
-## Document `./modules/exemple_context/templates/exemplecontext.html.twig`
+### `templates/exemplecontext.html.twig`
 
     <button type="button" class="exemple-context">Cliquez-moi</button>
 
-## Document `./modules/exemple_context/src/Plugin/Block/ExempleContext.php`
+### `src/Plugin/Block/ExempleContext.php`
 
     <?php
 
@@ -105,7 +105,7 @@ Sur Safari sur Mac, en cliquant sur "Cliquez-moi", vous verrez que l'alerte "Cec
 
 ## Une correction possible (à ne pas faire!): off()
 
-Un petit hack au `./modules/exemple_context/js/mon-js.js` semble régler le problème:
+Un petit hack au `js/mon-js.js` semble régler le problème:
 
     (function ($) {
       Drupal.behaviors.ExempleContext = {
@@ -124,9 +124,9 @@ Maintenant, si vous faites un refresh en dur (commande-option-R sur Safari sur M
 
 Pour comprendre pourquoi ceci est une mauvaise idée, imaginez que d'autres librairies veulent aussi ajouter des événements sur clic pour votre bouton:
 
-* Ajoutez un nouveau document `./modules/exemple_context/js/mon-js2.js`, identique à `mon-js.js` mais en remplaçant 'Drupal.behaviors.ExempleContext' par 'Drupal.behaviors.ExempleContext2'; et en remplaçant "Ceci est déclanché lorsqu'on clique le bouton" par "Ceci est aussi déclanché lorsqu'on clique le bouton".
-* Dans `./modules/exemple_context/exemple_context.libraries.yml`, clônez mon-js et déclarez une librairie mon-js2 en plus de mon-js (identique mais déclarant `js/mon-js2.js` plutôt que `js/mon-js.js`).
-* Dans `./modules/exemple_context/src/Plugin/Block/ExempleContext.php`, au lieu de `'library' => ['exemple_context/mon-js']`, mettez `'library' => ['exemple_context/mon-js', 'exemple_context/mon-js2']`.
+* Ajoutez un nouveau document `js/mon-js2.js`, identique à `mon-js.js` mais en remplaçant 'Drupal.behaviors.ExempleContext' par 'Drupal.behaviors.ExempleContext2'; et en remplaçant "Ceci est déclanché lorsqu'on clique le bouton" par "Ceci est aussi déclanché lorsqu'on clique le bouton".
+* Dans `exemple_context.libraries.yml`, clônez mon-js et déclarez une librairie mon-js2 en plus de mon-js (identique mais déclarant `js/mon-js2.js` plutôt que `js/mon-js.js`).
+* Dans `src/Plugin/Block/ExempleContext.php`, au lieu de `'library' => ['exemple_context/mon-js']`, mettez `'library' => ['exemple_context/mon-js', 'exemple_context/mon-js2']`.
 
 Ce que nous venons de faire vise à déclancher deux alertes en cliquant sur notre bouton: "Exemple de contexte" et "Exemple de contexte 2".
 
@@ -134,7 +134,7 @@ Suite à un `drush cr`, rechargez votre page et cliquez sur votre bouton.
 
 Vous aurez uniquement une des deux alertes, pas les deux. C'est parce que `off()` retire _tous les événements sur clic_, pas juste celui dans le document actuel.
 
-Retirons `.off()` de notre code dans `./modules/exemple_context/js/mon-js.js` et `./modules/exemple_context/js/mon-js2.js`, faisons un refresh en dur, et maintenant nous devrions avoir, à nouveau, une dizaine d'alertes, du moins sur Safari sur Mac.
+Retirons `.off()` de notre code dans `js/mon-js.js` et `js/mon-js2.js`, faisons un refresh en dur, et maintenant nous devrions avoir, à nouveau, une dizaine d'alertes, du moins sur Safari sur Mac.
 
 ## once(), une autre solution à utiliser avec précaution
 
@@ -142,7 +142,7 @@ Drupal inclut la librairie [`once()`](https://github.com/drupal/drupal/blob/bf4a
 
 Dans `exemple_context.libraries.yml`, ajoutez aux librairies (mon-js et mon-js2) une nouvelle dépendance: `core/once`. Lorsque nous sélectionnonons 'button.exemple-context', nous pouvons préciser que nous voulons le sélectionner une seule fois dans un contexte donné. Changeons nos documents JavaScript pour y ajouter `once()`;
 
-### Document `./modules/exemple_context/js/mon-js.js` avec once()
+### `js/mon-js.js` avec once()
 
     (function ($) {
       Drupal.behaviors.ExempleContext = {
@@ -156,7 +156,7 @@ Dans `exemple_context.libraries.yml`, ajoutez aux librairies (mon-js et mon-js2)
       };
     })(jQuery);
 
-### Document `./modules/exemple_context/js/mon-js2.js` avec once()
+### `js/mon-js2.js` avec once()
 
     (function ($) {
       Drupal.behaviors.ExempleContext2 = {
@@ -187,14 +187,14 @@ En cliquant sur notre bouton sur Safari, nous aurons deux phrases dans notre con
 
 ## Qu'arrive-t-il lorsqu'on manipule dynamiquement le markup?
 
-### Modifions `./modules/exemple_context/templates/exemplecontext.html.twig`:
+### Modifions `templates/exemplecontext.html.twig`:
 
     <div class="exemple-context-group">
       <button type="button" class="ajouter-un-bouton">Ajouter un bouton</button>
       <button type="button" class="exemple-context">Cliquez-moi</button>
     </div>
 
-### Modifions `./modules/exemple_context/js/mon-js.js`
+### Modifions `js/mon-js.js`
 
     (function ($) {
       Drupal.behaviors.ExempleContext = {
@@ -223,7 +223,7 @@ Le premier bouton "Cliquez-moi" déclanche nos actions (deux phrases dans notre 
 
 Lorsque le DOM est modifié, notre JavaScript custom n'y est pas attaché automatiquement. Nous devons en informer Drupal. Voici comment:
 
-### Modifions, à nouveau  `./modules/exemple_context/js/mon-js.js`
+### Modifions, à nouveau  `js/mon-js.js`
 
     (function ($) {
       Drupal.behaviors.ExempleContext = {
@@ -250,7 +250,7 @@ Cela indique aux comportements Javascript de Drupal que seulement le bouton a ch
 
 Encore faut-il que notre JavaScript tienne compte de cette information.
 
-### Modifions, à nouveau  `./modules/exemple_context/js/mon-js2.js`
+### Modifions, à nouveau  `js/mon-js2.js`
 
 Ajoutons le contexte à `Drupal.behaviors.ExempleContext2`:
 
