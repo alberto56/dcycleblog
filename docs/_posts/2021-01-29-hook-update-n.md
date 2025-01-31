@@ -78,7 +78,7 @@ Therefore, although we all use version control for our code, in a way we are foo
 
 Although it makes sense for certain elements to be a database or on `./sites/default/files`, for example, an encrypted user account password or a user's avatar; for other elements such as your "About page" text, it would really make a lot more sense for this to be under version control.
 
-In fact, the blog post you are reading right now is a [file under version control on Jekyll, which you can see using this link](https://github.com/alberto56/dcycleblog/edit/gh-pages/_posts/2021-01-29-hook-update-n.md), and not some collection of opaque, unversioned, entries in database tables with names like `node__body`, `node__field_tags`, `node_field_revision`, which can be changed at a moment's notice by any module's `hook_update_N()` functions.
+In fact, the blog post you are reading right now is a [file under version control on Jekyll, which you can see using this link](https://github.com/alberto56/dcycleblog/edit/master/_posts/2021-01-29-hook-update-n.md), and not some collection of opaque, unversioned, entries in database tables with names like `node__body`, `node__field_tags`, `node_field_revision`, which can be changed at a moment's notice by any module's `hook_update_N()` functions.
 
 Oh, did I mention that I love Drupal?
 
