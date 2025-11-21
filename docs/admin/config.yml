@@ -3,7 +3,7 @@ backend:
   repo: alberto56/dcycleblog
   branch: master
   base_url: https://suresh-issue-82.dcycleproject.org
-  auth_endpoint: /auth/github/repo/6920ac1a09f96ec75f9b6b26
+  auth_endpoint: /auth/github/repo/6920b5b209f96ec75f9b6dca
 media_folder: assets/uploads
 collections:
   - name: blog posts
