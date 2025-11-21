@@ -1,50 +1,71 @@
-# config.yml
-
 backend:
-  # See https://www.netlifycms.org/docs/authentication-backends/#github-backend
   name: github
   repo: alberto56/dcycleblog
   branch: master
-  base_url: https://auth.static.dcycle.com
-  auth_endpoint: auth/github/alberto56
-media_folder: 'assets/uploads'
+  base_url: https://suresh-issue-82.dcycleproject.org
+  auth_endpoint: /auth/github/repo/6920ac1a09f96ec75f9b6b26
+media_folder: assets/uploads
 collections:
-  - name: 'blog posts'
+  - name: blog posts
     create: true
-    label: 'Blog'
-    folder: '_posts/'
+    label: Blog
+    folder: _posts/
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     fields:
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'post' }
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
-  - name: "members"
-    label: "Members"
+      - label: Layout
+        name: layout
+        widget: hidden
+        default: post
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Body
+        name: body
+        widget: markdown
+  - name: members
+    label: Members
     editor:
       preview: false
     files:
-      - label: "Members"
-        name: "members"
+      - label: Members
+        name: members
         create: true
-        file: "_data/members.yml"
+        file: _data/members.yml
         fields:
-          - label: "Members"
-            name: "items"
-            widget: "list"
+          - label: Members
+            name: items
+            widget: list
             fields:
-              - {label: Name, name: name, widget: string}
-              - {label: "Github Username", name: github, widget: string}
-  - name: 'pages'
-    label: 'Pages'
+              - label: Name
+                name: name
+                widget: string
+              - label: Github Username
+                name: github
+                widget: string
+  - name: pages
+    label: Pages
     editor:
       preview: false
     files:
-      - label: 'About Page'
-        name: 'about'
-        file: 'about.md'
+      - label: About Page
+        name: about
+        file: about.md
         fields:
-          - { label: 'Title', name: 'title', widget: 'hidden', default: 'About' }
-          - { label: 'permalink', name: 'permalink', widget: 'hidden', default: '/about/' }
-          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'page' }
-          - { label: 'Body', name: 'body', widget: 'markdown' }
+          - label: Title
+            name: title
+            widget: hidden
+            default: About
+          - label: permalink
+            name: permalink
+            widget: hidden
+            default: /about/
+          - label: Layout
+            name: layout
+            widget: hidden
+            default: page
+          - label: Body
+            name: body
+            widget: markdown
