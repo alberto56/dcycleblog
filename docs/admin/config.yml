@@ -2,8 +2,8 @@ backend:
   name: github
   repo: alberto56/dcycleblog
   branch: master
-  base_url: https://suresh-issue-82.dcycleproject.org
-  auth_endpoint: /auth/github/repo/694f514818f56cc358266507
+  base_url: https://app.staticauth.com
+  auth_endpoint: /auth/github/repo/696663cd8a3239f204717606
 media_folder: assets/uploads
 collections:
   - name: blog posts
