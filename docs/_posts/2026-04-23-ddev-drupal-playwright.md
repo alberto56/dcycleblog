@@ -35,10 +35,10 @@ See <https://github.com/dcycle/starterkit-drupal-ddev/>.
 An example
 -----
 
-* 1. We have a codebase for a blog website.
-* 2. The client requests a new feature: "Anonymous users should see all published blog posts, by reverse published date, on the home page; administrators should see all articles, whether published or unpublished, there should be 5 articles per page."
-* 3. Developer implements the feature along with a test, a new branch
-* 4. The continuous integration server runs the tests on the new branch. If the tests pass, you are done; if the tests fail, back to step 3.
+* (1) We have a codebase for a blog website.
+* (2) The client requests a new feature: "Anonymous users should see all published blog posts, by reverse published date, on the home page; administrators should see all articles, whether published or unpublished, there should be 5 articles per page."
+* (3) Developer implements the feature along with a test, a new branch
+* (4) The continuous integration server runs the tests on the new branch. If the tests pass, you are done; if the tests fail, back to step 3.
 
 Prerequisites
 -----
@@ -173,7 +173,7 @@ Our first test
 
 Our first test should be as simple as possible, and should serve the purpose of making sure the site is deployed and that the testing system works.
 
-In our case, we'll *make sure the words "Log in" appear on the home page of our site.
+In our case, we'll make sure the words "Log in" appear on the home page of our site.
 
 ### Step 1: install Lullabot ddev-playwright
 
@@ -300,7 +300,7 @@ Until now, our pipeline is the following:
 
 * install the code via composer
 * install a brand new database using `ddev drush site:install -y`
-* test that (brand new site) site
+* test that (brand new) site
 
 However, our concept of a website is not a brand new Drupal site; rather, it is a combination of:
 
@@ -416,7 +416,7 @@ At this point your site should be up and running with the content from your star
 Coding part of our example feature, and its test
 -----
 
-In "An example", above, we defined our feature as "A* 2. The client requests a new feature: "Anonymous users should see all published blog posts, by reverse published date, on the home page; administrators should see all articles, whether published or unpublished, there should be 5 articles per page.""
+In "An example", above, we defined our feature as "Anonymous users should see all published blog posts, by reverse published date, on the home page; administrators should see all articles, whether published or unpublished, there should be 5 articles per page."
 
 OK, so let's code this:
 
